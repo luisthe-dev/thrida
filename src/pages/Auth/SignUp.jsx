@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { RiUser3Line } from "react-icons/ri";
 import { GiOilySpiral } from "react-icons/gi";
 import { BiEnvelope, BiLockAlt } from "react-icons/bi";
 import {
@@ -7,43 +8,19 @@ import {
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { useState } from "react";
-import { SignInUser } from "../../components/apis/userApi";
-import { useDispatch } from "react-redux";
-import {
-  setUserAuthToken,
-  setUserWallets,
-  setUserDetails,
-} from "../../redux/userStore";
-import { toast } from "react-toastify";
+import { SignUpUser } from "../../components/apis/userApi";
 
-const SignIn = () => {
+const SignUp = () => {
+  const [userName, setUserName] = useState("");
   const [userMail, setUserMail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const myNavigate = useNavigate();
-  const myDispatch = useDispatch();
 
-  const userSignIn = async (e) => {
+  const userSignUp = async (e) => {
     e.preventDefault();
-    const signInResponse = await SignInUser(userMail, userPassword);
-    if (signInResponse.status === 1) {
-      toast.success("Signed In Successfully");
-      const userWallet = JSON.parse(signInResponse.data.user.wallets);
-      myDispatch(setUserAuthToken(signInResponse.data.access_token));
-      myDispatch(
-        setUserWallets({
-          demoAccount: userWallet.demo_wallet,
-          realAccount: userWallet.real_wallet,
-          tourneyAccount: userWallet.tournament_wallet,
-        })
-      );
-      myDispatch(
-        setUserDetails({
-          name: signInResponse.data.user.name,
-          email: signInResponse.data.user.email,
-        })
-      );
-    }
+    const signUpResponse = await SignUpUser(userName, userMail, userPassword);
+    console.log(signUpResponse);
   };
 
   return (
@@ -56,7 +33,18 @@ const SignIn = () => {
           </div>
         </div>
         <div className="authForm">
-          <form onSubmit={userSignIn}>
+          <form onSubmit={userSignUp}>
+            <label> Full Name </label>
+            <div className="authFormInputContainer">
+              <RiUser3Line />
+              <input
+                type="text"
+                value={userName}
+                onInput={(e) => setUserName(e.target.value)}
+                placeholder="Full Name"
+                required
+              />
+            </div>
             <label> Email Address </label>
             <div className="authFormInputContainer">
               <BiEnvelope />
@@ -86,12 +74,13 @@ const SignIn = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit"> Sign In </button>
+            <button type="submit"> Sign Up </button>
           </form>
         </div>
         <div className="authFooter">
           <p>
-            New User? <Link to="/signup">Get A Free Account</Link>
+            Already Have An Account?{" "}
+            <Link to="/signin">Access Your Account</Link>
           </p>
         </div>
       </div>
@@ -100,4 +89,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
