@@ -43,6 +43,8 @@ const SignIn = () => {
           email: signInResponse.data.user.email,
         })
       );
+    } else {
+      toast.error("Invalid Credentials");
     }
   };
 
