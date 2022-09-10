@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { GiOilySpiral } from "react-icons/gi";
 import { BiEnvelope, BiLockAlt } from "react-icons/bi";
 import {
   AiOutlineArrowLeft,
@@ -43,6 +42,7 @@ const SignIn = () => {
           email: signInResponse.data.user.email,
         })
       );
+      myNavigate("/dashboard");
     } else {
       toast.error("Invalid Credentials");
     }
@@ -54,7 +54,7 @@ const SignIn = () => {
         <div className="authHeader">
           <AiOutlineArrowLeft onClick={() => myNavigate(-1)} />
           <div className="authHeaderText">
-            <GiOilySpiral /> <p>Thrida</p>
+            <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
           </div>
         </div>
         <div className="authForm">

@@ -63,10 +63,8 @@
   width: 85%;
 }
 
-.mainAuthContainer .authContainer .authHeader .authHeaderText p {
-  margin-left: 5px;
-  font-size: 1.7rem;
-  font-family: "Ubuntu", sans-serif;
+.mainAuthContainer .authContainer .authHeader .authHeaderText img {
+  width: 55%;
 }
 
 .mainAuthContainer .authContainer .authForm {

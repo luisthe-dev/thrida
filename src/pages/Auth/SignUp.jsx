@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 import { useState } from "react";
 import { SignUpUser } from "../../components/apis/userApi";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -20,7 +21,9 @@ const SignUp = () => {
   const userSignUp = async (e) => {
     e.preventDefault();
     const signUpResponse = await SignUpUser(userName, userMail, userPassword);
-    console.log(signUpResponse);
+    if (signUpResponse.status === 1) {
+      toast.success("Signed Up Successfully");
+    }
   };
 
   return (

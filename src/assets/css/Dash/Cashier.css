@@ -1,0 +1,265 @@
+.cashierPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 0;
+  margin: 12px auto;
+  width: 85%;
+}
+
+.cashierPageContainer .cashierPageHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 5px auto;
+}
+
+.cashierPageContainer .cashierPageHeader .cashierPageHeaderWalletSummary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 5px auto;
+}
+
+.cashierPageContainer
+  .cashierPageHeader
+  .cashierPageHeaderWalletSummary
+  .cashierPageHeaderWalletSummaryCard {
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 5px 8px 10px 0 #1312122c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px auto;
+  padding: 20px 40px 0;
+  width: 25%;
+}
+
+.cashierPageContainer
+  .cashierPageHeader
+  .cashierPageHeaderWalletSummary
+  .cashierPageHeaderWalletSummaryCard
+  h5 {
+  font-size: 0.9rem;
+  font-style: oblique;
+  font-weight: 300;
+  margin: 0 0 6px;
+}
+
+.cashierPageContainer
+  .cashierPageHeader
+  .cashierPageHeaderWalletSummary
+  .cashierPageHeaderWalletSummaryCard
+  h3 {
+  color: #2c4743;
+  font-size: 1.9rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.cashierPageContainer
+  .cashierPageHeader
+  .cashierPageHeaderWalletSummary
+  .cashierPageHeaderWalletSummaryCard
+  p {
+  color: #707070;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.cashierPageContainer
+  .cashierPageHeader
+  .cashierPageHeaderWalletSummary
+  .cashierPageHeaderWalletSummaryCard
+  p
+  span {
+  color: #042d25;
+}
+
+.cashierPageBody {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.cashierPageBody .cashierPageBodyMenu {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 20px;
+  width: 25%;
+}
+
+.cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems {
+  align-items: flex-start;
+  border-radius: 12px;
+  box-shadow: 5px 8px 10px 0 #1312122c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto 20px;
+  padding: 20px 12px;
+  width: 80%;
+}
+
+.cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems a {
+  border-bottom: 1px solid #e0e0e0;
+  color: #2c4743;
+  display: block;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 300;
+  margin: 0 auto 10px;
+  padding: 8px 5px 12px 20px;
+  width: 90%;
+}
+
+.cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems a:hover {
+  background: #ededed7c;
+}
+
+.cashierPageBody .cashierPageBodySection {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 20px;
+  width: 70%;
+}
+
+.cashierPageBody .cashierPageBodySection .cashierPageBodyBlocks {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 10px 20px;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock {
+  align-items: flex-start;
+  border-radius: 12px;
+  box-shadow: 5px 8px 10px 0 #1312122c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 20px;
+  padding: 20px;
+  width: 30%;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock
+  h5 {
+  color: #2c4743;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock
+  h6 {
+  color: #2c4743;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock
+  p {
+  color: #707070;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock
+  .cashierPageBodyProgressBar {
+  align-items: center;
+  background: #dadada;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  height: 5px;
+  justify-content: space-between;
+  margin: 20px 0;
+  width: 70%;
+}
+
+.cashierPageBody
+  .cashierPageBodySection
+  .cashierPageBodyBlocks
+  .cashierPageBodyBlock
+  .cashierPageBodyProgressBar
+  .cashierPageBodyProgressBar_Bar {
+  background: #042d25;
+  border-radius: 12px;
+  height: 3px;
+}
+
+@media (max-width: 1024px) {
+  .cashierPageContainer {
+    width: 95%;
+  }
+
+  .cashierPageContainer
+    .cashierPageHeader
+    .cashierPageHeaderWalletSummary
+    .cashierPageHeaderWalletSummaryCard {
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .cashierPageContainer {
+    width: 95%;
+  }
+
+  .cashierPageContainer .cashierPageHeader .cashierPageHeaderWalletSummary {
+    width: 90%;
+  }
+
+  .cashierPageBody {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cashierPageBody .cashierPageBodyMenu {
+    width: 95%;
+    margin: 12px auto;
+  }
+
+  .cashierPageBody .cashierPageBodySection {
+    width: 95%;
+    margin: 12px auto;
+  }
+}

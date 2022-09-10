@@ -30,7 +30,9 @@ export const SignUpUser = async (userName, userMail, userPass) => {
     password: userPass,
   })
     .then(function (response) {
-      console.log(response);
+      if (response.status === 201) {
+        returnData = { status: 1 };
+      }
     })
     .catch(function (error) {
       console.log(error);
