@@ -4,7 +4,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: #121212;
+  background: var(--darkBackground);
   opacity: 0.5;
   z-index: 10;
 }
@@ -14,7 +14,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  background: #f9f9f9;
+  background: var(--mainBackground);
   min-width: 240px;
   display: flex;
   flex-direction: column;
@@ -42,8 +42,8 @@
   font-size: 1rem;
   padding: 3px 12px 8px;
   margin: 5px 0;
-  color: cadetblue;
-  border-bottom: 1px solid cadetblue;
+  color: var(--darkBackground);
+  border-bottom: 1px solid var(--mainShadow);
   width: 100%;
   text-align: center;
 }

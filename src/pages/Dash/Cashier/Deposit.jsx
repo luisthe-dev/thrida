@@ -40,7 +40,7 @@ const Deposit = () => {
             <h5> Litecoin </h5>
           </div>
           <div className="depositMethod">
-            <img src="/public_assets/svgs/litecoin.svg" alt="litecoin" />
+            <img src="/public_assets/svgs/ethereum.svg" alt="ethereum" />
             <h5> Ethereum </h5>
           </div>
         </div>

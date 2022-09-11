@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #e4e4e4;
+  background-color: var(--alternateBackground);
 }
 
 .mainAuthContainer .authContainer {
@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: var(--mainBackground);
   border-radius: 12px;
   padding: 30px 5px;
 }
@@ -42,21 +42,22 @@
 .mainAuthContainer .authContainer .authHeader > svg {
   left: 20px;
   align-self: center;
-  border: 1px solid #121212;
+  border: 1px solid var(--darkBackground);
+  color: var(--darkBackground);
   padding: 8px;
   border-radius: 30px;
 }
 
 .mainAuthContainer .authContainer .authHeader > svg:hover {
-  background: #121212;
-  color: #ffffff;
-  border: 1px solid #121212;
+  background: var(--darkBackground);
+  color: var(--mainBackground);
+  border: 1px solid var(--darkBackground);
 }
 
 .mainAuthContainer .authContainer .authHeader .authHeaderText {
   font-size: 2.4rem;
   font-weight: 500;
-  color: #000000;
+  color: var(--darkBackground);
   align-items: center;
   justify-content: center;
   display: flex;
@@ -93,10 +94,10 @@
 .mainAuthContainer .authContainer .authForm form .authFormInputContainer {
   width: 90%;
   font-size: 1.4rem;
-  color: #898989;
+  color: var(--alternateBackground);
   border-radius: 5px;
   padding: 0 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid var(--mainShadow);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -110,17 +111,18 @@
   margin-left: 5px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #343434;
+  background: var(--mainBackground);
+  color: var(--mainShadow);
 }
 
 .mainAuthContainer .authContainer .authForm form button {
   width: 40%;
   border-radius: 5px;
-  border: 1px solid #052433;
+  border: 1px solid var(--mainSecondary);
   padding: 15px 10px 15px;
   margin: 10px auto;
-  background-color: #052433;
-  color: #ffffff;
+  background-color: var(--mainSecondary);
+  color: var(--mainBackground);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
@@ -129,27 +131,28 @@
 }
 
 .mainAuthContainer .authContainer .authForm form button:hover {
-  background-color: #ffffff;
-  color: #052433;
+  background-color: var(--mainBackground);
+  color: var(--mainSecondary);
 }
 
-.mainAuthContainer .authContainer .authForm .authFooter {
+.mainAuthContainer .authContainer .authFooter {
   margin-top: 8px;
 }
 
-.mainAuthContainer .authContainer .authForm .authFooter p {
+.mainAuthContainer .authContainer .authFooter p {
   font-size: 1rem;
   font-weight: 500;
+  color: var(--darkBackground);
 }
 
-.mainAuthContainer .authContainer .authForm .authFooter a {
-  color: #052433;
+.mainAuthContainer .authContainer .authFooter a {
+  color: var(--mainSecondary);
   font-weight: 500;
   cursor: pointer;
 }
 
-.mainAuthContainer .authContainer .authForm .authFooter a:hover {
-  color: #121212;
+.mainAuthContainer .authContainer .authFooter a:hover {
+  color: var(--mainPrimary);
 }
 
 .floatingFooter {
@@ -159,12 +162,13 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: #ffffff;
+  background: var(--mainBackground);
   border-radius: 50px;
   padding: 10px 30px;
   font-size: 0.9rem;
   font-family: "Ubuntu", sans-serif;
   font-weight: 600;
+  color: var(--mainSecondary);
 }
 
 @media (max-width: 1200px) {

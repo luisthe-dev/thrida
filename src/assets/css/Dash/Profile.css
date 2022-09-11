@@ -5,13 +5,13 @@
   justify-content: center;
   width: 100%;
   padding: 30px 0 80px;
-  background-color: #ffffff;
+  background-color: var(--mainBackground);
 }
 
 .ProfilePageContainer .ProfilePageHeader {
   padding: 20px 0 60px;
   margin: 10px auto 50px;
-  border-bottom: 1px solid #12121219;
+  border-bottom: 1px solid var(--mainShadow);
   width: 60%;
   text-align: center;
 }
@@ -20,7 +20,7 @@
   width: 180px;
   aspect-ratio: 1/1;
   padding: 10px;
-  background: #12121219;
+  background: var(--alternateBackground);
   margin: 6px auto;
   display: flex;
   flex-direction: column;
@@ -31,20 +31,20 @@
 
 .ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer svg {
   font-size: 3rem;
-  color: #12121269;
+  color: var(--darkBackground);
   font-weight: 500;
   margin: 8px auto;
 }
 
 .ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer p {
   font-size: 0.8rem;
-  color: #12121269;
+  color: var(--darkBackground);
   font-weight: 500;
 }
 
 .ProfilePageContainer .ProfilePageHeader p {
   font-size: 1.2rem;
-  color: #12121269;
+  color: var(--darkBackground);
   font-weight: 500;
   margin: 20px 0 0;
 }
@@ -90,6 +90,7 @@
   padding: 10px 4px;
   border-radius: 7px 7px 0 0;
   cursor: pointer;
+  color: var(--mainSecondary);
 }
 
 .ProfilePageContainer
@@ -97,7 +98,8 @@
   .ProfilePageBodyHeader
   .ProfilePageBodySectionSelectors
   p:hover {
-  background: #12121269;
+  color: var(--mainPrimary);
+  background: var(--darkBackground);
 }
 
 .ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
@@ -126,7 +128,7 @@
   .ProfilePageBodySection
   h3 {
   font-size: 1.7rem;
-  color: cadetblue;
+  color: var(--darkBackground);
   margin: 2px auto;
 }
 
@@ -136,7 +138,7 @@
   .ProfilePageBodySection
   p {
   font-size: 0.8rem;
-  color: #121212;
+  color: var(--darkBackground);
   margin: 2px auto;
   margin-bottom: 30px;
 }
@@ -160,7 +162,7 @@
   form
   label {
   font-size: 0.8rem;
-  color: #121212;
+  color: var(--darkBackground);
   margin: 2px auto;
   width: 70%;
   text-align: left;
@@ -174,9 +176,9 @@
   input {
   width: 70%;
   border-radius: 8px;
-  border: 1px solid cadetblue;
+  border: 1px solid var(--mainShadow);
   padding: 14px 12px 14px 20px;
-  color: #121212;
+  color: var(--mainShadow);
   margin: 12px auto;
   background: transparent;
 }
@@ -189,13 +191,13 @@
   button {
   width: 30%;
   border-radius: 8px;
-  border: 1px solid cadetblue;
+  border: 1px solid var(--mainSecondary);
   padding: 14px 0;
-  color: #ffffff;
+  color: var(--mainBackground);
   font-weight: 700;
   font-size: 1rem;
   margin: 12px auto;
-  background: cadetblue;
+  background: var(--mainSecondary);
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
@@ -207,7 +209,6 @@
   .ProfilePageBodySection
   form
   button:hover {
-  border: 1px solid cadetblue;
-  color: cadetblue;
-  background: transparent;
+  color: var(--mainSecondary);
+  background: var(--mainBackground);
 }

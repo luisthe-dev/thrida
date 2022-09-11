@@ -1,6 +1,8 @@
 :root {
   --mainBackground: #121212;
-  --mainPrimary: #ffffff;
-  --mainSecondary: #121212;
-  --mainShadow: #383838;
+  --alternateBackground: #464646;
+  --darkBackground: #f1f1f1;
+  --mainPrimary: #293438;
+  --mainSecondary: #b6d3e1;
+  --mainShadow: #d1d1d1;
 }

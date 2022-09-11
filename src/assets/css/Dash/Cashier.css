@@ -31,9 +31,9 @@
   .cashierPageHeaderWalletSummary
   .cashierPageHeaderWalletSummaryCard {
   align-items: flex-start;
-  background: #fff;
+  background: var(--mainBackground);
   border-radius: 8px;
-  box-shadow: 5px 8px 10px 0 #1312122c;
+  box-shadow: 3px 3px 5px 0 var(--mainShadow);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,6 +51,7 @@
   font-style: oblique;
   font-weight: 300;
   margin: 0 0 6px;
+  color: var(--darkBackground);
 }
 
 .cashierPageContainer
@@ -58,7 +59,7 @@
   .cashierPageHeaderWalletSummary
   .cashierPageHeaderWalletSummaryCard
   h3 {
-  color: #2c4743;
+  color: var(--mainSecondary);
   font-size: 1.9rem;
   font-style: normal;
   font-weight: 600;
@@ -70,7 +71,7 @@
   .cashierPageHeaderWalletSummary
   .cashierPageHeaderWalletSummaryCard
   p {
-  color: #707070;
+  color: var(--darkBackground);
   font-size: 0.8rem;
   font-style: normal;
   font-weight: 700;
@@ -83,7 +84,7 @@
   .cashierPageHeaderWalletSummaryCard
   p
   span {
-  color: #042d25;
+  color: var(--mainSecondary);
 }
 
 .cashierPageBody {
@@ -107,7 +108,7 @@
 .cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems {
   align-items: flex-start;
   border-radius: 12px;
-  box-shadow: 5px 8px 10px 0 #1312122c;
+  box-shadow: 3px 3px 5px 0 var(--mainShadow);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,8 +118,8 @@
 }
 
 .cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems a {
-  border-bottom: 1px solid #e0e0e0;
-  color: #2c4743;
+  border-bottom: 1px solid var(--mainShadow);
+  color: var(--darkBackground);
   display: block;
   font-size: 0.9rem;
   font-style: normal;
@@ -129,7 +130,7 @@
 }
 
 .cashierPageBody .cashierPageBodyMenu .cashierPageBodyMenuItems a:hover {
-  background: #ededed7c;
+  background: var(--alternateBackground);
 }
 
 .cashierPageBody .cashierPageBodySection {
@@ -157,7 +158,7 @@
   .cashierPageBodyBlock {
   align-items: flex-start;
   border-radius: 12px;
-  box-shadow: 5px 8px 10px 0 #1312122c;
+  box-shadow: 3px 3px 5px 0 var(--mainShadow);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,7 +172,7 @@
   .cashierPageBodyBlocks
   .cashierPageBodyBlock
   h5 {
-  color: #2c4743;
+  color: var(--darkBackground);
   font-size: 0.8rem;
   font-weight: 500;
   margin: 0 0 6px;
@@ -182,7 +183,7 @@
   .cashierPageBodyBlocks
   .cashierPageBodyBlock
   h6 {
-  color: #2c4743;
+  color: var(--mainSecondary);
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
@@ -194,7 +195,7 @@
   .cashierPageBodyBlocks
   .cashierPageBodyBlock
   p {
-  color: #707070;
+  color: var(--darkBackground);
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -205,7 +206,7 @@
   .cashierPageBodyBlock
   .cashierPageBodyProgressBar {
   align-items: center;
-  background: #dadada;
+  background: var(--alternateBackground);
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -221,7 +222,7 @@
   .cashierPageBodyBlock
   .cashierPageBodyProgressBar
   .cashierPageBodyProgressBar_Bar {
-  background: #042d25;
+  background: var(--darkBackground);
   border-radius: 12px;
   height: 3px;
 }
