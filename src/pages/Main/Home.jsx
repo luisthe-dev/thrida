@@ -1,13 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import MainSection from "./MainSection";
+import NavBar from "./NavBar";
+import SecondSection from "./SecondSection";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome To Thrida</h1>
-      <Link to={"/signin"}>Go To Sign In</Link>
+    <div className="homepage__container">
+      <NavBar />
+      <MainSection />
+      <SecondSection />
     </div>
   );
 };
 
 export default Home;
+
+
