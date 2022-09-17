@@ -1,0 +1,170 @@
+.dashbordHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: var(--alternateBackground);
+}
+
+.dashbordHeader .dashbordHeaderLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.dashbordHeader .dashbordHeaderLeft button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--mainSecondary);
+  margin-right: 5px;
+  font-size: 1.8rem;
+  padding-right: 12px;
+  border-right: 1px solid var(--mainShadow);
+}
+
+.dashbordHeader .dashbordHeaderLeft img {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.dashbordHeader .dashbordHeaderRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dashbordHeader .dashbordHeaderRight .dashboardHeaderAccountWalletSwitch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--mainShadow);
+  padding-right: 12px;
+  margin-right: 8px;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain
+  svg {
+  font-size: 1.2rem;
+  margin: 0 6px;
+  color: var(--darkBackground);
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain
+  p {
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin: 2px 0;
+  color: var(--darkBackground);
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain
+  h6 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2px 0;
+  color: var(--darkBackground);
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu {
+  padding: 20px;
+  display: none;
+  position: absolute;
+  top: 0;
+  background: var(--mainBackground);
+  width: 200px;
+}
+
+.dashbordHeader .dashbordHeaderRight button {
+  padding: 12px 16px;
+  border-radius: 15px;
+  color: var(--darkBackground);
+  background: var(--mainPrimary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.dashbordHeader .dashboardHeaderAccount {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 80px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  background: var(--mainBackground) no-repeat center;
+  background-size: cover;
+}
+
+.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu {
+  padding: 20px;
+  display: none;
+  position: absolute;
+  top: 0;
+  background: var(--mainBackground);
+  width: 200px;
+}
+
+@media (max-width: 1200px) {
+  .dashbordHeader .dashbordHeaderRight button {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashbordHeader .dashbordHeaderRight .dashboardHeaderAccountWalletSwitch {
+    display: none;
+  }
+
+  .dashbordHeader .dashbordHeaderRight button {
+    display: none;
+  }
+}

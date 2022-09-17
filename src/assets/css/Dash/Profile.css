@@ -1,0 +1,214 @@
+.ProfilePageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0 80px;
+  background-color: var(--mainBackground);
+}
+
+.ProfilePageContainer .ProfilePageHeader {
+  padding: 20px 0 60px;
+  margin: 10px auto 50px;
+  border-bottom: 1px solid var(--mainShadow);
+  width: 60%;
+  text-align: center;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer {
+  width: 180px;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  background: var(--alternateBackground);
+  margin: 6px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 180px;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer svg {
+  font-size: 3rem;
+  color: var(--darkBackground);
+  font-weight: 500;
+  margin: 8px auto;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer p {
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  font-weight: 500;
+}
+
+.ProfilePageContainer .ProfilePageHeader p {
+  font-size: 1.2rem;
+  color: var(--darkBackground);
+  font-weight: 500;
+  margin: 20px 0 0;
+}
+
+.ProfilePageContainer .ProfilePageBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  gap: 30px;
+  position: relative;
+}
+
+.ProfilePageContainer .ProfilePageBody .ProfilePageBodyHeader {
+  overflow-x: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  width: 100%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p {
+  white-space: nowrap;
+  padding: 10px 4px;
+  border-radius: 7px 7px 0 0;
+  cursor: pointer;
+  color: var(--mainSecondary);
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p:hover {
+  color: var(--mainPrimary);
+  background: var(--darkBackground);
+}
+
+.ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  gap: 20px;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  h3 {
+  font-size: 1.7rem;
+  color: var(--darkBackground);
+  margin: 2px auto;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  p {
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  margin: 2px auto;
+  margin-bottom: 30px;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  label {
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  margin: 2px auto;
+  width: 70%;
+  text-align: left;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  input {
+  width: 70%;
+  border-radius: 8px;
+  border: 1px solid var(--mainShadow);
+  padding: 14px 12px 14px 20px;
+  color: var(--mainShadow);
+  margin: 12px auto;
+  background: transparent;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  button {
+  width: 30%;
+  border-radius: 8px;
+  border: 1px solid var(--mainSecondary);
+  padding: 14px 0;
+  color: var(--mainBackground);
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 12px auto;
+  background: var(--mainSecondary);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  button:hover {
+  color: var(--mainSecondary);
+  background: var(--mainBackground);
+}
