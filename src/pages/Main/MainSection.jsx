@@ -6,6 +6,7 @@ const MainSection = () => {
         <div className="main__section__container">
             <div className="main__section__content">
                 <img src={mainphoneImg} alt="landing" className="main__landing" />
+                <div className='overlay'></div>
             </div>
 
             <div className="main__section__content__text">
@@ -14,7 +15,7 @@ const MainSection = () => {
                 <p className="secondary__text_i">digital economy and also brings forth the newest digital financial instruments.</p>
                 <p className="secondary__text__i">We focus on virtual assets - Forex, crypto, commodities, index, stocks and ETFs.</p>
                 <div className="main__section__content__text__button">
-                    <button type="submit" className="main__section__button">start trading now !!</button>
+                    <button type="submit" className="main__section__button">start trading now!!</button>
                 </div>
                 <p className="trade__section">Trade virtual stocks, forex, crypto, commodities and ETFs to get your share of profits</p>
             </div>

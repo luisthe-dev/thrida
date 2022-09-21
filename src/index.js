@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import "./assets/css/Auth.css";
-import "./assets/css/Home.css";
+import "../../thrida/src/assets/css/Home.css";
 import "./assets/css/Dash/DashHeader.css";
 import "./assets/css/Dash/Profile.css";
 import "./assets/css/Dash/Cashier.css";
