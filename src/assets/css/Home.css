@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar__container {
+  width: 100%;
+  padding: 20px;
+  background: #2196f3;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar__content ul {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+}
+
+.navbar__content ul li {
+  list-style: none;
+  margin: 15px;
+}
+
+.navbar__second__content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar__second__content ul {
+  display: flex;
+  flex-direction: row;
+  margin-right: 60px;
+}
+
+.navbar__second__content ul li {
+  list-style: none;
+  margin: 15px;
+}
+
+.navbar__logo {
+  margin: 0 auto;
+  position: relative;
+}
+
+.navbar__login {
+  padding: 15px 25px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.navbar__login::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  cursor: pointer;
+}
+
+.navbar__login:hover {
+  color: #e8e8e8;
+}
+
+.navbar__login:hover::before {
+  width: 100%;
+}
+
+/*Main Section Styles */
+
+.main__landing {
+  width: 100%;
+  background-size: contain;
+  height: 85vh;
+  /*padding-bottom: 60px;*/
+  position: relative;
+}
+
+.main__section__content__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+.main__text__section {
+  font-size: 50px;
+  font-weight: 1000;
+  margin-bottom: 20px;
+  color: yellow;
+}
+
+.secondary__text {
+  font-size: 25px;
+  font-weight: 12;
+  margin-bottom: 20px;
+}
+
+.secondary__text_i {
+  font-size: 25px;
+  font-weight: 12;
+  margin-bottom: 20px;
+}
+
+.secondary__text__i {
+  font-size: 25px;
+  font-weight: 12;
+  margin-bottom: 20px;
+}
+
+.main__section__content__text__button {
+  width: 30%;
+  background: yellow;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  color: #212121;
+}
+
+.main__section__button {
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  background: none;
+  color: white;
+  font-weight: 14;
+}
+
+.trade__section {
+  margin-top: 25px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  font-weight: 12;
+}
+
+/*.second__landing {
+  margin-top: -5px;
+  width: 100%;
+  background-size: contain;
+  height: 85vh;
+  position: relative;
+}*/
+
+/*.second__section__container {
+ 
+}*/
+
+.second__section__container {
+  background-color: #e8e8e8;
+  margin-top: -5px;
+  width: 100%;
+  height: 85vh;
+  padding-bottom: 20px;
+}
+
+.second__section__content h1 {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.second__section__content__text {
+  font-size: 16px;
+  font-weight: 1000;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.context__text_i {
+  margin-top: 5px;
+}
+
+.second__section__features h1 {
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.second__section__features__content {
+  background: blue;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.second__section__features__content__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.second__features__minimum {
+  font-size: 16px;
+  font-weight: 1000;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.second__features__minimum_i {
+  margin-top: 5px;
+}
