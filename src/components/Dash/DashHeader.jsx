@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiMenu4Fill } from "react-icons/ri";
 import { MdCheck } from "react-icons/md";
 import { AiOutlineReload } from "react-icons/ai";
 import { GoChevronDown } from "react-icons/go";
 
 const DashHeader = () => {
+  const [showAccounts, setShowAccount] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <div className="dashbordHeader">
@@ -18,13 +21,22 @@ const DashHeader = () => {
           <div className="dashboardHeaderAccountWalletSwitch">
             <div className="dashboardHeaderAccountWalletMain">
               <AiOutlineReload />
-              <div className="dashboardHeaderAccountWalletCurrentDetails">
+              <div
+                className="dashboardHeaderAccountWalletCurrentDetails"
+                onClick={() => setShowAccount(!showAccounts)}
+              >
                 <p> Demo Account </p>
                 <h6> ₦123,209.12 </h6>
               </div>
               <GoChevronDown />
             </div>
-            <div className="dashboardHeaderAccountWalletMenu">
+            <div
+              className={
+                showAccounts
+                  ? "dashboardHeaderAccountWalletMenu active"
+                  : "dashboardHeaderAccountWalletMenu"
+              }
+            >
               <div className="dashboardHeaderAccountWalletMenuItem">
                 <MdCheck />
                 <p> Demo Account </p>
@@ -42,10 +54,19 @@ const DashHeader = () => {
           </div>
           <button> Let's Trade </button>
           <div className="dashboardHeaderAccount">
-            <div className="dashboardHeaderAccountMain">
+            <div
+              className="dashboardHeaderAccountMain"
+              onClick={() => setShowMenu(!showMenu)}
+            >
               <p> A </p>
             </div>
-            <div className="dashboardHeaderAccountMenu">
+            <div
+              className={
+                showMenu
+                  ? "dashboardHeaderAccountMenu active"
+                  : "dashboardHeaderAccountMenu"
+              }
+            >
               <div className="dashboardHeaderAccountMenuItem">
                 <p> Level </p>
               </div>

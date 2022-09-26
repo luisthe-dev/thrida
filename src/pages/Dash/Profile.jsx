@@ -11,6 +11,7 @@ const Profile = () => {
       <div className="ProfilePageContainer">
         <div className="ProfilePageHeader">
           <div className="ProfilePageHeaderImageContainer">
+            <div className="ProfilePageHeaderImageContainerOverlay"></div>
             <div className="ProfilePageHeaderImage">
               <AiOutlineUser />
               <p> Change Picture </p>
@@ -21,7 +22,7 @@ const Profile = () => {
         <div className="ProfilePageBody">
           <div className="ProfilePageBodyHeader">
             <div className="ProfilePageBodySectionSelectors">
-              <p> Personal Information </p>
+              <p className="activeSelector"> Personal Information </p>
               <p> Contact Information </p>
               <p> Password </p>
               <p> News and Notifications </p>

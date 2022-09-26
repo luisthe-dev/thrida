@@ -9,7 +9,7 @@
 }
 
 .ProfilePageContainer .ProfilePageHeader {
-  padding: 20px 0 60px;
+  padding: 20px 0 30px;
   margin: 10px auto 50px;
   border-bottom: 1px solid var(--mainShadow);
   width: 60%;
@@ -27,6 +27,32 @@
   align-items: center;
   justify-content: center;
   border-radius: 180px;
+  position: relative;
+  z-index: 5;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer
+  .ProfilePageHeaderImageContainerOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 180px;
+  opacity: 0;
+  background: var(--darkBackground);
+  transition: all 0.4s;
+  z-index: 6;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer:hover
+  .ProfilePageHeaderImageContainerOverlay {
+  opacity: 0.4;
+  transition: all 0.4s;
 }
 
 .ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer svg {
@@ -37,9 +63,29 @@
 }
 
 .ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer p {
-  font-size: 0.8rem;
-  color: var(--darkBackground);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mainBackground);
+  opacity: 0;
   font-weight: 500;
+  z-index: 7;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer:hover
+  p {
+  opacity: 1;
 }
 
 .ProfilePageContainer .ProfilePageHeader p {
@@ -75,7 +121,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   padding: 0;
   width: 100%;
@@ -97,9 +143,31 @@
   .ProfilePageBody
   .ProfilePageBodyHeader
   .ProfilePageBodySectionSelectors
-  p:hover {
-  color: var(--mainPrimary);
+  p::after {
+  content: " ";
+  display: block;
+  width: 0%;
+  height: 2px;
   background: var(--darkBackground);
+  transition: all 0.6s;
+  margin: 5px auto 0;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p.activeSelector::after {
+  width: 90%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p:hover::after {
+  width: 80%;
+  transition: all 0.6s;
 }
 
 .ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
@@ -127,9 +195,11 @@
   .ProfilePageBodySections
   .ProfilePageBodySection
   h3 {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   color: var(--darkBackground);
-  margin: 2px auto;
+  margin: 5px auto;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .ProfilePageContainer
@@ -175,11 +245,10 @@
   form
   input {
   width: 70%;
-  border-radius: 8px;
-  border: 1px solid var(--mainShadow);
-  padding: 14px 12px 14px 20px;
-  color: var(--mainShadow);
-  margin: 12px auto;
+  border-bottom: 1.2px solid var(--mainShadow);
+  padding: 14px 12px 8px 20px;
+  color: var(--darkBackground);
+  margin: 5px auto 12px;
   background: transparent;
 }
 
@@ -211,4 +280,41 @@
   button:hover {
   color: var(--mainSecondary);
   background: var(--mainBackground);
+}
+
+@media (max-width: 600px) {
+  .ProfilePageContainer .ProfilePageBody {
+    width: 90%;
+  }
+
+  .ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
+    width: 95%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    label {
+    width: 90%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    input {
+    width: 90%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    button {
+    width: 70%;
+  }
 }

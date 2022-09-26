@@ -5,8 +5,8 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { masterStore } from "./redux/masterStore";
 
-import "./assets/themes/light_mode.css";
-// import "./assets/themes/dark_mode.css";
+// import "./assets/themes/light_mode.css";
+import "./assets/themes/dark_mode.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";

@@ -105,9 +105,17 @@
   padding: 20px;
   display: none;
   position: absolute;
-  top: 0;
+  top: 100%;
   background: var(--mainBackground);
   width: 200px;
+  color: var(--darkBackground);
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu.active {
+  display: block;
 }
 
 .dashbordHeader .dashbordHeaderRight button {
@@ -148,9 +156,14 @@
   padding: 20px;
   display: none;
   position: absolute;
-  top: 0;
+  top: 100%;
   background: var(--mainBackground);
   width: 200px;
+  color: var(--darkBackground);
+}
+
+.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu.active {
+  display: block;
 }
 
 @media (max-width: 1200px) {

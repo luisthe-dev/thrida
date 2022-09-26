@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://127.0.0.1:8000/api";
-// const baseUrl = 'https://thrida-backend.herokuapp.com/api';
+// const baseUrl = "http://127.0.0.1:8000/api";
+const baseUrl = "https://thrida-backend.herokuapp.com/api";
 
 export const ThridaApi = axios.create({
   baseURL: baseUrl,
