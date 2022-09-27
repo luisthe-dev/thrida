@@ -45,6 +45,7 @@
   border: 1px solid var(--darkBackground);
   color: var(--darkBackground);
   padding: 8px;
+  font-size: 2.1rem;
   border-radius: 30px;
 }
 
@@ -89,6 +90,7 @@
   align-self: flex-start;
   padding-left: 5%;
   margin: 3px 0 12px 5px;
+  color: var(--mainSecondary);
 }
 
 .mainAuthContainer .authContainer .authForm form .authFormInputContainer {
@@ -112,7 +114,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   background: var(--mainBackground);
-  color: var(--mainShadow);
+  color: var(--mainSecondary);
 }
 
 .mainAuthContainer .authContainer .authForm form button {
