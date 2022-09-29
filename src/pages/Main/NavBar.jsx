@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { GiOilySpiral } from "react-icons/gi";
+/*import { useNavigate } from 'react-router-dom';*/
 const NavBar = () => {
+    /*const navigate = useNavigate();*/
     return (
         <div>
             <div className="navbar__container">
@@ -13,8 +14,8 @@ const NavBar = () => {
                         <li className="navbar__login">Products</li>
                     </ul>
                 </div>
-                <div className="navabar__logo">
-                    <GiOilySpiral style={{ position: "absolute", top: "6%", left: "52%" }} /> <h1>THRIDA</h1>
+                <div className="navbar__logo">
+                    <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
                 </div>
                 <div className="navbar__second__content">
                     <ul>
@@ -22,7 +23,7 @@ const NavBar = () => {
                             <li className="navbar__login">Login</li>
                         </Link>
                         <Link to={"/signup"}>
-                            <li className='navbar__login'>Sign Up</li>
+                            <li className='navbar__login'>Signup</li>
                         </Link>
                     </ul>
                 </div>
