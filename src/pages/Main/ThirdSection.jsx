@@ -2,8 +2,11 @@ import React from 'react';
 import { FaUser } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { GiWallet } from "react-icons/gi";
+import { useNavigate } from 'react-router-dom';
 
 const ThirdSection = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="third__section__container">
             <div className="third__section__content">
@@ -14,7 +17,7 @@ const ThirdSection = () => {
             </div>
             <div className="third__section__content__steps">
                 <div className="third__section__content__steps__item">
-                    <div className="third__section__content__create">
+                    <div className="third__section__content__create" onClick={() => navigate("/signup")}>
                         <FaUser className="third__section__content__create__icon" />
                     </div>
                     <div className="third__section__content__create__text">
@@ -46,7 +49,7 @@ const ThirdSection = () => {
                     </div>
                 </div>
 
-                <div className="third__section__content__create__button">
+                <div className="third__section__content__create__button" onClick={() => navigate("/signup")}>
                     <button className="third__section__content__create__button__item">Create Account</button>
                 </div>
             </div>

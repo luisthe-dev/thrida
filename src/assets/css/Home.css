@@ -47,8 +47,13 @@
 }
 
 .navbar__logo {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__logo img {
+  width: 25%;
   margin: 0 auto;
-  position: relative;
 }
 
 .navbar__login {
@@ -103,11 +108,11 @@
 
 .overlay {
   position: absolute;
-  top: 12%;
+  top: 16%;
   bottom: 0;
   left: 0;
   right: 0;
-  /*height: 165vh;*/
+  height: 85vh;
   width: 100%;
   opacity: 1.8;
   background-color: rgba(0, 0, 0, 0.5);
@@ -326,6 +331,12 @@
   align-items: center;
 }
 
+.third__section__content__create:hover {
+  transition: 0.5s ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .third__section__content__create_fa {
   width: 120px;
   height: 120px;
@@ -338,6 +349,12 @@
   margin-left: 50px;
 }
 
+.third__section__content__create_fa:hover {
+  transition: 0.5s ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .third__section__content__create_gi {
   width: 120px;
   height: 120px;
@@ -347,6 +364,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.third__section__content__create_gi:hover {
+  transition: 0.5s ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .third__section__content__create__icon {
@@ -385,6 +408,13 @@
   display: flex;
   justify-content: center;
   margin-top: 35px;
+}
+
+.third__section__content__create__button:hover {
+  color: #fff;
+  transition: 0.5s ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .third__section__content__create__button__item {
