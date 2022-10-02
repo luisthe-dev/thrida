@@ -8,6 +8,7 @@
 
 body {
   background: var(--mainBackground);
+  overflow-x: hidden;
 }
 
 *::-webkit-scrollbar {

@@ -75,6 +75,7 @@
 .depositPage .depositPageMethods .depositMethod img,
 .depositPage .depositPageMethods .depositMethod svg {
   width: 50px;
+  aspect-ratio: 1/1;
   display: block;
   margin: 12px auto;
   font-size: 3rem;
@@ -89,20 +90,22 @@
 }
 
 .depositPage .depositPageMethods .depositMethod h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 12px 0 6px;
   font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
   transition: all 0.5s ease;
   color: var(--darkBackground);
 }
 
 .depositPage .depositPageMethods .depositMethod:hover h5 {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   transition: all 0.5s ease;
 }
 
 @media (max-width: 768px) {
   .depositPage .depositPageMethods .depositMethod {
-    width: 36%;
+    width: 45%;
   }
 }
