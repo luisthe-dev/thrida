@@ -41,10 +41,12 @@
 
 .historyBlock .historyBlockMainDetails .historyBlockType h6 {
   font-size: 0.8rem;
+  text-transform: capitalize;
 }
 
 .historyBlock .historyBlockMainDetails .historyBlockType p {
   font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
 .historyBlock .historyBlockMainDetails .historyBlockAmount {
@@ -57,6 +59,7 @@
 
 .historyBlock .historyBlockMainDetails .historyBlockAmount h6 {
   font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
 .historyBlock .historyBlockMainDetails .historyBlockAmount p {
@@ -66,6 +69,7 @@
   justify-content: flex-end;
   gap: 3px;
   font-size: 0.8rem;
+  text-transform: capitalize;
 }
 
 .historyBlock .historyBlockMainDetails .historyBlockAmount p svg {

@@ -25,7 +25,17 @@ const HistoryBlock = ({ amount, type, status, method, created }) => {
             months[formattedDate.getMonth()]
           } ${formattedDate.getDate()}, ${formattedDate.getFullYear()}`}
         </p>
-        <p> {`${formattedDate.getHours()}:${formattedDate.getMinutes()}`} </p>
+        <p>
+          {`${
+            formattedDate.getHours().toString().split("").length < 2
+              ? `0${formattedDate.getHours()}`
+              : formattedDate.getHours()
+          }:${
+            formattedDate.getMinutes().toString().split("").length < 2
+              ? `0${formattedDate.getMinutes()}`
+              : formattedDate.getMinutes()
+          }`}
+        </p>
       </div>
       <div className="historyBlockMainDetails">
         <div className="historyBlockType">

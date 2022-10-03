@@ -17,6 +17,7 @@ import "./assets/css/Dash/Cashier/Deposit.css";
 import "./assets/css/Dash/Cashier/History.css";
 import "./assets/css/components/MainSidebar.css";
 import "./assets/css/components/HistoryBlock.css";
+import "./assets/css/components/DepositModal.css";
 import "./assets/css/Utils.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 20px;
   background: var(--alternateBackground);
+  z-index: 8;
 }
 
 .dashbordHeader .dashbordHeaderLeft {
@@ -112,6 +113,7 @@
   color: var(--darkBackground);
   border-radius: 6px;
   box-shadow: 0 0 9px 1px var(--darkBackground);
+  z-index: 8;
 }
 
 .dashbordHeader
@@ -235,6 +237,7 @@
   white-space: nowrap;
   border-radius: 6px;
   box-shadow: 0 0 9px 1px var(--darkBackground);
+  z-index: 8;
 }
 
 .dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu.active {

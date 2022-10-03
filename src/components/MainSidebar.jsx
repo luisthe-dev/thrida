@@ -6,9 +6,7 @@ const MainSidebar = ({ showMenu, setShowMenu }) => {
   return (
     <>
       <div
-        className={
-          showMenu ? "MainSidebarBackground active" : "MainSidebarBackground"
-        }
+        className={showMenu ? "MainBackground active" : "MainBackground"}
         onClick={() => setShowMenu(!showMenu)}
       ></div>
       <div

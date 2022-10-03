@@ -1,22 +1,5 @@
-.MainSidebarBackground {
-  position: absolute;
-  top: 0;
-  left: -150vw;
-  height: 100vh;
-  width: 100%;
-  background: var(--darkBackground);
-  opacity: 0.5;
-  z-index: 10;
-  transition: all 0.5s ease-in-out;
-}
-
-.MainSidebarBackground.active {
-  left: 0;
-  transition: all 0.5s ease-in-out;
-}
-
 .MainSidebarContainer {
-  position: absolute;
+  position: fixed;
   left: -100vw;
   top: 0;
   bottom: 0;

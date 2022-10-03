@@ -104,6 +104,12 @@
   transition: all 0.5s ease;
 }
 
+@media (max-width: 1200px) {
+  .depositPage .depositPageMethods .depositMethod {
+    width: 45%;
+  }
+}
+
 @media (max-width: 768px) {
   .depositPage .depositPageMethods .depositMethod {
     width: 45%;

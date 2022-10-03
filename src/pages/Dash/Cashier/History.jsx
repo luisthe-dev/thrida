@@ -1,17 +1,36 @@
+import { useEffect, useState } from "react";
+import { GetTransactions } from "../../../components/apis/transactionsApi";
 import HistoryBlock from "../../../components/Dash/HistoryBlock";
 
 const History = () => {
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      const allTransactions = await GetTransactions();
+      setTransactions(allTransactions?.data);
+    };
+    getTransactions();
+  }, []);
+
   return (
     <>
       <div className="historyBlockContainer">
         <div className="historyBlocks">
-          <HistoryBlock
-            amount={"4500000"}
-            type={"Deposit"}
-            status={"Pending"}
-            method={"Paypal"}
-            created={"2021-12-04 00:17:30"}
-          />
+          {transactions.length > 0 ? (
+            transactions?.map((transaction) => (
+              <HistoryBlock
+                amount={transaction.amount}
+                type={transaction.type}
+                status={transaction.status}
+                method={transaction.channel}
+                created={transaction.created_at}
+                key={transaction.id}
+              />
+            ))
+          ) : (
+            <h4 className="noValidResult"> No Transactions Yet </h4>
+          )}
         </div>
       </div>
     </>

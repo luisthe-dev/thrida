@@ -200,6 +200,7 @@
   .ProfilePageBodySections
   .ProfilePageBodySection[data-sectionshown="true"] {
   opacity: 1;
+  visibility: visible;
 }
 
 .ProfilePageContainer
@@ -207,6 +208,7 @@
   .ProfilePageBodySections
   .ProfilePageBodySection[data-sectionshown="false"] {
   opacity: 0;
+  visibility: hidden;
 }
 
 .ProfilePageContainer

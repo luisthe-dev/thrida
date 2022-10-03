@@ -12,7 +12,7 @@ export const userStore = createSlice({
       realAccount: 0,
       tourneyAccount: 0,
     },
-    userLoggedIn: 0,
+    userLoggedIn: false,
     userAuthToken: null,
   },
   reducers: {
@@ -27,6 +27,7 @@ export const userStore = createSlice({
     },
     setUserAuthToken: (state, action) => {
       state.userAuthToken = action.payload;
+      localStorage.setItem("userAuthToken", action.payload);
     },
   },
 });
