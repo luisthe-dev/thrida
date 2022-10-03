@@ -8,7 +8,7 @@ const History = () => {
   useEffect(() => {
     const getTransactions = async () => {
       const allTransactions = await GetTransactions();
-      setTransactions(allTransactions?.data);
+      setTransactions(allTransactions?.data | []);
     };
     getTransactions();
   }, []);
@@ -17,7 +17,7 @@ const History = () => {
     <>
       <div className="historyBlockContainer">
         <div className="historyBlocks">
-          {transactions.length > 0 ? (
+          {transactions?.length > 0 ? (
             transactions?.map((transaction) => (
               <HistoryBlock
                 amount={transaction.amount}
