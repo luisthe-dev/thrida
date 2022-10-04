@@ -20,6 +20,37 @@ body {
   background: var(--mainPrimary);
 }
 
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: var(--mainShadow);
+}
+
+.loadingState img {
+  width: 200px;
+  transition: all 0.3s ease-in-out linear;
+  animation: pulsingImage 1s infinite;
+}
+
+@keyframes pulsingImage {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .noValidResult {
   display: flex;
   flex-direction: column;
