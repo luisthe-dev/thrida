@@ -6,7 +6,7 @@ export const GetTransactions = async () => {
   await ThridaApi.get("/transactions", {
     headers: {
       Authorization: `Bearer ${
-        localStorage.getItem("userAuthToken").split("|")[1]
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
       }`,
     },
   })
@@ -22,7 +22,7 @@ export const GetTransactions = async () => {
   return returnData;
 };
 
-export const makeDeposit = async (amount, depositChannel) => {
+export const MakeDeposit = async (amount, depositChannel) => {
   let returnData = { status: 0 };
 
   await ThridaApi.post(
@@ -35,7 +35,7 @@ export const makeDeposit = async (amount, depositChannel) => {
     {
       headers: {
         Authorization: `Bearer ${
-          localStorage.getItem("userAuthToken").split("|")[1]
+          localStorage.getItem("thridaUserAuthToken").split("|")[1]
         }`,
       },
     }

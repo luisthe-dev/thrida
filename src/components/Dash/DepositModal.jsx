@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { makeDeposit } from "../apis/transactionsApi";
+import { MakeDeposit } from "../apis/transactionsApi";
 
 const DepositModal = ({ showModal, setShowModal, depositType }) => {
   const [depositAmount, setDepositAmount] = useState("");
 
   const processDeposit = async () => {
-    const depositResponse = await makeDeposit(depositAmount, depositType);
+    const depositResponse = await MakeDeposit(depositAmount, depositType);
 
     console.log(depositAmount, depositType, depositResponse);
   };

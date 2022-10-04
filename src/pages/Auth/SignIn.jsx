@@ -38,6 +38,7 @@ const SignIn = () => {
         })
       );
       myDispatch(setUserLoggedIn(true));
+      console.log(signInResponse.data.user);
       myDispatch(
         setUserDetails({
           name: signInResponse.data.user.name,

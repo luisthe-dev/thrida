@@ -8,7 +8,7 @@ const History = () => {
   useEffect(() => {
     const getTransactions = async () => {
       const allTransactions = await GetTransactions();
-      setTransactions(allTransactions?.data | []);
+      setTransactions(allTransactions?.data || []);
     };
     getTransactions();
   }, []);

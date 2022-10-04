@@ -12,8 +12,9 @@ export const userStore = createSlice({
       realAccount: 0,
       tourneyAccount: 0,
     },
-    userLoggedIn: false,
-    userAuthToken: null,
+    userLoggedIn: localStorage.getItem("thridaUserAuthToken") ? true : false,
+    userAuthToken: localStorage.getItem("thridaUserAuthToken") | "",
+    activeWallet: localStorage.getItem("thridaActiveWallet") || "demo",
   },
   reducers: {
     setUserDetails: (state, action) => {
@@ -27,7 +28,25 @@ export const userStore = createSlice({
     },
     setUserAuthToken: (state, action) => {
       state.userAuthToken = action.payload;
-      localStorage.setItem("userAuthToken", action.payload);
+      localStorage.setItem("thridaUserAuthToken", action.payload);
+    },
+    setActiveWallet: (state, action) => {
+      state.activeWallet = action.payload;
+      localStorage.setItem("thridaActiveWallet", action.payload);
+    },
+    clearUserStore: (state) => {
+      state.userDetails = {
+        name: "",
+        email: "",
+      };
+      state.userWallets = {
+        demoAccount: 0,
+        realAccount: 0,
+        tourneyAccount: 0,
+      };
+      state.userLoggedIn = false;
+      state.userAuthToken = null;
+      localStorage.removeItem("thridaUserAuthToken");
     },
   },
 });
@@ -37,6 +56,8 @@ export const {
   setUserWallets,
   setUserLoggedIn,
   setUserAuthToken,
+  clearUserStore,
+  setActiveWallet,
 } = userStore.actions;
 
 export default userStore.reducer;

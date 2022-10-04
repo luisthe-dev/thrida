@@ -39,3 +39,25 @@ export const SignUpUser = async (userName, userMail, userPass) => {
 
   return returnData;
 };
+
+export const GetUserDetails = async () => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get("/user", {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then(function (response) {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  return returnData;
+};

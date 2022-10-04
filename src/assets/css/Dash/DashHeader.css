@@ -77,6 +77,23 @@
   color: var(--darkBackground);
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain
+  svg.loading {
+  animation: spin 1s linear infinite;
+}
+
 .dashbordHeader
   .dashbordHeaderRight
   .dashboardHeaderAccountWalletSwitch
@@ -97,6 +114,19 @@
   font-weight: 700;
   margin: 2px 0;
   color: var(--darkBackground);
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMain
+  .dashboardHeaderAccountWalletCurrentDetails {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
 }
 
 .dashbordHeader
@@ -218,7 +248,9 @@
   aspect-ratio: 1/1;
   border-radius: 80px;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
   color: var(--darkBackground);
   background: var(--mainBackground) no-repeat center;
   background-size: cover;
