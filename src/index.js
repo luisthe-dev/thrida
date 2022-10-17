@@ -11,6 +11,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./assets/css/Auth.css";
 import "./assets/css/Home.css";
 import "./assets/css/Dash/DashHeader.css";
+import "./assets/css/Dash/Trading.css";
 import "./assets/css/Dash/Profile.css";
 import "./assets/css/Dash/Cashier.css";
 import "./assets/css/Dash/Cashier/Deposit.css";
@@ -22,9 +23,9 @@ import "./assets/css/Utils.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={masterStore}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+  //<React.StrictMode>
+  <Provider store={masterStore}>
+    <App />
+  </Provider>
+  //</React.StrictMode>
 );

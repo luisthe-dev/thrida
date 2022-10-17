@@ -8,13 +8,13 @@ export const SignInUser = async (userMail, userPass) => {
     password: userPass,
     remember_me: true,
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;
@@ -28,13 +28,13 @@ export const SignUpUser = async (userName, userMail, userPass) => {
     email: userMail,
     password: userPass,
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 201) {
         returnData = { status: 1 };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;
@@ -50,13 +50,13 @@ export const GetUserDetails = async () => {
       }`,
     },
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;

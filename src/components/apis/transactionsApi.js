@@ -10,13 +10,13 @@ export const GetTransactions = async () => {
       }`,
     },
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;
@@ -40,13 +40,39 @@ export const MakeDeposit = async (amount, depositChannel) => {
       },
     }
   )
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return returnData;
+};
+
+export const UploadDepositSlip = async (transaction_id, depositSlip) => {
+  let returnData = { status: 0 };
+
+  let depositFormData = new FormData();
+  depositFormData.append("depositSlip", depositSlip);
+
+  await ThridaApi.post(`/updateDeposit/${transaction_id}`, depositFormData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
         returnData = { status: 1 };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;

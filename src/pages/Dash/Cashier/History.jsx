@@ -4,11 +4,13 @@ import HistoryBlock from "../../../components/Dash/HistoryBlock";
 
 const History = () => {
   const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getTransactions = async () => {
       const allTransactions = await GetTransactions();
       setTransactions(allTransactions?.data || []);
+      setLoading(false);
     };
     getTransactions();
   }, []);
@@ -17,7 +19,17 @@ const History = () => {
     <>
       <div className="historyBlockContainer">
         <div className="historyBlocks">
-          {transactions?.length > 0 ? (
+          {loading ? (
+            <>
+              <div className="loadingImageContain">
+                <img
+                  src="/public_assets/images/Thrida-01-02.png"
+                  alt="Thrida Logo"
+                  className="loadingImage"
+                />
+              </div>
+            </>
+          ) : transactions?.length > 0 ? (
             transactions?.map((transaction) => (
               <HistoryBlock
                 amount={transaction.amount}

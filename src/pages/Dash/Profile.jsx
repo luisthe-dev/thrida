@@ -4,9 +4,26 @@ import { CgFacebook } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { WiSnowflakeCold } from "react-icons/wi";
 import { BiTrash } from "react-icons/bi";
+import { useEffect } from "react";
+import { GetUserDetails } from "../../components/apis/userApi";
 
 const Profile = () => {
   const [present, setPresent] = useState("pi");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    GetUserDetails()
+      .then((response) => {
+        if (response?.status === 1) {
+          setFirstName(response.data.name.split(" ")[0]);
+          setLastName(response.data.name.split(" ")[1]);
+          setEmail(response.data.email);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
@@ -72,9 +89,17 @@ const Profile = () => {
               <p> Update your personal information </p>
               <form>
                 <label> First Name </label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={firstName}
+                  onInput={(e) => setFirstName(e.target.value)}
+                />
                 <label> Last Name </label>
-                <input type="text" />
+                <input
+                  type="text"
+                  value={lastName}
+                  onInput={(e) => setLastName(e.target.value)}
+                />
                 <label> Date of Birth </label>
                 <input type="date" />
                 <label> Gender </label>
@@ -91,7 +116,11 @@ const Profile = () => {
               <p> Update your contact information </p>
               <form>
                 <label> Email Address </label>
-                <input type="email" />
+                <input
+                  type="email"
+                  value={email}
+                  onInput={(e) => setEmail(e.target.value)}
+                />
                 <label> Phone Number </label>
                 <input type="tel" />
                 <button> save </button>

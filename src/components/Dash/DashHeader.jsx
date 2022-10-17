@@ -69,14 +69,14 @@ const DashHeader = () => {
   return (
     <>
       <MainSidebar showMenu={showSide} setShowMenu={setShowSide} />
-      <div className="dashbordHeader">
-        <div className="dashbordHeaderLeft">
+      <div className="dashboardHeader">
+        <div className="dashboardHeaderLeft">
           <button onClick={() => setShowSide(true)}>
             <RiMenu4Fill />
           </button>
           <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
         </div>
-        <div className="dashbordHeaderRight">
+        <div className="dashboardHeaderRight">
           <div className="dashboardHeaderAccountWalletSwitch">
             <div className="dashboardHeaderAccountWalletMain">
               <AiOutlineReload
@@ -193,7 +193,7 @@ const DashHeader = () => {
               </div>
             </div>
           </div>
-          <button> Let's Trade </button>
+          <button onClick={() => myNavigate("/dashboard")}>Let's Trade</button>
           <div className="dashboardHeaderAccount">
             <div
               className="dashboardHeaderAccountMain"

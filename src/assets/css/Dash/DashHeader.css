@@ -1,4 +1,4 @@
-.dashbordHeader {
+.dashboardHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,9 +6,10 @@
   padding: 20px;
   background: var(--alternateBackground);
   z-index: 8;
+  border-bottom: 1px solid var(--mainShadow);
 }
 
-.dashbordHeader .dashbordHeaderLeft {
+.dashboardHeader .dashboardHeaderLeft {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,7 +17,7 @@
   gap: 5px;
 }
 
-.dashbordHeader .dashbordHeaderLeft button {
+.dashboardHeader .dashboardHeaderLeft button {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -31,12 +32,12 @@
   border-right: 1px solid var(--mainShadow);
 }
 
-.dashbordHeader .dashbordHeaderLeft img {
+.dashboardHeader .dashboardHeaderLeft img {
   width: 100px;
   margin-left: 10px;
 }
 
-.dashbordHeader .dashbordHeaderRight {
+.dashboardHeader .dashboardHeaderRight {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,7 +45,7 @@
   gap: 12px;
 }
 
-.dashbordHeader .dashbordHeaderRight .dashboardHeaderAccountWalletSwitch {
+.dashboardHeader .dashboardHeaderRight .dashboardHeaderAccountWalletSwitch {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -55,8 +56,8 @@
   margin-right: 8px;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain {
   display: flex;
@@ -67,8 +68,8 @@
   cursor: pointer;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain
   svg {
@@ -86,16 +87,16 @@
   }
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain
   svg.loading {
   animation: spin 1s linear infinite;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain
   p {
@@ -105,8 +106,8 @@
   color: var(--darkBackground);
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain
   h6 {
@@ -116,8 +117,8 @@
   color: var(--darkBackground);
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMain
   .dashboardHeaderAccountWalletCurrentDetails {
@@ -129,8 +130,8 @@
   gap: 0;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu {
   padding: 20px;
@@ -146,15 +147,15 @@
   z-index: 8;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu.active {
   display: block;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem {
@@ -167,16 +168,16 @@
   cursor: pointer;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem:hover {
   opacity: 0.7;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem
@@ -189,8 +190,8 @@
   justify-content: flex-start;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem
@@ -199,8 +200,8 @@
   margin: 0 2px;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem.active
@@ -208,8 +209,8 @@
   color: green;
 }
 
-.dashbordHeader
-  .dashbordHeaderRight
+.dashboardHeader
+  .dashboardHeaderRight
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu
   .dashboardHeaderAccountWalletMenuItem
@@ -220,7 +221,7 @@
   cursor: pointer;
 }
 
-.dashbordHeader .dashbordHeaderRight button {
+.dashboardHeader .dashboardHeaderRight button {
   padding: 12px 16px;
   border-radius: 15px;
   color: var(--darkBackground);
@@ -231,14 +232,14 @@
   cursor: pointer;
 }
 
-.dashbordHeader .dashboardHeaderAccount {
+.dashboardHeader .dashboardHeaderAccount {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMain {
+.dashboardHeader .dashboardHeaderAccount .dashboardHeaderAccountMain {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -256,7 +257,7 @@
   background-size: cover;
 }
 
-.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu {
+.dashboardHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu {
   padding: 20px;
   display: none;
   position: absolute;
@@ -272,11 +273,11 @@
   z-index: 8;
 }
 
-.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu.active {
+.dashboardHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu.active {
   display: block;
 }
 
-.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p {
+.dashboardHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p {
   display: flex;
   margin: 12px 0;
   padding: 8px 0;
@@ -290,22 +291,22 @@
   cursor: pointer;
 }
 
-.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p:hover {
+.dashboardHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p:hover {
   opacity: 0.6;
 }
 
 @media (max-width: 1200px) {
-  .dashbordHeader .dashbordHeaderRight button {
+  .dashboardHeader .dashboardHeaderRight button {
     display: none;
   }
 }
 
 @media (max-width: 600px) {
-  .dashbordHeader .dashbordHeaderRight .dashboardHeaderAccountWalletSwitch {
+  .dashboardHeader .dashboardHeaderRight .dashboardHeaderAccountWalletSwitch {
     display: none;
   }
 
-  .dashbordHeader .dashbordHeaderRight button {
+  .dashboardHeader .dashboardHeaderRight button {
     display: none;
   }
 }
