@@ -34,7 +34,8 @@ export const SignUpUser = async (userName, userMail, userPass) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      if (err.response.status === 422)
+        returnData = { message: err.response.data.message };
     });
 
   return returnData;

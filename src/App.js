@@ -8,7 +8,8 @@ import "./assets/themes/dark_mode.css";
 import ScrollToTop from "./components/ScrollToTop";
 import { addChartStoreData } from "./redux/chartStore";
 
-const Home = lazy(() => import("./pages/Main/Home"));
+// const Home = lazy(() => import("./pages/Main/Home"));
+const Landing = lazy(() => import("./pages/Main/Landing"));
 const NotFound = lazy(() => import("./pages/Main/NotFound"));
 const SignIn = lazy(() => import("./pages/Auth/SignIn"));
 const SignUp = lazy(() => import("./pages/Auth/SignUp"));
@@ -108,7 +109,7 @@ const App = () => {
             }
           >
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Landing />} />
 
               {/* Auth Pages */}
               <Route path="/signin" element={<SignIn />} />

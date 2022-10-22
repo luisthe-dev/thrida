@@ -10,6 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import "./assets/css/Auth.css";
 import "./assets/css/Home.css";
+import "./assets/css/Landing.css";
 import "./assets/css/Dash/DashHeader.css";
 import "./assets/css/Dash/Trading.css";
 import "./assets/css/Dash/Profile.css";
@@ -17,6 +18,7 @@ import "./assets/css/Dash/Cashier.css";
 import "./assets/css/Dash/Cashier/Deposit.css";
 import "./assets/css/Dash/Cashier/History.css";
 import "./assets/css/components/MainSidebar.css";
+import "./assets/css/components/MainNavBar.css";
 import "./assets/css/components/HistoryBlock.css";
 import "./assets/css/components/DepositModal.css";
 import "./assets/css/Utils.css";

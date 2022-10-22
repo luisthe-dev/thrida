@@ -137,6 +137,12 @@
   color: var(--mainSecondary);
 }
 
+.mainAuthContainer .authContainer .authForm form button:disabled {
+  background-color: var(--mainShadow);
+  color: var(--darkBackground);
+  border-color: var(--mainShadow);
+}
+
 .mainAuthContainer .authContainer .authFooter {
   margin-top: 8px;
 }
