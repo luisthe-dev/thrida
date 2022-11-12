@@ -189,4 +189,16 @@
   .mainAuthContainer .authContainer {
     width: 95%;
   }
+
+  .mainAuthContainer .authContainer .authForm form {
+    width: 100%;
+  }
+
+  .mainAuthContainer .authContainer .authForm form label {
+    padding-left: 0;
+  }
+
+  .mainAuthContainer .authContainer .authForm form .authFormInputContainer {
+    width: 100%;
+  }
 }

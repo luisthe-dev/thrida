@@ -61,7 +61,7 @@
 }
 
 nav.sideMenu {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   right: -500px;
@@ -84,9 +84,10 @@ nav.sideMenu.active {
 nav.sideMenu svg {
   align-self: flex-end;
   border: 1px solid #12121242;
-  padding: 8px;
+  padding: 4px;
   border-radius: 6px;
   margin-bottom: 40px;
+  font-size: 20px;
 }
 
 nav.sideMenu a {

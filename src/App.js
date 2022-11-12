@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 
-// import "./assets/themes/light_mode.css";
-import "./assets/themes/dark_mode.css";
+import "./assets/themes/light_mode.css";
+// import "./assets/themes/dark_mode.css";
 import ScrollToTop from "./components/ScrollToTop";
 import { addChartStoreData } from "./redux/chartStore";
 

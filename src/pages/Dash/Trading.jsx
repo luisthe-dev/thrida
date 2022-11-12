@@ -11,6 +11,7 @@ import {
 import { HiBadgeCheck } from "react-icons/hi";
 import { TbSpeakerphone, TbChartCandle } from "react-icons/tb";
 import { TiChartArea, TiChartLine } from "react-icons/ti";
+import { BiUpvote, BiDownvote } from "react-icons/bi";
 
 const Trading = () => {
   const myDispatch = useDispatch();
@@ -57,9 +58,6 @@ const Trading = () => {
       topColor: "rgba(33, 150, 243, 0.56)",
       bottomColor: "rgba(33, 150, 243, 0.04)",
       lineColor: "rgba(33, 150, 243, 1)",
-      // lineColor: "#20e22f",
-      // // topColor: "#20e22f85",
-      // // bottomColor: "#20e22f12",
       visible: false,
     });
     const linestickSeries = chart.addLineSeries({
@@ -88,7 +86,7 @@ const Trading = () => {
     }).observe(document.getElementById("TradeChapter"));
 
     chart.timeScale().applyOptions({
-      rightOffset: 100,
+      rightOffset: window.innerWidth < 700 ? 30 : 100,
       timeVisible: true,
       secondsVisible: true,
       tickMarkFormatter: (time) => {
@@ -229,16 +227,38 @@ const Trading = () => {
             <label> Amount </label>
             <div className="TradingBlockInput">
               <input type="text" />
-            </div>
-            <div className="TradingBlockInputStackBtns">
-              <button>
-                <AiOutlinePlus />
-              </button>
-              <button>
-                <AiOutlineMinus />
-              </button>
+              <div className="TradingBlockInputStackBtns">
+                <button>
+                  <AiOutlinePlus />
+                </button>
+                <button>
+                  <AiOutlineMinus />
+                </button>
+              </div>
             </div>
           </div>
+          <div className="TradingBlock">
+            <label> Time </label>
+            <div className="TradingBlockInput">
+              <input type="text" />
+              <div className="TradingBlockInputStackBtns">
+                <button>
+                  <AiOutlinePlus />
+                </button>
+                <button>
+                  <AiOutlineMinus />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="TradingRunsBtns">
+          <button className="TradingRunsBtnsBuy">
+            <BiUpvote />
+          </button>
+          <button className="TradingRunsBtnsSell">
+            <BiDownvote />
+          </button>
         </div>
       </div>
     </div>
