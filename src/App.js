@@ -8,6 +8,8 @@ import Trading from "./pages/Dash/Trading";
 import Profile from "./pages/Dash/Profile";
 import Cashier from "./pages/Dash/Cashier";
 import Deposit from "./pages/Dash/Cashier/Deposit";
+import Signin from "./components/Admin/Signin";
+import Signup from "./components/Admin/Signup";
 
 const App = () => {
   return (
@@ -43,6 +45,13 @@ const App = () => {
               <Route path="" element={<Navigate to={"deposit"} />} />
               <Route path="deposit" element={<Deposit />} />
             </Route>
+          </Route>
+
+          {/* Admin Pages */}
+          <Route path="/admin">
+            <Route path="" element={<Navigate to={"signin"} />} />
+            <Route path="signin" element={<Signin />} />
+            <Route path="signup" element={<Signup />} />
           </Route>
 
           {/* Utility Pages */}
