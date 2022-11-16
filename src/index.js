@@ -15,6 +15,7 @@ import "./assets/css/Dash/DashHeader.css";
 import "./assets/css/Dash/Trading.css";
 import "./assets/css/Dash/Profile.css";
 import "./assets/css/Dash/Cashier.css";
+import "./assets/css/Dash/Trading.css";
 import "./assets/css/Dash/Cashier/Deposit.css";
 import "./assets/css/Dash/Cashier/History.css";
 import "./assets/css/components/MainSidebar.css";
