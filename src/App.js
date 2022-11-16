@@ -11,7 +11,7 @@ import Cashier from "./pages/Dash/Cashier";
 import Deposit from "./pages/Dash/Cashier/Deposit";
 
 import Signin from "./components/Admin/Signin";
-import Signup from "./components/Admin/Signup
+import Signup from "./components/Admin/Signup";
 import MainDash from "./pages/Dash/MainDash";
 import Withdraw from "./pages/Dash/Cashier/Withdraw";
 import Status from "./pages/Dash/Status";
