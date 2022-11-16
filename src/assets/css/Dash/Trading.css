@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Topbar Styles */
+
+.container {
+  display: flex;
+}
+
+.others {
+  flex: 6;
+  background: red;
+}
+
+.topbar__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--alternateBackground);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar__logo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.thrida__logo {
+  width: 9%;
+  margin-left: 10px;
+}
+
+.topbar__icons {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.topbar__icon {
+  position: relative;
+  cursor: pointer;
+  color: #555;
+}
+
+.topbar__span {
+  position: absolute;
+  top: 18px;
+  /*right: 9px;*/
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.topbar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+/* Sidebar Styles */
+
+.sidebar__container {
+  flex: 2;
+}
