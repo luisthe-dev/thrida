@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 20px;
   background: var(--alternateBackground);
+  z-index: 8;
 }
 
 .dashbordHeader .dashbordHeaderLeft {
@@ -105,10 +106,14 @@
   padding: 20px;
   display: none;
   position: absolute;
-  top: 100%;
+  top: 130%;
   background: var(--mainBackground);
-  width: 200px;
+  width: unset;
+  white-space: nowrap;
   color: var(--darkBackground);
+  border-radius: 6px;
+  box-shadow: 0 0 9px 1px var(--darkBackground);
+  z-index: 8;
 }
 
 .dashbordHeader
@@ -116,6 +121,73 @@
   .dashboardHeaderAccountWalletSwitch
   .dashboardHeaderAccountWalletMenu.active {
   display: block;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 18px auto;
+  cursor: pointer;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem:hover {
+  opacity: 0.7;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem
+  p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem
+  svg {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem.active
+  svg {
+  color: green;
+}
+
+.dashbordHeader
+  .dashbordHeaderRight
+  .dashboardHeaderAccountWalletSwitch
+  .dashboardHeaderAccountWalletMenu
+  .dashboardHeaderAccountWalletMenuItem
+  label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-left: 50px;
+  cursor: pointer;
 }
 
 .dashbordHeader .dashbordHeaderRight button {
@@ -156,14 +228,38 @@
   padding: 20px;
   display: none;
   position: absolute;
-  top: 100%;
+  top: 130%;
+  right: 5px;
+  min-width: 200px;
   background: var(--mainBackground);
-  width: 200px;
+  width: unset;
   color: var(--darkBackground);
+  white-space: nowrap;
+  border-radius: 6px;
+  box-shadow: 0 0 9px 1px var(--darkBackground);
+  z-index: 8;
 }
 
 .dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu.active {
   display: block;
+}
+
+.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p {
+  display: flex;
+  margin: 12px 0;
+  padding: 8px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--darkBackground) !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dashbordHeader .dashboardHeaderAccount .dashboardHeaderAccountMenu p:hover {
+  opacity: 0.6;
 }
 
 @media (max-width: 1200px) {

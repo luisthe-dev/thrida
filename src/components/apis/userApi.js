@@ -9,7 +9,6 @@ export const SignInUser = async (userMail, userPass) => {
     remember_me: true,
   })
     .then(function (response) {
-      console.log(response.status);
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }

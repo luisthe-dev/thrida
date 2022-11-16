@@ -12,6 +12,7 @@ import {
   setUserAuthToken,
   setUserWallets,
   setUserDetails,
+  setUserLoggedIn,
 } from "../../redux/userStore";
 import { toast } from "react-toastify";
 
@@ -36,6 +37,7 @@ const SignIn = () => {
           tourneyAccount: userWallet.tournament_wallet,
         })
       );
+      myDispatch(setUserLoggedIn(true));
       myDispatch(
         setUserDetails({
           name: signInResponse.data.user.name,
