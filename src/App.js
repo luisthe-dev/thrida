@@ -3,21 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 
-import SignIn from "./pages/Auth/SignIn";
-import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Main/Home";
-import NotFound from "./pages/Main/NotFound";
-import Trading from "./pages/Dash/Trading";
-import Profile from "./pages/Dash/Profile";
-import Cashier from "./pages/Dash/Cashier";
-import Deposit from "./pages/Dash/Cashier/Deposit";
 
 import Signin from "./components/Admin/Signin";
 import Signup from "./components/Admin/Signup";
-import MainDash from "./pages/Dash/MainDash";
-import Withdraw from "./pages/Dash/Cashier/Withdraw";
-import Status from "./pages/Dash/Status";
-import History from "./pages/Dash/Cashier/History";
 
 // import "./assets/themes/light_mode.css";
 import "./assets/themes/dark_mode.css";
@@ -148,19 +137,17 @@ const App = () => {
                 <Route path="status" element={<Status />} />
               </Route>
 
-              <Route path="status" element={<Status />} />
-            </Route>
+              {/* Admin Pages */}
+              <Route path="/admin">
+                <Route path="" element={<Navigate to={"signin"} />} />
+                <Route path="signin" element={<Signin />} />
+                <Route path="signup" element={<Signup />} />
+              </Route>
 
-          {/* Admin Pages */}
-          <Route path="/admin">
-            <Route path="" element={<Navigate to={"signin"} />} />
-            <Route path="signin" element={<Signin />} />
-            <Route path="signup" element={<Signup />} />
-          </Route>
-
-            {/* Utility Pages */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              {/* Utility Pages */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </ScrollToTop>
       </BrowserRouter>
     </>
