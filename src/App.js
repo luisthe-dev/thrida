@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 
-import Home from "./pages/Main/Home";
+// import Home from "./pages/Main/Home";
 
 import Signin from "./components/Admin/Signin";
 import Signup from "./components/Admin/Signup";
