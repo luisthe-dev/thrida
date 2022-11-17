@@ -8,36 +8,109 @@ import { RiMenu4Fill } from "react-icons/ri";
 import { SiOpslevel } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import MainSidebar from "../MainSidebar";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearUserStore,
+  setActiveWallet,
+  setUserDetails,
+  setUserWallets,
+} from "../../redux/userStore";
+import { useEffect } from "react";
+import { GetUserDetails } from "../apis/userApi";
 
 const DashHeader = () => {
   const [showAccounts, setShowAccount] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSide, setShowSide] = useState(false);
+  const [userFetchLoading, setUserFetchLoading] = useState(false);
 
   const myNavigate = useNavigate();
+  const myDispatch = useDispatch();
+
+  const { userDetails, userWallets, activeWallet } = useSelector(
+    (state) => state.userStore
+  );
+
+  const logoutUser = () => {
+    myDispatch(clearUserStore());
+    myNavigate("/signin");
+  };
+
+  const reloadUserDetails = () => {
+    setUserFetchLoading(true);
+    GetUserDetails()
+      .then((response) => {
+        if (response.status === 1) {
+          const userWallets = JSON.parse(response.data.wallets);
+          myDispatch(
+            setUserDetails({
+              name: response.data.name,
+              email: response.data.email,
+            })
+          );
+          myDispatch(
+            setUserWallets({
+              demoAccount: userWallets.demo_wallet,
+              realAccount: userWallets.real_wallet,
+              tourneyAccount: userWallets.tournament_wallet,
+            })
+          );
+        }
+      })
+      .finally(() => setUserFetchLoading(false));
+  };
+
+  useEffect(() => {
+    if (userDetails.name.trim() === "") {
+      reloadUserDetails();
+    }
+  }, [userDetails.name]);
 
   return (
     <>
       <MainSidebar showMenu={showSide} setShowMenu={setShowSide} />
-      <div className="dashbordHeader">
-        <div className="dashbordHeaderLeft">
+      <div className="dashboardHeader">
+        <div className="dashboardHeaderLeft">
           <button onClick={() => setShowSide(true)}>
             <RiMenu4Fill />
           </button>
           <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
         </div>
-        <div className="dashbordHeaderRight">
+        <div className="dashboardHeaderRight">
           <div className="dashboardHeaderAccountWalletSwitch">
             <div className="dashboardHeaderAccountWalletMain">
-              <AiOutlineReload />
+              <AiOutlineReload
+                onClick={userFetchLoading ? () => {} : reloadUserDetails}
+                className={userFetchLoading ? "loading" : ""}
+              />
               <div
                 className="dashboardHeaderAccountWalletCurrentDetails"
                 onClick={() =>
                   setShowMenu(false) || setShowAccount(!showAccounts)
                 }
               >
-                <p> Demo Account </p>
-                <h6> ₦123,209.12 </h6>
+                <p> {activeWallet} account </p>
+                <h6>
+                  ₦
+                  {activeWallet === "demo" &&
+                    Number(userWallets.demoAccount)?.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  {activeWallet === "live" &&
+                    Number(userWallets.realAccount)?.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  {activeWallet === "tourney" &&
+                    Number(userWallets.tourneyAccount)?.toLocaleString(
+                      "en-US",
+                      {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    )}
+                </h6>
               </div>
               <GoChevronDown
                 onClick={() =>
@@ -52,33 +125,81 @@ const DashHeader = () => {
                   : "dashboardHeaderAccountWalletMenu"
               }
             >
-              <div className="dashboardHeaderAccountWalletMenuItem active">
+              <div
+                className={
+                  activeWallet === "demo"
+                    ? "dashboardHeaderAccountWalletMenuItem active"
+                    : "dashboardHeaderAccountWalletMenuItem"
+                }
+                onClick={() =>
+                  myDispatch(setActiveWallet("demo")) &&
+                  setShowAccount(!showAccounts)
+                }
+              >
                 <p>
                   <MdCheck /> Demo Account
                 </p>
-                <label>₦12.00</label>
+                <label>
+                  ₦
+                  {Number(userWallets.demoAccount)?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </label>
               </div>
-              <div className="dashboardHeaderAccountWalletMenuItem">
+              <div
+                className={
+                  activeWallet === "live"
+                    ? "dashboardHeaderAccountWalletMenuItem active"
+                    : "dashboardHeaderAccountWalletMenuItem"
+                }
+                onClick={() =>
+                  myDispatch(setActiveWallet("live")) &&
+                  setShowAccount(!showAccounts)
+                }
+              >
                 <p>
                   <MdCheck /> Live Account
                 </p>
-                <label>₦12.00</label>
+                <label>
+                  ₦
+                  {Number(userWallets.realAccount)?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </label>
               </div>
-              <div className="dashboardHeaderAccountWalletMenuItem">
+              <div
+                className={
+                  activeWallet === "tourney"
+                    ? "dashboardHeaderAccountWalletMenuItem active"
+                    : "dashboardHeaderAccountWalletMenuItem"
+                }
+                onClick={() =>
+                  myDispatch(setActiveWallet("tourney")) &&
+                  setShowAccount(!showAccounts)
+                }
+              >
                 <p>
                   <MdCheck /> Tourney Account
                 </p>
-                <label>₦360,000.00</label>
+                <label>
+                  ₦
+                  {Number(userWallets.tourneyAccount)?.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </label>
               </div>
             </div>
           </div>
-          <button> Let's Trade </button>
+          <button onClick={() => myNavigate("/dashboard")}>Let's Trade</button>
           <div className="dashboardHeaderAccount">
             <div
               className="dashboardHeaderAccountMain"
               onClick={() => setShowAccount(false) || setShowMenu(!showMenu)}
             >
-              <p> A </p>
+              {userDetails?.name?.split("")[0]}
             </div>
             <div
               className={
@@ -120,7 +241,7 @@ const DashHeader = () => {
                 </p>
               </div>
               <div className="dashboardHeaderAccountMenuItem">
-                <p onClick={() => setShowMenu(!showMenu) || myNavigate("")}>
+                <p onClick={logoutUser}>
                   <FiLogOut /> Logout
                 </p>
               </div>

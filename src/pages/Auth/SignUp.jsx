@@ -16,13 +16,19 @@ const SignUp = () => {
   const [userMail, setUserMail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const myNavigate = useNavigate();
 
   const userSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const signUpResponse = await SignUpUser(userName, userMail, userPassword);
     if (signUpResponse.status === 1) {
       toast.success("Signed Up Successfully");
+      setLoading(false);
+    } else {
+      toast.error(signUpResponse.message);
+      setLoading(false);
     }
   };
 
@@ -77,7 +83,9 @@ const SignUp = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit"> Sign Up </button>
+            <button type="submit" disabled={loading}>
+              Sign Up
+            </button>
           </form>
         </div>
         <div className="authFooter">

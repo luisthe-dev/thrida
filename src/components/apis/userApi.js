@@ -8,13 +8,13 @@ export const SignInUser = async (userMail, userPass) => {
     password: userPass,
     remember_me: true,
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;
@@ -28,13 +28,36 @@ export const SignUpUser = async (userName, userMail, userPass) => {
     email: userMail,
     password: userPass,
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 201) {
         returnData = { status: 1 };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      if (err.response.status === 422)
+        returnData = { message: err.response.data.message };
+    });
+
+  return returnData;
+};
+
+export const GetUserDetails = async () => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get("/user", {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;

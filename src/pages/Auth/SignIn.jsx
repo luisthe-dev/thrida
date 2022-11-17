@@ -20,11 +20,13 @@ const SignIn = () => {
   const [userMail, setUserMail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const myNavigate = useNavigate();
   const myDispatch = useDispatch();
 
   const userSignIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const signInResponse = await SignInUser(userMail, userPassword);
     if (signInResponse.status === 1) {
       toast.success("Signed In Successfully");
@@ -45,8 +47,10 @@ const SignIn = () => {
         })
       );
       myNavigate("/dashboard");
+      setLoading(false);
     } else {
       toast.error("Invalid Credentials");
+      setLoading(false);
     }
   };
 
@@ -90,7 +94,10 @@ const SignIn = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit"> Sign In </button>
+            <button type="submit" disabled={loading}>
+              {" "}
+              Sign In{" "}
+            </button>
           </form>
         </div>
         <div className="authFooter">

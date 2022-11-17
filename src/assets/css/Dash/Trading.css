@@ -1,78 +1,302 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Topbar Styles */
-
-.container {
+.TradingPageContainer {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.others {
-  flex: 6;
-  background: red;
-}
-
-.topbar__content {
+.TradingPageContainer .TradingSideMenu {
+  width: 5%;
+  height: calc(100vh - 85px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background: var(--alternateBackground);
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  padding: 20px 0;
+  color: var(--darkBackground);
+  border-right: 1px solid var(--mainShadow);
 }
 
-.topbar__logo {
+.TradingPageContainer .TradingSideMenu .TradingSideMenuItems {
   display: flex;
-  justify-content: flex-start;
-}
-
-.thrida__logo {
-  width: 9%;
-  margin-left: 10px;
-}
-
-.topbar__icons {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
-}
-
-.topbar__icon {
-  position: relative;
-  cursor: pointer;
-  color: #555;
-}
-
-.topbar__span {
-  position: absolute;
-  top: 18px;
-  /*right: 9px;*/
-  background: red;
-  color: white;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  font-size: 10px;
+  justify-content: center;
+  width: 100%;
 }
 
-.topbar__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.TradingPageContainer
+  .TradingSideMenu
+  .TradingSideMenuItems
+  .TradingSideMenuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0 6px 0;
   cursor: pointer;
-  object-fit: contain;
-  margin-right: 10px;
+  color: var(--darkBackground);
+  margin: 8px auto;
 }
 
-/* Sidebar Styles */
+.TradingPageContainer
+  .TradingSideMenu
+  .TradingSideMenuItems
+  .TradingSideMenuItem:hover {
+  background: var(--mainShadow);
+  opacity: 0.7;
+  color: var(--darkBackground);
+}
 
-.sidebar__container {
-  flex: 2;
+.TradingPageContainer
+  .TradingSideMenu
+  .TradingSideMenuItems
+  .TradingSideMenuItem
+  svg {
+  font-size: 1.6rem;
+}
+
+.TradingPageContainer
+  .TradingSideMenu
+  .TradingSideMenuItems
+  .TradingSideMenuItem
+  span {
+  font-size: 0.7rem;
+  display: inline-block;
+  margin: 8px 8px;
+  white-space: nowrap;
+}
+
+.TradingPageContainer .TradingSideMenu .TradingSideMenuFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.TradingPageContainer .TradingSideMenu .TradingSideMenuFooter svg {
+  border: 1px solid var(--darkBackground);
+  color: var(--darkBackground);
+  font-size: 2rem;
+  border-radius: 8px;
+  padding: 6px;
+  margin: 5px;
+}
+
+.TradingPageContainer .TradingSideMenu .TradingSideMenuFooter svg:hover {
+  border: 1px solid var(--mainBackground);
+  color: var(--mainBackground);
+  background: var(--darkBackground);
+  font-size: 2rem;
+  border-radius: 8px;
+  padding: 6px;
+  margin: 5px;
+}
+
+.TradingPageContainer .TradeChapter {
+  width: 80%;
+  position: relative;
+}
+
+.TradingPageContainer .TradeChapter button.ScrollToBtn {
+  position: absolute;
+  bottom: 40px;
+  right: 80px;
+  z-index: 8;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.TradingPageContainer .TradeChapter .tv-lightweight-charts {
+  width: 100%;
+  height: calc(100vh - 85px) !important;
+}
+
+.TradingPageContainer .TradingRuns {
+  width: 15%;
+  padding: 0 12px;
+  height: calc(100vh - 85px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: var(--alternateBackground);
+  padding-top: 20px;
+  color: var(--darkBackground);
+  border-left: 1px solid var(--mainShadow);
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0 6px 0;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBlock .TradingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  padding: 10px 0 6px 10px;
+  color: var(--darkBackground);
+  background: var(--mainShadow);
+  margin: 8px auto;
+  border-radius: 6px;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBlock .TradingBlock label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.TradingPageContainer
+  .TradingRuns
+  .TradingRunsBlock
+  .TradingBlock
+  .TradingBlockInput {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.TradingPageContainer
+  .TradingRuns
+  .TradingRunsBlock
+  .TradingBlock
+  .TradingBlockInput
+  input {
+  width: 80%;
+  border-bottom: 1px solid var(--darkBackground);
+  color: var(--darkBackground);
+  background: transparent;
+  padding: 8px 10px 8px 4px;
+  margin: 5px;
+  margin-right: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.TradingPageContainer
+  .TradingRuns
+  .TradingRunsBlock
+  .TradingBlock
+  .TradingBlockInput
+  .TradingBlockInputStackBtns {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.TradingPageContainer
+  .TradingRuns
+  .TradingRunsBlock
+  .TradingBlock
+  .TradingBlockInput
+  .TradingBlockInputStackBtns
+  button {
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: var(--darkBackground);
+  padding: 2px 5px;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 6px;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns button {
+  width: 85%;
+  border-radius: 25px;
+  margin: 5px auto;
+  padding: 12px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns button span {
+  font-size: 0.6rem;
+  letter-spacing: 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns button.TradingRunsBtnsBuy {
+  background: #37a82e;
+  border-color: #37a82e;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns button.TradingRunsBtnsSell {
+  background: #e94141;
+  border-color: #e94141;
+}
+
+.TradingPageContainer .TradingRuns .TradingRunsBtns button:hover {
+  background-blend-mode: darken;
+  background: transparent;
+  color: var(--darkBackground);
+}
+
+@media (max-width: 600px) {
+  .TradingPageContainer {
+    flex-direction: column;
+  }
+
+  .TradingPageContainer .TradeChapter {
+    width: 100%;
+  }
+
+  .TradingPageContainer .TradingSideMenu {
+    display: none;
+  }
+
+  .TradingPageContainer .TradeChapter .tv-lightweight-charts {
+    width: 100%;
+    height: calc(100vh - 85px - 20vh) !important;
+  }
+
+  .TradingPageContainer .TradingRuns {
+    width: 100%;
+    flex: 1;
+  }
+
+  .TradingPageContainer .TradingRuns .TradingRunsBlock {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .TradingPageContainer .TradingRuns .TradingRunsBtns {
+    flex-direction: row;
+    gap: 20px;
+  }
 }

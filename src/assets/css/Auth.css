@@ -137,6 +137,12 @@
   color: var(--mainSecondary);
 }
 
+.mainAuthContainer .authContainer .authForm form button:disabled {
+  background-color: var(--mainShadow);
+  color: var(--darkBackground);
+  border-color: var(--mainShadow);
+}
+
 .mainAuthContainer .authContainer .authFooter {
   margin-top: 8px;
 }
@@ -182,5 +188,17 @@
 @media (max-width: 600px) {
   .mainAuthContainer .authContainer {
     width: 95%;
+  }
+
+  .mainAuthContainer .authContainer .authForm form {
+    width: 100%;
+  }
+
+  .mainAuthContainer .authContainer .authForm form label {
+    padding-left: 0;
+  }
+
+  .mainAuthContainer .authContainer .authForm form .authFormInputContainer {
+    width: 100%;
   }
 }
