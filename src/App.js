@@ -3,13 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 
-// import Home from "./pages/Main/Home";
-
-import Signin from "./components/Admin/Signin";
-import Signup from "./components/Admin/Signup";
-
 // import "./assets/themes/light_mode.css";
-import "./assets/themes/dark_mode.css";
+// import "./assets/themes/dark_mode.css";
 import ScrollToTop from "./components/ScrollToTop";
 import { addChartStoreData } from "./redux/chartStore";
 
@@ -26,6 +21,18 @@ const Status = lazy(() => import("./pages/Dash/Status"));
 const Deposit = lazy(() => import("./pages/Dash/Cashier/Deposit"));
 const Withdraw = lazy(() => import("./pages/Dash/Cashier/Withdraw"));
 const History = lazy(() => import("./pages/Dash/Cashier/History"));
+const DarkMode = lazy(() => import("./assets/themes/DarkMode"));
+const LightMode = lazy(() => import("./assets/themes/LightMode"));
+
+const AdminSignIn = lazy(() => import("./pages/Admin/Auth/AdminSignIn"));
+const AdminSignUp = lazy(() => import("./pages/Admin/Auth/AdminSignUp"));
+const DashboardContainer = lazy(() =>
+  import("./components/Admin/DashboardContainer")
+);
+const Stats = lazy(() => import("./pages/Admin/Dashboard/Stats"));
+const Users = lazy(() => import("./pages/Admin/Dashboard/Users"));
+const Verified = lazy(() => import("./pages/Admin/Dashboard/Verified"));
+const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
 
 const App = () => {
   const myDispatch = useDispatch();
@@ -113,6 +120,11 @@ const App = () => {
               </div>
             }
           >
+            {Number(localStorage.getItem("themeMode")) === 1 ? (
+              <DarkMode />
+            ) : (
+              <LightMode />
+            )}
             <Routes>
               <Route path="/" element={<Landing />} />
 
@@ -140,8 +152,17 @@ const App = () => {
               {/* Admin Pages */}
               <Route path="/admin">
                 <Route path="" element={<Navigate to={"signin"} />} />
-                <Route path="signin" element={<Signin />} />
-                <Route path="signup" element={<Signup />} />
+                <Route path="signin" element={<AdminSignIn />} />
+                <Route path="signup" element={<AdminSignUp />} />
+
+                {/* Admin Dashboard */}
+                <Route path="dashboard" element={<DashboardContainer />}>
+                  <Route path="" element={<Stats />} />
+                  <Route path="stats" element={<Stats />} />
+                  <Route path="users" element={<Users />} />
+                  <Route path="verified" element={<Verified />} />
+                  <Route path="assets" element={<Assets />} />
+                </Route>
               </Route>
 
               {/* Utility Pages */}

@@ -22,6 +22,13 @@ import "./assets/css/components/MainSidebar.css";
 import "./assets/css/components/MainNavBar.css";
 import "./assets/css/components/HistoryBlock.css";
 import "./assets/css/components/DepositModal.css";
+import "./assets/css/components/Admin/Container.css";
+import "./assets/css/components/Admin/TopBar.css";
+import "./assets/css/components/Admin/SideBar.css";
+import "./assets/css/components/Admin/Table.css";
+import "./assets/css/Admin/Auth.css";
+import "./assets/css/Admin/Dashboard/stats.css";
+import "./assets/css/Admin/Dashboard/assets.css";
 import "./assets/css/Utils.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -1,0 +1,40 @@
+.MainAdminDashboardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.MainAdminDashboardContainer .BodyAdminDashboardContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.MainAdminDashboardContainer
+  .BodyAdminDashboardContainer
+  .BodyAdminDashboardContainerSideMenu {
+  max-width: 300px;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.MainAdminDashboardContainer
+  .BodyAdminDashboardContainer
+  .BodyAdminDashboardContainerMainContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
