@@ -1,0 +1,98 @@
+.adminStatBlocks {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.adminStatBlocks .adminStatBlock {
+  width: 23%;
+  padding: 40px 20px;
+  box-shadow: 0px 0px 5px var(--mainShadow);
+  background: transparent;
+  border: 1px solid var(--darkBackground);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.adminStatBlocks .adminStatBlock p {
+  font-size: 50px;
+  margin: 8px 0;
+  font-weight: 500;
+  color: var(--darkBackground);
+}
+
+.adminStatBlocks .adminStatBlock label {
+  font-size: 24px;
+  color: var(--darkBackground);
+}
+
+.adminStatTables {
+  display: flex;
+  width: 90%;
+  gap: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin: 50px auto 10px;
+}
+
+.adminStatTables .adminStatTable {
+  width: 48%;
+  padding: 40px 20px;
+  box-shadow: 0px 0px 5px var(--mainShadow);
+  background: transparent;
+  border: 1px solid var(--darkBackground);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .adminStatBlocks {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .adminStatBlocks .adminStatBlock {
+    width: 48%;
+  }
+
+  .adminStatTables {
+    width: 100%;
+  }
+
+  .adminStatTables .adminStatTable {
+    width: 48%;
+  }
+}
+
+@media (max-width: 600px) {
+  .adminStatBlocks {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .adminStatBlocks .adminStatBlock {
+    width: 93%;
+  }
+
+  .adminStatTables {
+    width: 100%;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .adminStatTables .adminStatTable {
+    width: 95%;
+  }
+}

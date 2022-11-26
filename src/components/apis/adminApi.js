@@ -1,43 +1,41 @@
 import { ThridaApi } from "./axios";
 
-export const SignInUser = async (userMail, userPass) => {
+export const SignInAdmin = async (userId, userPass) => {
   let returnData = { status: 0 };
 
-  await ThridaApi.post("/login", {
-    email: userMail,
+  await ThridaApi.post("/admin/login", {
+    username: userId,
     password: userPass,
     remember_me: true,
-    isAdmin: true,
   })
-    .then(function (response) {
-      console.log(response.status);
+    .then((response) => {
       if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
     });
 
   return returnData;
 };
 
-export const SignUpUser = async (userName, userMail, userPass) => {
+export const SignUpAdmin = async (userId, userEmail, userPass) => {
   let returnData = { status: 0 };
 
-  await ThridaApi.post("/register", {
-    name: userName,
-    email: userMail,
+  await ThridaApi.post("/admin/register", {
+    username: userId,
+    email: userEmail,
     password: userPass,
-    isAdmin: true,
   })
-    .then(function (response) {
+    .then((response) => {
       if (response.status === 201) {
         returnData = { status: 1 };
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((err) => {
+      if (err.response.status === 422)
+        returnData = { message: err.response.data.message };
     });
 
   return returnData;
