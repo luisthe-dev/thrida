@@ -48,6 +48,56 @@ img.loadingImage {
   animation: pulsingImage 1s infinite;
 }
 
+button.loadingBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+button.loadingBtn svg,
+button.loadingBtn i {
+  transition: all 0.3s ease-in-out linear;
+  animation: rotatingLoader 1s infinite;
+}
+
+.themeButton {
+  position: fixed;
+  background: var(--mainBackground);
+  width: 40px;
+  box-shadow: 4px 3px 4px var(--mainShadow);
+  color: var(--darkBackground);
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  border-radius: 50px;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 120;
+  outline: none;
+}
+
+@keyframes rotatingLoader {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes pulsingImage {
   0% {
     opacity: 1;

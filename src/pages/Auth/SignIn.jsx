@@ -15,6 +15,7 @@ import {
   setUserLoggedIn,
 } from "../../redux/userStore";
 import { toast } from "react-toastify";
+import { FiLoader } from "react-icons/fi";
 
 const SignIn = () => {
   const [userMail, setUserMail] = useState("");
@@ -94,9 +95,9 @@ const SignIn = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit" disabled={loading}>
-              {" "}
-              Sign In{" "}
+            <button type="submit" disabled={loading} className={"loadingBtn"}>
+              {loading ? <FiLoader /> : `Sign In`}
+              {loading && ` Hold On`}
             </button>
           </form>
         </div>

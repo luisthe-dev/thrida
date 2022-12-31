@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { SignUpUser } from "../../components/apis/userApi";
 import { toast } from "react-toastify";
+import { FiLoader } from "react-icons/fi";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -83,8 +84,9 @@ const SignUp = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit" disabled={loading}>
-              Sign Up
+            <button type="submit" disabled={loading} className={"loadingBtn"}>
+              {loading ? <FiLoader /> : `Sign Up`}
+              {loading && ` Hold On`}
             </button>
           </form>
         </div>

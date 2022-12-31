@@ -282,17 +282,34 @@
 
   .TradingPageContainer .TradeChapter .tv-lightweight-charts {
     width: 100%;
-    height: calc(100vh - 85px - 20vh) !important;
+    height: calc(100vh - 85px - 165px) !important;
   }
 
   .TradingPageContainer .TradingRuns {
     width: 100%;
     flex: 1;
+    max-height: 180px;
+    padding-top: 0;
+    padding-bottom: 10px;
   }
 
   .TradingPageContainer .TradingRuns .TradingRunsBlock {
     flex-direction: row;
     gap: 20px;
+  }
+
+  .TradingPageContainer .TradingRuns .TradingRunsBlock .TradingBlock label {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+
+  .TradingPageContainer
+    .TradingRuns
+    .TradingRunsBlock
+    .TradingBlock
+    .TradingBlockInput
+    input {
+    font-size: 0.6rem;
   }
 
   .TradingPageContainer .TradingRuns .TradingRunsBtns {

@@ -68,7 +68,7 @@ nav.sideMenu {
   top: 0;
   bottom: 0;
   width: 250px;
-  background: #ffffffe9;
+  background: var(--mainBackground);
   padding: 20px;
   padding-top: 40px;
   gap: 12px;
@@ -83,16 +83,18 @@ nav.sideMenu.active {
 
 nav.sideMenu svg {
   align-self: flex-end;
-  border: 1px solid #12121242;
+  border: 1px solid var(--mainSecondary);
   padding: 4px;
   border-radius: 6px;
   margin-bottom: 40px;
   font-size: 20px;
+  color: var(--mainSecondary);
 }
 
 nav.sideMenu a {
-  border-bottom: 1px solid #06294932;
+  border-bottom: 1px solid var(--alternateBackground);
   padding: 12px 8px;
+  color: var(--mainSecondary);
 }
 
 nav.sideMenu a.btnLink {
@@ -117,8 +119,8 @@ nav.navBar {
   justify-content: space-between;
   width: 100%;
   padding: 20px 0;
-  box-shadow: 0px 3px 5px #12121242;
-  background: #ffffff;
+  box-shadow: 0px 3px 5px var(--mainShadow);
+  background: var(--mainBackground);
 }
 
 nav.navBar .navPageLinks {
@@ -135,7 +137,7 @@ nav.navBar a {
   font-size: 1rem;
   transition: all 0.8s;
   cursor: pointer;
-  color: #062949de;
+  color: var(--mainSecondary);
 }
 
 nav.navBar a::after {
@@ -175,6 +177,7 @@ nav.navBar .navAuthLinks {
 
 nav.navBar .navMenuIcon {
   display: none;
+  color: var(--mainSecondary);
 }
 
 @media (max-width: 1024px) {

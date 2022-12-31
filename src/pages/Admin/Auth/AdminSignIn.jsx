@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiLoader } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -55,7 +56,9 @@ const AdminSignIn = () => {
           value={userPassword}
           onInput={(e) => setUserPassword(e.target.value)}
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className={"loadingBtn"}>
+          {loading ? <FiLoader /> : `Sign In`}
+          {loading && ` Hold On`}
           Sign In
         </button>
       </form>

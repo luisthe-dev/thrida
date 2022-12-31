@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiLoader } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SignUpAdmin } from "../../../components/apis/adminApi";
@@ -46,7 +47,10 @@ const AdminSignUp = () => {
           value={userPassword}
           onInput={(e) => setUserPassword(e.target.value)}
         />
-        <button> Sign Up </button>
+        <button type="submit" disabled={loading} className={"loadingBtn"}>
+          {loading ? <FiLoader /> : `Sign Up`}
+          {loading && ` Hold On`}
+        </button>
       </form>
     </div>
   );

@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createChart } from "lightweight-charts";
-import { useSelector, useDispatch } from "react-redux";
-import { addChartStoreData } from "../../redux/chartStore";
+import { useSelector } from "react-redux";
 import { BsGiftFill, BsTrophyFill, BsChevronDoubleRight } from "react-icons/bs";
 import {
   AiFillClockCircle,
@@ -12,9 +11,34 @@ import { HiBadgeCheck } from "react-icons/hi";
 import { TbSpeakerphone, TbChartCandle } from "react-icons/tb";
 import { TiChartArea, TiChartLine } from "react-icons/ti";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import { useRef } from "react";
+import AssetsDropdown from "../../components/Dash/AssetsDropdown";
 
 const Trading = () => {
-  const myDispatch = useDispatch();
+  const [amount, setAmount] = useState(100);
+  const [time, setTime] = useState("");
+
+  const myChart = useRef();
+  const myAreaSeries = useRef();
+  const myCandleSeries = useRef();
+  const myLineSeries = useRef();
+  const myBarSeries = useRef();
+
+  useEffect(() => {
+    const myDate = new Date();
+    const hour = myDate.getHours();
+    const minutes = myDate.getMinutes();
+
+    if (minutes < 55) {
+      setTime(
+        `${hour < 10 ? `0${hour}` : hour}:${
+          minutes + 5 < 10 ? `0${minutes + 5}` : minutes + 5
+        }`
+      );
+    } else {
+      setTime(`${hour + 1}:05`);
+    }
+  }, []);
 
   const { chartDetails } = useSelector((state) => state.chartStore);
 
@@ -69,6 +93,12 @@ const Trading = () => {
       visible: false,
     });
 
+    myChart.current = chart;
+    myAreaSeries.current = areastickSeries;
+    myCandleSeries.current = candlestickSeries;
+    myLineSeries.current = linestickSeries;
+    myBarSeries.current = barstickSeries;
+
     candlestickSeries.setData(chartDetails);
     areastickSeries.setData(chartDetails);
     linestickSeries.setData(chartDetails);
@@ -119,65 +149,42 @@ const Trading = () => {
           : barstickSeries.applyOptions({ visible: false });
       });
     });
+  }, []);
 
-    setInterval(() => {
-      const newOpen = chartData[chartData.length - 1].close;
-      const newClose = Number(
-        (
-          Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
-          (newOpen - 50)
-        ).toFixed(5)
-      );
-      const newLow =
-        newOpen >= newClose
-          ? Number(
-              (
-                Math.random() * (newClose - (newClose - 10) + 1) +
-                (newClose - 10)
-              ).toFixed(5)
-            )
-          : Number(
-              (
-                Math.random() * (newOpen - (newOpen - 10) + 1) +
-                (newOpen - 10)
-              ).toFixed(5)
-            );
-      const newHigh =
-        newOpen >= newClose
-          ? Number(
-              (Math.random() * (newOpen + 10 - newOpen + 1) + newOpen).toFixed(
-                5
-              )
-            )
-          : Number(
-              (
-                Math.random() * (newClose + 10 - newClose + 1) +
-                newClose
-              ).toFixed(5)
-            );
-      const newValue = (newOpen + newClose) / 2;
+  useEffect(() => {
+    const updateData = chartDetails[chartDetails.length - 1];
+    myChart?.current?.timeScale()?.scrollPosition() < 0
+      ? (document.getElementById("ScrollToBtn").style.display = "flex")
+      : (document.getElementById("ScrollToBtn").style.display = "none");
 
-      const updateData = {
-        time: Math.floor(new Date().getTime() / 1000),
-        open: newOpen,
-        high: newHigh,
-        low: newLow,
-        close: newClose,
-        value: newValue,
-      };
+    myCandleSeries?.current?.update(updateData);
+    myAreaSeries?.current?.update(updateData);
+    myLineSeries?.current?.update(updateData);
+    myBarSeries?.current?.update(updateData);
+  }, [chartDetails]);
 
-      chart.timeScale().scrollPosition() < 0
-        ? (document.getElementById("ScrollToBtn").style.display = "flex")
-        : (document.getElementById("ScrollToBtn").style.display = "none");
+  const editAmount = (process) => {
+    process === "plus"
+      ? setAmount(Number(amount) + 25)
+      : amount > 25 && setAmount(Number(amount) - 25);
+  };
 
-      chartData.push(updateData);
-      myDispatch(addChartStoreData(updateData));
-      candlestickSeries.update(updateData);
-      areastickSeries.update(updateData);
-      linestickSeries.update(updateData);
-      barstickSeries.update(updateData);
-    }, 1500);
-  }, [myDispatch]);
+  const editTime = (process) => {
+    let newTime = time;
+    const timeSplit = time.toString().split(":");
+    if (process === "plus") {
+      newTime =
+        Number(timeSplit[1]) >= 55
+          ? `${Number(timeSplit[0]) + 1}:00`
+          : `${timeSplit[0]}:${Number(timeSplit[1]) + 5}`;
+    } else {
+      newTime =
+        Number(timeSplit[1]) <= 5
+          ? `${Number(timeSplit[0]) - 1}:55`
+          : `${timeSplit[0]}:${Number(timeSplit[1]) - 5}`;
+    }
+    setTime(newTime);
+  };
 
   return (
     <div className="TradingPageContainer">
@@ -217,6 +224,7 @@ const Trading = () => {
         </div>
       </div>
       <div id="TradeChapter" className="TradeChapter">
+        <AssetsDropdown />
         <button className="ScrollToBtn" id="ScrollToBtn">
           <BsChevronDoubleRight />
         </button>
@@ -226,12 +234,16 @@ const Trading = () => {
           <div className="TradingBlock">
             <label> Amount </label>
             <div className="TradingBlockInput">
-              <input type="text" />
+              <input
+                type="text"
+                value={amount}
+                onInput={(e) => setAmount(e.target.value)}
+              />
               <div className="TradingBlockInputStackBtns">
-                <button>
+                <button onClick={() => editAmount("plus")}>
                   <AiOutlinePlus />
                 </button>
-                <button>
+                <button onClick={() => editAmount("minus")}>
                   <AiOutlineMinus />
                 </button>
               </div>
@@ -240,12 +252,17 @@ const Trading = () => {
           <div className="TradingBlock">
             <label> Time </label>
             <div className="TradingBlockInput">
-              <input type="text" />
+              <input
+                type="text"
+                value={time}
+                onInput={(e) => setTime(e.target.value)}
+                disabled
+              />
               <div className="TradingBlockInputStackBtns">
-                <button>
+                <button onClick={() => editTime("plus")}>
                   <AiOutlinePlus />
                 </button>
-                <button>
+                <button onClick={() => editTime("minus")}>
                   <AiOutlineMinus />
                 </button>
               </div>
