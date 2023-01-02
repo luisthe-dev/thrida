@@ -46,6 +46,7 @@ const DashHeader = () => {
             setUserDetails({
               name: response.data.name,
               email: response.data.email,
+              level: response.data.level,
             })
           );
           myDispatch(

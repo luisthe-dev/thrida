@@ -5,8 +5,10 @@ export const chartStore = createSlice({
   initialState: {
     chartDetails: localStorage.chartDetails
       ? JSON.parse(localStorage.chartDetails)
-      : [],
-    chartIntervalId: 0,
+      : {},
+    chartActiveAsset: localStorage.getItem("activeAsset")
+      ? localStorage.getItem("activeAsset")
+      : "",
   },
   reducers: {
     addChartStoreData: (state, action) => {
@@ -17,15 +19,11 @@ export const chartStore = createSlice({
       existingChart.push(action.payload);
       localStorage.setItem("chartDetails", JSON.stringify(existingChart));
     },
-    setChartInterval: (state, action) => {
-      state.chartIntervalId = action.payload;
-    },
-    clearChartInterval: (state) => {
-      clearInterval(state.chartIntervalId);
-      state.chartIntervalId = 0;
-    },
-    updateChartStore: (state) => {
-      const newOpen = state.chartDetails[state.chartDetails.length - 1].close;
+    updateChartStore: (state, action) => {
+      const newOpen =
+        state.chartDetails[action.payload][
+          state.chartDetails[action.payload].length - 1
+        ].close;
       const newClose = Number(
         (
           Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
@@ -70,20 +68,27 @@ export const chartStore = createSlice({
         value: newValue,
       };
 
-      state.chartDetails.push(updateData);
+      state.chartDetails[action.payload].push(updateData);
 
       const allChartData = localStorage.getItem("chartDetails")
         ? JSON.parse(localStorage.chartDetails)
         : [];
-      allChartData.push(updateData);
+      const mychartData = allChartData[action.payload];
+      mychartData.push(updateData);
+      allChartData[action.payload] = mychartData;
       localStorage.setItem("chartDetails", JSON.stringify(allChartData));
     },
-    intializeChartStoreData: (state) => {
+    intializeChartStoreData: (state, action) => {
       if (
         localStorage.chartDetails &&
-        JSON.parse(localStorage.chartDetails).length > 1
+        JSON.parse(localStorage.chartDetails)[action.payload] &&
+        JSON.parse(localStorage.chartDetails)[action.payload].length > 1
       )
         return;
+
+      const mychartData = localStorage.chartDetails
+        ? JSON.parse(localStorage.chartDetails)
+        : {};
       const allChartData = [];
       const currentTime = Math.floor(new Date().getTime() / 1000);
       for (let i = 0; i < 1000; i++) {
@@ -136,9 +141,13 @@ export const chartStore = createSlice({
         };
 
         allChartData.push(generatedData);
-        state.chartDetails.push(generatedData);
-        localStorage.setItem("chartDetails", JSON.stringify(allChartData));
+        mychartData[action.payload] = allChartData;
+        state.chartDetails = mychartData;
+        localStorage.setItem("chartDetails", JSON.stringify(mychartData));
       }
+    },
+    updateActiveAsset: (state, action) => {
+      state.chartActiveAsset = action.payload;
     },
   },
 });
@@ -147,8 +156,7 @@ export const {
   intializeChartStoreData,
   updateChartStore,
   addChartStoreData,
-  setChartInterval,
-  clearChartInterval,
+  updateActiveAsset,
 } = chartStore.actions;
 
 export default chartStore.reducer;

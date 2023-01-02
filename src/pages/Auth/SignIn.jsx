@@ -45,6 +45,7 @@ const SignIn = () => {
         setUserDetails({
           name: signInResponse.data.user.name,
           email: signInResponse.data.user.email,
+          level: signInResponse.data.user.level,
         })
       );
       myNavigate("/dashboard");

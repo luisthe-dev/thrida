@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createChart } from "lightweight-charts";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { BsGiftFill, BsTrophyFill, BsChevronDoubleRight } from "react-icons/bs";
 import {
   AiFillClockCircle,
@@ -13,16 +13,21 @@ import { TiChartArea, TiChartLine } from "react-icons/ti";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { useRef } from "react";
 import AssetsDropdown from "../../components/Dash/AssetsDropdown";
+import { startTrade } from "../../components/apis/tradesApi";
+import { toast } from "react-toastify";
+import { setUserWallets } from "../../redux/userStore";
 
 const Trading = () => {
   const [amount, setAmount] = useState(100);
   const [time, setTime] = useState("");
+  const { chartActiveAsset } = useSelector((state) => state.chartStore);
 
   const myChart = useRef();
   const myAreaSeries = useRef();
   const myCandleSeries = useRef();
   const myLineSeries = useRef();
   const myBarSeries = useRef();
+  const myDispatch = useDispatch();
 
   useEffect(() => {
     const myDate = new Date();
@@ -43,8 +48,10 @@ const Trading = () => {
   const { chartDetails } = useSelector((state) => state.chartStore);
 
   useEffect(() => {
-    const chartData = [];
-    chartData.push(...chartDetails);
+    if (!chartActiveAsset) return;
+    if (!chartDetails[chartActiveAsset]) return;
+
+    myChart?.current?.remove();
 
     const chart = createChart(document.getElementById("TradeChapter"), {
       layout: {
@@ -75,7 +82,7 @@ const Trading = () => {
     });
 
     const candlestickSeries = chart.addCandlestickSeries({
-      visible: true,
+      visible: false,
     });
     const areastickSeries = chart.addAreaSeries({
       lineWidth: 2,
@@ -99,10 +106,10 @@ const Trading = () => {
     myLineSeries.current = linestickSeries;
     myBarSeries.current = barstickSeries;
 
-    candlestickSeries.setData(chartDetails);
-    areastickSeries.setData(chartDetails);
-    linestickSeries.setData(chartDetails);
-    barstickSeries.setData(chartDetails);
+    myCandleSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myAreaSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myLineSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myBarSeries?.current?.setData(chartDetails[chartActiveAsset]);
 
     new ResizeObserver((entries) => {
       if (
@@ -133,26 +140,34 @@ const Trading = () => {
       document.getElementById("ScrollToBtn").style.display = "none";
     });
 
+    // myBarSeries?.current?.applyOptions({ visible: true });
+
     document.querySelectorAll("#chartBtn").forEach((btn) => {
       btn.addEventListener("click", () => {
         btn.getAttribute("data-type") === "candle"
-          ? candlestickSeries.applyOptions({ visible: true })
-          : candlestickSeries.applyOptions({ visible: false });
+          ? myCandleSeries?.current?.applyOptions({ visible: true })
+          : myCandleSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "area"
-          ? areastickSeries.applyOptions({ visible: true })
-          : areastickSeries.applyOptions({ visible: false });
+          ? myAreaSeries?.current?.applyOptions({ visible: true })
+          : myAreaSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "line"
-          ? linestickSeries.applyOptions({ visible: true })
-          : linestickSeries.applyOptions({ visible: false });
+          ? myLineSeries?.current?.applyOptions({ visible: true })
+          : myLineSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "bar"
-          ? barstickSeries.applyOptions({ visible: true })
-          : barstickSeries.applyOptions({ visible: false });
+          ? myBarSeries?.current?.applyOptions({ visible: true })
+          : myBarSeries?.current?.applyOptions({ visible: false });
       });
     });
-  }, []);
+    return;
+  }, [chartActiveAsset]);
 
   useEffect(() => {
-    const updateData = chartDetails[chartDetails.length - 1];
+    if (!chartActiveAsset) return;
+    if (!chartDetails[chartActiveAsset]) return;
+    const updateData =
+      chartDetails[chartActiveAsset][
+        chartDetails[chartActiveAsset]?.length - 1
+      ];
     myChart?.current?.timeScale()?.scrollPosition() < 0
       ? (document.getElementById("ScrollToBtn").style.display = "flex")
       : (document.getElementById("ScrollToBtn").style.display = "none");
@@ -161,7 +176,8 @@ const Trading = () => {
     myAreaSeries?.current?.update(updateData);
     myLineSeries?.current?.update(updateData);
     myBarSeries?.current?.update(updateData);
-  }, [chartDetails]);
+    return;
+  }, [chartDetails, chartActiveAsset]);
 
   const editAmount = (process) => {
     process === "plus"
@@ -184,6 +200,39 @@ const Trading = () => {
           : `${timeSplit[0]}:${Number(timeSplit[1]) - 5}`;
     }
     setTime(newTime);
+  };
+
+  const placeBid = async (bidDirection) => {
+    console.log("clicked");
+    const tradeData = {
+      asset_id: 3,
+      walletType: "demo_wallet",
+      userPredict: bidDirection,
+      amount_staked: amount,
+      entry_value:
+        chartDetails[chartActiveAsset][
+          chartDetails[chartActiveAsset]?.length - 1
+        ]?.value,
+      time_period: time,
+    };
+
+    const bidRes = await startTrade(tradeData);
+
+    console.log(bidRes);
+
+    if (bidRes.status !== 1) {
+      toast.error("Error Placing Trade");
+      return;
+    }
+
+    const userWallets = JSON.parse(bidRes?.user?.wallets);
+    myDispatch(
+      setUserWallets({
+        demoAccount: userWallets.demo_wallet,
+        realAccount: userWallets.real_wallet,
+        tourneyAccount: userWallets.tournament_wallet,
+      })
+    );
   };
 
   return (
@@ -270,10 +319,16 @@ const Trading = () => {
           </div>
         </div>
         <div className="TradingRunsBtns">
-          <button className="TradingRunsBtnsBuy">
+          <button
+            className="TradingRunsBtnsBuy"
+            onClick={() => placeBid("GAIN")}
+          >
             <BiUpvote />
           </button>
-          <button className="TradingRunsBtnsSell">
+          <button
+            className="TradingRunsBtnsSell"
+            onClick={() => placeBid("LOSE")}
+          >
             <BiDownvote />
           </button>
         </div>

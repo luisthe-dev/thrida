@@ -1,14 +1,15 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ScrollToTop from "./components/ScrollToTop";
 import {
   intializeChartStoreData,
-  setChartInterval,
+  updateActiveAsset,
   updateChartStore,
 } from "./redux/chartStore";
+import { getAllActiveAssets } from "./components/apis/assetApi";
 
 // const Home = lazy(() => import("./pages/Main/Home"));
 const Landing = lazy(() => import("./pages/Main/Landing"));
@@ -39,14 +40,33 @@ const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
 
 const App = () => {
   const myDispatch = useDispatch();
+  const { chartActiveAsset } = useSelector((state) => state.chartStore);
+
+  const intiateAllAssets = async () => {
+    let activeChart;
+    if (!chartActiveAsset) {
+      const activeAssets = await getAllActiveAssets();
+      if (activeAssets.status !== 1) return;
+      const filteredFree = activeAssets.data.filter(
+        (asset) => asset.level === "Free"
+      );
+      if (filteredFree.length === 0) return;
+      activeChart = filteredFree[0].asset_name;
+    } else {
+      activeChart = chartActiveAsset;
+    }
+    myDispatch(updateActiveAsset(activeChart));
+    myDispatch(intializeChartStoreData(activeChart));
+    localStorage.setItem("activeAsset", activeChart);
+    setInterval(() => {
+      myDispatch(updateChartStore(activeChart));
+    }, 1500);
+  };
 
   useEffect(() => {
-    myDispatch(intializeChartStoreData());
-    const intervalId = setInterval(() => {
-      myDispatch(updateChartStore());
-    }, 1500);
-    myDispatch(setChartInterval(intervalId));
-  }, [myDispatch]);
+    intiateAllAssets();
+    return;
+  }, [myDispatch, chartActiveAsset]);
 
   useEffect(
     () =>
