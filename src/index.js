@@ -27,6 +27,7 @@ import "./assets/css/components/Admin/Container.css";
 import "./assets/css/components/Admin/TopBar.css";
 import "./assets/css/components/Admin/SideBar.css";
 import "./assets/css/components/Admin/Table.css";
+import "./assets/css/components/Admin/UserInfo.css";
 import "./assets/css/Admin/Auth.css";
 import "./assets/css/Admin/Dashboard/stats.css";
 import "./assets/css/Admin/Dashboard/assets.css";

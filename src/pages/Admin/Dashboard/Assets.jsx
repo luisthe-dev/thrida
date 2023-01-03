@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { FiCheckCircle, FiLoader, FiMinusCircle } from "react-icons/fi";
+import { FiCheckCircle, FiLoader } from "react-icons/fi";
+import { ImCancelCircle } from "react-icons/im";
 import { toast } from "react-toastify";
 import Table from "../../../components/Admin/Table";
 import {
@@ -38,7 +39,7 @@ const Assets = () => {
       setPairName("");
       setPairStatus("");
       setVolatility("");
-      getAssets();
+      await getAssets();
     } else {
       toast.error("Error Creating Asset");
     }
@@ -52,10 +53,12 @@ const Assets = () => {
 
     if (toggleRes.status === 1) {
       toast.success("Updated Assets Successfully");
-      getAssets();
+      await getAssets();
     } else {
       toast.error("Error Updating Asset Status");
     }
+
+    setIsLoading(false);
   };
 
   const deleteAsset = async (assetId) => {
@@ -65,10 +68,12 @@ const Assets = () => {
 
     if (delRes.status === 1) {
       toast.success("Deleted Asset Successfully");
-      getAssets();
+      await getAssets();
     } else {
       toast.error("Error Deleting Asset");
     }
+
+    setIsLoading(false);
   };
 
   const getAssets = async () => {
@@ -80,7 +85,7 @@ const Assets = () => {
         asset.asset_name,
         asset.volatility,
         asset.level,
-        asset.status ? <FiCheckCircle /> : <FiMinusCircle />,
+        asset.status ? <FiCheckCircle /> : <ImCancelCircle />,
         <>
           <button
             onClick={() => toggleStatus(asset.id)}

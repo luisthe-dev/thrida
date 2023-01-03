@@ -3,11 +3,13 @@ import { FiCheckCircle } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
 import { toast } from "react-toastify";
 import Table from "../../../components/Admin/Table";
+import UserInfo from "../../../components/Admin/UserInfo";
 import { GetAllUsers } from "../../../components/apis/adminApi";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [editUser, setEditUser] = useState(0);
 
   const getUsers = async (pageNumber) => {
     setIsLoading(true);
@@ -29,7 +31,7 @@ const Users = () => {
         user.level,
         `$${JSON.parse(user.wallets).real_wallet.toLocaleString()}`,
         user.is_pro ? <FiCheckCircle /> : <ImCancelCircle />,
-        <button> Edit </button>,
+        <button onClick={() => setEditUser(user.id)}> Edit </button>,
       ];
       tempUsers.push(userData);
     });
@@ -44,6 +46,7 @@ const Users = () => {
 
   return (
     <>
+      {editUser !== 0 && <UserInfo userId={editUser} setUser={setEditUser} />}
       <Table
         classes={"bordered hover"}
         title={"Users"}

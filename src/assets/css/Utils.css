@@ -48,7 +48,8 @@ img.loadingImage {
   animation: pulsingImage 1s infinite;
 }
 
-button.loadingBtn {
+button.loadingBtn,
+.loaderIcon {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -57,7 +58,9 @@ button.loadingBtn {
 }
 
 button.loadingBtn svg,
-button.loadingBtn i {
+button.loadingBtn i,
+.loaderIcon svg,
+.loaderIcon i {
   transition: all 0.3s ease-in-out linear;
   animation: rotatingLoader 1s infinite;
 }

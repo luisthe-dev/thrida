@@ -59,7 +59,6 @@ const AdminSignIn = () => {
         <button type="submit" disabled={loading} className={"loadingBtn"}>
           {loading ? <FiLoader /> : `Sign In`}
           {loading && ` Hold On`}
-          Sign In
         </button>
       </form>
     </div>
