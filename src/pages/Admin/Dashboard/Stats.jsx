@@ -31,8 +31,8 @@ const Stats = () => {
       const userData = [
         user.name,
         user.level,
-        `$${JSON.parse(user.wallets).real_wallet.toLocaleString()}`,
-        user.is_pro ? <FiCheckCircle /> : <ImCancelCircle />,
+        `$${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
+        Number(user.is_pro) ? <FiCheckCircle /> : <ImCancelCircle />,
       ];
       tempUsers.push(userData);
     });
@@ -56,7 +56,7 @@ const Stats = () => {
       const userData = [
         user.name,
         user.email,
-        `$${JSON.parse(user.wallets).real_wallet.toLocaleString()}`,
+        `$${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
       ];
       tempUsers.push(userData);
     });

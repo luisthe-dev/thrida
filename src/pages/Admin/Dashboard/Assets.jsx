@@ -85,14 +85,20 @@ const Assets = () => {
         asset.asset_name,
         asset.volatility,
         asset.level,
-        asset.status ? <FiCheckCircle /> : <ImCancelCircle />,
+        Number(asset.status) ? <FiCheckCircle /> : <ImCancelCircle />,
         <>
           <button
             onClick={() => toggleStatus(asset.id)}
             className={"loadingBtn"}
             disabled={isLoading}
           >
-            {isLoading ? <FiLoader /> : asset.status ? "Disable" : "Enable"}
+            {isLoading ? (
+              <FiLoader />
+            ) : Number(asset.status) ? (
+              "Disable"
+            ) : (
+              "Enable"
+            )}
           </button>
           <button
             onClick={() => deleteAsset(asset.id)}
@@ -112,6 +118,7 @@ const Assets = () => {
 
   useEffect(() => {
     getAssets();
+    return;
   }, []);
 
   return (
@@ -129,6 +136,7 @@ const Assets = () => {
             "Action",
           ]}
           tableData={allAssets}
+          isLoading={isLoading}
         />
       </div>
       <div className="adminStatTable">

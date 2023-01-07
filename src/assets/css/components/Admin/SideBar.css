@@ -68,7 +68,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .AdminSideBarContainer {
     position: fixed;
     width: 250px !important;

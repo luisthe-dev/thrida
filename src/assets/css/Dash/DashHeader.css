@@ -301,7 +301,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .dashboardHeader .dashboardHeaderLeft img {
     display: none;
   }
@@ -322,7 +322,7 @@
     font-size: 1rem;
   }
 
-  .dashboardHeader .dashboardHeaderRight button {
+  /* .dashboardHeader .dashboardHeaderRight button {
     display: none;
-  }
+  } */
 }

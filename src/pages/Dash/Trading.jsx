@@ -13,7 +13,7 @@ import { TiChartArea, TiChartLine } from "react-icons/ti";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { useRef } from "react";
 import AssetsDropdown from "../../components/Dash/AssetsDropdown";
-import { startTrade } from "../../components/apis/tradesApi";
+import { endTrade, startTrade } from "../../components/apis/tradesApi";
 import { toast } from "react-toastify";
 import { setUserWallets } from "../../redux/userStore";
 
@@ -21,6 +21,7 @@ const Trading = () => {
   const [amount, setAmount] = useState(100);
   const [time, setTime] = useState("");
   const { chartActiveAsset } = useSelector((state) => state.chartStore);
+  const { activeWallet } = useSelector((state) => state.userStore);
 
   const myChart = useRef();
   const myAreaSeries = useRef();
@@ -34,15 +35,17 @@ const Trading = () => {
     const hour = myDate.getHours();
     const minutes = myDate.getMinutes();
 
-    if (minutes < 55) {
+    if (minutes < 57) {
       setTime(
         `${hour < 10 ? `0${hour}` : hour}:${
-          minutes + 5 < 10 ? `0${minutes + 5}` : minutes + 5
+          minutes + 5 < 10 ? `0${minutes + 2}` : minutes + 2
         }`
       );
     } else {
-      setTime(`${hour + 1}:05`);
+      setTime(`${hour + 1}:02`);
     }
+
+    // setInterval(() => fixTiming(), 30000);
   }, []);
 
   const { chartDetails } = useSelector((state) => state.chartStore);
@@ -89,7 +92,7 @@ const Trading = () => {
       topColor: "rgba(33, 150, 243, 0.56)",
       bottomColor: "rgba(33, 150, 243, 0.04)",
       lineColor: "rgba(33, 150, 243, 1)",
-      visible: false,
+      visible: true,
     });
     const linestickSeries = chart.addLineSeries({
       lineWidth: 2,
@@ -140,8 +143,6 @@ const Trading = () => {
       document.getElementById("ScrollToBtn").style.display = "none";
     });
 
-    // myBarSeries?.current?.applyOptions({ visible: true });
-
     document.querySelectorAll("#chartBtn").forEach((btn) => {
       btn.addEventListener("click", () => {
         btn.getAttribute("data-type") === "candle"
@@ -179,6 +180,25 @@ const Trading = () => {
     return;
   }, [chartDetails, chartActiveAsset]);
 
+  useEffect(() => {
+    const currentTime = new Date();
+    if (!time) return;
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    let tempTime = time;
+
+    const timeSplit = tempTime.split(":");
+
+    if (
+      (Number(timeSplit[1]) <= Number(currentMinute) &&
+        Number(currentHour) === Number(timeSplit[0])) ||
+      Number(timeSplit[0]) < Number(currentHour)
+    ) {
+      editTime("plus");
+    }
+  }, [new Date().getMinutes()]);
+
   const editAmount = (process) => {
     process === "plus"
       ? setAmount(Number(amount) + 25)
@@ -190,23 +210,49 @@ const Trading = () => {
     const timeSplit = time.toString().split(":");
     if (process === "plus") {
       newTime =
-        Number(timeSplit[1]) >= 55
-          ? `${Number(timeSplit[0]) + 1}:00`
-          : `${timeSplit[0]}:${Number(timeSplit[1]) + 5}`;
+        Number(timeSplit[1]) >= 57
+          ? `${
+              Number(timeSplit[0]) + 1 === 24 ? "00" : Number(timeSplit[0]) + 1
+            }:00`
+          : `${timeSplit[0]}:${Number(timeSplit[1]) + 2}`;
     } else {
       newTime =
         Number(timeSplit[1]) <= 5
           ? `${Number(timeSplit[0]) - 1}:55`
-          : `${timeSplit[0]}:${Number(timeSplit[1]) - 5}`;
+          : `${timeSplit[0]}:${Number(timeSplit[1]) - 2}`;
     }
     setTime(newTime);
   };
 
   const placeBid = async (bidDirection) => {
-    console.log("clicked");
+    let timeOut = 0;
+
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    const timeSplit = time.toString().split(":");
+
+    if (
+      (Number(timeSplit[1]) <= Number(currentMinute) &&
+        Number(currentHour) >= Number(timeSplit[0])) ||
+      Number(currentHour) > Number(timeSplit[0])
+    ) {
+      toast.error("You can't place a past trade");
+      editTime("plus");
+      return;
+    }
+
+    const bidWallet =
+      activeWallet === "demo"
+        ? "demo_wallet"
+        : activeWallet === "tourney"
+        ? "tournament_wallet"
+        : "real_wallet";
+
     const tradeData = {
       asset_id: 3,
-      walletType: "demo_wallet",
+      walletType: bidWallet,
       userPredict: bidDirection,
       amount_staked: amount,
       entry_value:
@@ -218,12 +264,55 @@ const Trading = () => {
 
     const bidRes = await startTrade(tradeData);
 
-    console.log(bidRes);
-
     if (bidRes.status !== 1) {
       toast.error("Error Placing Trade");
       return;
     }
+
+    toast.success("Trade Started Successfully");
+
+    console.log(currentHour);
+    console.log(timeSplit[0]);
+
+    if (Number(currentHour) === Number(timeSplit[0])) {
+      const timeDifference = Number(timeSplit[1]) - Number(currentMinute);
+      timeOut = timeDifference * 60 * 1000;
+    } else {
+      const hourDifference =
+        Number(currentHour) === "00"
+          ? 1
+          : Number(timeSplit[0] - Number(currentHour));
+      const completeHourDifference = 60 - currentMinute;
+      const hourToMinutes = (hourDifference - 1) * 60 + completeHourDifference;
+      const completeMinutes = hourToMinutes + Number(timeSplit[1]);
+      timeOut = completeMinutes * 60 * 1000;
+    }
+
+    console.log(timeOut);
+
+    setTimeout(() => {
+      closeBid(bidRes?.trade?.id, bidWallet);
+    }, timeOut);
+
+    const userWallets = JSON.parse(bidRes?.user?.wallets);
+    myDispatch(
+      setUserWallets({
+        demoAccount: userWallets.demo_wallet,
+        realAccount: userWallets.real_wallet,
+        tourneyAccount: userWallets.tournament_wallet,
+      })
+    );
+  };
+
+  const closeBid = async (bidId, walletType) => {
+    const bidRes = await endTrade(bidId, walletType);
+
+    if (bidRes.status !== 1) {
+      toast.error("Error Closing Trade");
+      return;
+    }
+
+    toast.success("Trade Closed Successfully");
 
     const userWallets = JSON.parse(bidRes?.user?.wallets);
     myDispatch(
@@ -274,6 +363,20 @@ const Trading = () => {
       </div>
       <div id="TradeChapter" className="TradeChapter">
         <AssetsDropdown />
+        <div className="TradingMobileSwitches">
+          <div className="TradingMobileSwitchesItem">
+            <TbChartCandle id="chartBtn" data-type="candle" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartArea id="chartBtn" data-type="area" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartLine id="chartBtn" data-type="line" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartLine id="chartBtn" data-type="bar" />
+          </div>
+        </div>
         <button className="ScrollToBtn" id="ScrollToBtn">
           <BsChevronDoubleRight />
         </button>

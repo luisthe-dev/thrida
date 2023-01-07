@@ -10,8 +10,9 @@ import {
   updateChartStore,
 } from "./redux/chartStore";
 import { getAllActiveAssets } from "./components/apis/assetApi";
+import Transaction from "./pages/Admin/Dashboard/Transaction";
+import Settings from "./pages/Admin/Dashboard/Settings";
 
-// const Home = lazy(() => import("./pages/Main/Home"));
 const Landing = lazy(() => import("./pages/Main/Landing"));
 const ThemeSwitch = lazy(() => import("./components/ThemeSwitch"));
 const NotFound = lazy(() => import("./pages/Main/NotFound"));
@@ -68,11 +69,10 @@ const App = () => {
     return;
   }, [myDispatch, chartActiveAsset]);
 
-  useEffect(
-    () =>
-      localStorage.getItem("themeMode") || localStorage.setItem("themeMode", 0),
-    []
-  );
+  useEffect(() => {
+    localStorage.getItem("themeMode") || localStorage.setItem("themeMode", 0);
+    return;
+  }, []);
 
   const switchTheme = () => {
     Number(localStorage.getItem("themeMode")) === 1
@@ -151,7 +151,9 @@ const App = () => {
                   <Route path="stats" element={<Stats />} />
                   <Route path="users" element={<Users />} />
                   <Route path="verified" element={<Verified />} />
+                  <Route path="transactions" element={<Transaction />} />
                   <Route path="assets" element={<Assets />} />
+                  <Route path="settings" element={<Settings />} />
                 </Route>
               </Route>
 

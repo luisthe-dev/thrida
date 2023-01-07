@@ -51,7 +51,7 @@ const SignIn = () => {
       myNavigate("/dashboard");
       setLoading(false);
     } else {
-      toast.error("Invalid Credentials");
+      toast.error(signInResponse.message);
       setLoading(false);
     }
   };

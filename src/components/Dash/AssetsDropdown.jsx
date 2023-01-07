@@ -19,6 +19,11 @@ const AssetsDropdown = () => {
 
   const { level } = useSelector((state) => state.userStore.userDetails);
 
+  const allowedLevels = ["Free"];
+
+  if (level === "Silver" || level === "Gold") allowedLevels.push("Silver");
+  if (level === "Gold") allowedLevels.push("Gold");
+
   useEffect(() => {
     const getAllAssets = async () => {
       setIsLoading(true);
@@ -42,11 +47,13 @@ const AssetsDropdown = () => {
 
     setIsLoading(true);
     setDropActive(false);
+    console.log(assetData);
+    console.log(assetName);
     const foundAssets = assetData.filter(
       (asset) =>
         asset.asset_name === assetName &&
-        asset.status === 1 &&
-        asset.level === level
+        Number(asset.status) === 1 &&
+        allowedLevels.includes(asset.level)
     );
     if (foundAssets.length === 0) {
       toast.error("Error Switching Asset");
@@ -92,7 +99,7 @@ const AssetsDropdown = () => {
           allAssets.map((asset, assetKey) => (
             <div
               className={
-                asset.level === level
+                allowedLevels.includes(asset.level)
                   ? "assetListAssetDetails"
                   : "assetListAssetDetails disabled"
               }

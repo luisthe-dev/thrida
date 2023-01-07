@@ -199,7 +199,7 @@ nav.navBar .navMenuIcon {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   nav.navBar img {
     margin-left: 20px;
   }

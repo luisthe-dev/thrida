@@ -49,7 +49,7 @@ const UserInfo = ({ userId, setUser }) => {
       name: userDetails.name,
       email: userDetails.email,
       level: userDetails.level,
-      is_pro: userDetails.is_pro,
+      is_pro: Number(userDetails.is_pro),
       is_frozen: userDetails.is_frozen,
       wallets: JSON.stringify({
         demo_wallet: userDetails.wallets.demo,
@@ -74,7 +74,7 @@ const UserInfo = ({ userId, setUser }) => {
       name: userData.name,
       email: userData.email,
       level: userData.level,
-      is_pro: userData.is_pro,
+      is_pro: Number(userData.is_pro),
       is_frozen: userData.is_frozen,
       wallets: {
         demo: userWallets.demo_wallet,
@@ -143,12 +143,16 @@ const UserInfo = ({ userId, setUser }) => {
                   <p> Pro Account </p>
                   <select
                     defaultValue={userDetails.is_pro}
-                    onChange={(e) =>
-                      setUserDetails({ ...userDetails, is_pro: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setUserDetails({
+                        ...userDetails,
+                        is_pro: Number(e.target.value),
+                      });
+                      console.log(e.target.value);
+                    }}
                   >
-                    <option value={true}> Yes </option>
-                    <option value={false}> No </option>
+                    <option value={1}> Yes </option>
+                    <option value={0}> No </option>
                   </select>
                 </div>
                 <div className="userInfoMainBlockInput">

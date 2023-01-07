@@ -41,10 +41,52 @@ export const SignUpAdmin = async (userId, userEmail, userPass) => {
   return returnData;
 };
 
+export const GetAllSettings = async () => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/settings`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
 export const GetAllUsers = async (pageNumber) => {
   let returnData = { status: 0 };
 
   await ThridaApi.get(`/admin/users?page=${pageNumber}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const GetAllUserTransactions = async (pageNumber) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/transactions?page=${pageNumber}`, {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]
@@ -171,6 +213,26 @@ export const deleteSingleUser = async (userId) => {
   let returnData = { status: 0 };
 
   await ThridaApi.get(`/admin/user/${userId}/delete`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const updateSettingsValue = async (settingData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.patch(`/admin/setting`, settingData, {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]

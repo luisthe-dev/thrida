@@ -15,6 +15,7 @@ export const SignInUser = async (userMail, userPass) => {
     })
     .catch((err) => {
       console.log(err);
+      returnData.message = err.response.data.message;
     });
 
   return returnData;
