@@ -16,10 +16,13 @@ import AssetsDropdown from "../../components/Dash/AssetsDropdown";
 import { endTrade, startTrade } from "../../components/apis/tradesApi";
 import { toast } from "react-toastify";
 import { setUserWallets } from "../../redux/userStore";
+import { getAllActiveAssets } from "../../components/apis/assetApi";
+import TradeSide from "../../components/Dash/TradeSide";
 
 const Trading = () => {
   const [amount, setAmount] = useState(100);
   const [time, setTime] = useState("");
+  const [tradeHistory, setTradeHistory] = useState(false);
   const { chartActiveAsset } = useSelector((state) => state.chartStore);
   const { activeWallet } = useSelector((state) => state.userStore);
 
@@ -44,8 +47,6 @@ const Trading = () => {
     } else {
       setTime(`${hour + 1}:02`);
     }
-
-    // setInterval(() => fixTiming(), 30000);
   }, []);
 
   const { chartDetails } = useSelector((state) => state.chartStore);
@@ -243,6 +244,17 @@ const Trading = () => {
       return;
     }
 
+    const myAssets = await getAllActiveAssets();
+
+    const theAsset = myAssets.data.filter(
+      (asset) => asset.asset_name === chartActiveAsset
+    );
+
+    if (theAsset.length < 1) {
+      toast.error("Error Placing Bid");
+      return;
+    }
+
     const bidWallet =
       activeWallet === "demo"
         ? "demo_wallet"
@@ -251,7 +263,7 @@ const Trading = () => {
         : "real_wallet";
 
     const tradeData = {
-      asset_id: 3,
+      asset_id: theAsset[0].id,
       walletType: bidWallet,
       userPredict: bidDirection,
       amount_staked: amount,
@@ -271,9 +283,6 @@ const Trading = () => {
 
     toast.success("Trade Started Successfully");
 
-    console.log(currentHour);
-    console.log(timeSplit[0]);
-
     if (Number(currentHour) === Number(timeSplit[0])) {
       const timeDifference = Number(timeSplit[1]) - Number(currentMinute);
       timeOut = timeDifference * 60 * 1000;
@@ -287,8 +296,6 @@ const Trading = () => {
       const completeMinutes = hourToMinutes + Number(timeSplit[1]);
       timeOut = completeMinutes * 60 * 1000;
     }
-
-    console.log(timeOut);
 
     setTimeout(() => {
       closeBid(bidRes?.trade?.id, bidWallet);
@@ -327,8 +334,12 @@ const Trading = () => {
   return (
     <div className="TradingPageContainer">
       <div className="TradingSideMenu">
+        <TradeSide active={tradeHistory} />
         <div className="TradingSideMenuItems">
-          <div className="TradingSideMenuItem">
+          <div
+            className="TradingSideMenuItem"
+            onClick={() => setTradeHistory(!tradeHistory)}
+          >
             <AiFillClockCircle /> <span> Trades </span>
           </div>
           <div className="TradingSideMenuItem">

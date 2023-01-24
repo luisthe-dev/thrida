@@ -3,7 +3,7 @@ import { ThridaApi } from "./axios";
 export const getAllActiveAssets = async () => {
   let returnData = { status: 0 };
 
-  await ThridaApi.get("/assets/active", {})
+  await ThridaApi.get("/assets/active")
     .then((res) => {
       if (res.status === 200) {
         returnData.status = 1;

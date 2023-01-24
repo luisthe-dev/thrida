@@ -47,8 +47,6 @@ const AssetsDropdown = () => {
 
     setIsLoading(true);
     setDropActive(false);
-    console.log(assetData);
-    console.log(assetName);
     const foundAssets = assetData.filter(
       (asset) =>
         asset.asset_name === assetName &&

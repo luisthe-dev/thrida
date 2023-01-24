@@ -70,12 +70,27 @@ export const chartStore = createSlice({
 
       state.chartDetails[action.payload].push(updateData);
 
+      if (state.chartDetails[action.payload].length > 2000) {
+        state.chartDetails[action.payload].splice(
+          0,
+          state.chartDetails[action.payload].length - 2000
+        );
+      }
+
       const allChartData = localStorage.getItem("chartDetails")
         ? JSON.parse(localStorage.chartDetails)
         : [];
       const mychartData = allChartData[action.payload];
       mychartData.push(updateData);
       allChartData[action.payload] = mychartData;
+
+      if (allChartData[action.payload].length > 2000) {
+        allChartData[action.payload].splice(
+          0,
+          allChartData[action.payload].length - 2000
+        );
+      }
+
       localStorage.setItem("chartDetails", JSON.stringify(allChartData));
     },
     intializeChartStoreData: (state, action) => {
