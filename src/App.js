@@ -10,14 +10,19 @@ import {
   updateChartStore,
 } from "./redux/chartStore";
 import { getAllActiveAssets } from "./components/apis/assetApi";
-import Transaction from "./pages/Admin/Dashboard/Transaction";
-import Settings from "./pages/Admin/Dashboard/Settings";
 
 const Landing = lazy(() => import("./pages/Main/Landing"));
+const About = lazy(() => import("./pages/Main/About"));
+const Regulations = lazy(() => import("./pages/Main/Regulations"));
+const Privacy = lazy(() => import("./pages/Main/Privacy"));
+const Agreement = lazy(() => import("./pages/Main/Agreement"));
+
 const ThemeSwitch = lazy(() => import("./components/ThemeSwitch"));
+
 const NotFound = lazy(() => import("./pages/Main/NotFound"));
 const SignIn = lazy(() => import("./pages/Auth/SignIn"));
 const SignUp = lazy(() => import("./pages/Auth/SignUp"));
+const Forgot = lazy(() => import("./pages/Auth/Forgot"));
 const Trading = lazy(() => import("./pages/Dash/Trading"));
 const Profile = lazy(() => import("./pages/Dash/Profile"));
 const MainDash = lazy(() => import("./pages/Dash/MainDash"));
@@ -26,6 +31,7 @@ const Status = lazy(() => import("./pages/Dash/Status"));
 const Deposit = lazy(() => import("./pages/Dash/Cashier/Deposit"));
 const Withdraw = lazy(() => import("./pages/Dash/Cashier/Withdraw"));
 const History = lazy(() => import("./pages/Dash/Cashier/History"));
+
 const DarkMode = lazy(() => import("./assets/themes/DarkMode"));
 const LightMode = lazy(() => import("./assets/themes/LightMode"));
 
@@ -38,6 +44,8 @@ const Stats = lazy(() => import("./pages/Admin/Dashboard/Stats"));
 const Users = lazy(() => import("./pages/Admin/Dashboard/Users"));
 const Verified = lazy(() => import("./pages/Admin/Dashboard/Verified"));
 const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
+const Transaction = lazy(() => import("./pages/Admin/Dashboard/Transaction"));
+const Settings = lazy(() => import("./pages/Admin/Dashboard/Settings"));
 
 const App = () => {
   const myDispatch = useDispatch();
@@ -117,10 +125,15 @@ const App = () => {
             <ThemeSwitch click={switchTheme} />
             <Routes>
               <Route path="/" element={<Landing />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/regulations" element={<Regulations />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/agreement" element={<Agreement />} />
 
               {/* Auth Pages */}
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/forgot" element={<Forgot />} />
 
               {/* Dashboard Pages */}
               <Route path="/dashboard" element={<MainDash />}>
