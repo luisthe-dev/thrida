@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RiUser3Line } from "react-icons/ri";
-import { GiOilySpiral } from "react-icons/gi";
 import { BiEnvelope, BiLockAlt } from "react-icons/bi";
 import {
   AiOutlineArrowLeft,
@@ -39,7 +38,7 @@ const SignUp = () => {
         <div className="authHeader">
           <AiOutlineArrowLeft onClick={() => myNavigate(-1)} />
           <div className="authHeaderText">
-            <GiOilySpiral /> <p>Thrida</p>
+            <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
           </div>
         </div>
         <div className="authForm">
@@ -83,6 +82,16 @@ const SignUp = () => {
               ) : (
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
+            </div>
+            <div className="authFormBoldText">
+              <p>
+                {" "}
+                By Signing up, you agree to the{" "}
+                <Link to={"/terms-and-conditions"}>
+                  Terms and Conditions
+                </Link>{" "}
+                and <Link to={"/privacy-policy"}>Privacy Policy</Link>.{" "}
+              </p>
             </div>
             <button type="submit" disabled={loading} className={"loadingBtn"}>
               {loading ? <FiLoader /> : `Sign Up`}

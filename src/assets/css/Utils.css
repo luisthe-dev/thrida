@@ -4,6 +4,7 @@
   border: none;
   outline: none;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 body {
@@ -240,6 +241,8 @@ button.loadingBtn i,
   font-size: 1.3rem;
   font-weight: 500;
   text-align: right;
+  max-width: 50%;
+  overflow-wrap: anywhere;
 }
 
 .MainModal .MainModalBody .MainModalBodyBlock .MainModalBodyFlex h5 img {

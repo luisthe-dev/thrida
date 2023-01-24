@@ -148,7 +148,6 @@ const UserInfo = ({ userId, setUser }) => {
                         ...userDetails,
                         is_pro: Number(e.target.value),
                       });
-                      console.log(e.target.value);
                     }}
                   >
                     <option value={1}> Yes </option>

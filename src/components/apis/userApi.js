@@ -63,3 +63,25 @@ export const GetUserDetails = async () => {
 
   return returnData;
 };
+
+export const UpdateUserDetails = async (userData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.patch("/user", userData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return returnData;
+};

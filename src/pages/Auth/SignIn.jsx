@@ -96,6 +96,9 @@ const SignIn = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
+            <div className="authFormBoldText">
+              <Link to={"/forgot"}> Forgot Password? </Link>
+            </div>
             <button type="submit" disabled={loading} className={"loadingBtn"}>
               {loading ? <FiLoader /> : `Sign In`}
               {loading && ` Hold On`}
