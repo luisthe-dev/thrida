@@ -13,6 +13,11 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
   const processDeposit = async () => {
     const depositResponse = await MakeDeposit(depositAmount, depositType);
 
+    if (depositResponse.status === 0) {
+      toast.error(depositResponse.message);
+      return;
+    }
+
     setDepositData(depositResponse?.data);
     setDepositStep(2);
   };
@@ -47,7 +52,7 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
         </div>
         <div className="MainModalBody">
           <div className="MainModalBodyBlock">
-            <h5> Deposit Amount </h5>
+            <h5> Deposit Amount ($) </h5>
             <input
               type="number"
               placeholder="Enter Amount"
@@ -79,7 +84,7 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
 
             <div className="MainModalBodyFlex">
               <h4> Deposit Amount </h4>
-              <h5>₦{depositAmount}</h5>
+              <h5>{depositData?.payAmount}</h5>
             </div>
 
             {depositType === "Bank Transfer" ? (
@@ -103,7 +108,7 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
                   <h4> Wallet Address : </h4>
                   <h5> {depositData?.depositData?.wallet_address} </h5>
                 </div>
-                <div className="MainModalBodyFlex">
+                {/* <div className="MainModalBodyFlex">
                   <h4> Wallet QR : </h4>
                   <h5>
                     <img
@@ -111,12 +116,12 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
                       alt={`${depositType} Deposit QR`}
                     />
                   </h5>
-                </div>
+                </div> */}
               </>
             )}
             <div className="MainModalBodyFlex">
               <h4> Description : </h4>
-              <h5> ENFUJF </h5>
+              <h5> {depositData?.depositData?.deposit_rem} </h5>
             </div>
           </div>
         </div>

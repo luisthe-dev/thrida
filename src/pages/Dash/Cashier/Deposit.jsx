@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineBank } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { GetDepositTransactions } from "../../../components/apis/transactionsApi";
 import DepositModal from "../../../components/Dash/DepositModal";
 
 const Deposit = () => {
@@ -11,6 +13,23 @@ const Deposit = () => {
     setShowModal(!showModal);
   };
 
+  const [loading, setLoading] = useState(true);
+  const [depositSum, setDepositSum] = useState(0);
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      const allTransactions = await GetDepositTransactions();
+      const depositSum = allTransactions?.data.reduce(
+        (sum, current) => sum + Number(current.amount),
+        0
+      );
+
+      setDepositSum(depositSum);
+      setLoading(false);
+    };
+    getTransactions();
+  }, []);
+
   return (
     <>
       <DepositModal
@@ -21,7 +40,14 @@ const Deposit = () => {
       <div className="cashierPageBodyBlocks">
         <div className="cashierPageBodyBlock">
           <h5> Total Deposit </h5>
-          <h6> ₦120,000 </h6>
+          <h6>
+            {loading
+              ? `Loading...`
+              : `₦${Number(depositSum)?.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}`}
+          </h6>
           <p> Deposit more to attain a higher vip status </p>
           <div className="cashierPageBodyProgressBar">
             <div
@@ -77,14 +103,20 @@ const Deposit = () => {
         <div className="depositPageMethods">
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Paypal")}
+            onClick={() => {
+              toast.error("Deposit Method is currently unavailable");
+              // setDepositMethod("Paypal")
+            }}
           >
             <img src="/public_assets/svgs/paypal.svg" alt="paypal" />
             <h5> PayPal </h5>
           </div>
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Card")}
+            onClick={() => {
+              toast.error("Deposit Method is currently unavailable");
+              // setDepositMethod("Card")
+            }}
           >
             <img src="/public_assets/svgs/mastercard.svg" alt="card payment" />
             <h5> Card </h5>

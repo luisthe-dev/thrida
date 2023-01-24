@@ -22,25 +22,25 @@ const MainSidebar = ({ showMenu, setShowMenu }) => {
           />
         </div>
         <div className="MainSidebarLinksContainer">
-          <Link to="#">
+          <Link to="/dashboard/trading">
             <label>Trading</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/dashboard/top-traders">
             <label>Professionals</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/dashboard/tournaments">
             <label>Tournaments</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/training">
             <label>Training</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/about-us">
             <label>About Us</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/terms-and-conditions">
             <label>Terms &amp; Conditions</label> <BsChevronRight />
           </Link>
-          <Link to="#">
+          <Link to="/help">
             <label>Help</label> <BsChevronRight />
           </Link>
         </div>

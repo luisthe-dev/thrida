@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { GetTransactions } from "../../components/apis/transactionsApi";
 
 const Cashier = () => {
   const {
     userWallets: { realAccount },
   } = useSelector((state) => state.userStore);
+
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      const allTransactions = await GetTransactions();
+      setTransactions(allTransactions?.data || []);
+      setLoading(false);
+    };
+    getTransactions();
+  }, []);
+
   return (
     <>
       <div className="cashierPageContainer">
@@ -21,7 +35,14 @@ const Cashier = () => {
                 })}
               </h3>
               <p>
-                Last Transaction Date : <span>12/30/2010</span>
+                Last Transaction Date :{" "}
+                <span>
+                  {loading
+                    ? `Loading...`
+                    : transactions.length > 0
+                    ? transactions[0].created_at.toString().split("T")[0]
+                    : `No transaction yet`}
+                </span>
               </p>
             </div>
           </div>

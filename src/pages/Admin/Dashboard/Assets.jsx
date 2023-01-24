@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiCheckCircle, FiLoader } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
 import { toast } from "react-toastify";
@@ -16,6 +16,7 @@ const Assets = () => {
   const [volatility, setVolatility] = useState("");
   const [pairStatus, setPairStatus] = useState("");
   const [pairLevel, setPairLevel] = useState("");
+  const fileInput = useRef();
 
   const [allAssets, setAllAssets] = useState([]);
 
@@ -179,6 +180,8 @@ const Assets = () => {
             <option value={1}> Active </option>
             <option value={0}> Inactive </option>
           </select>
+          <label> Asset Image </label>
+          <input type={"file"} ref={fileInput} />
           <button disabled={isLoading} className={"loadingBtn"}>
             {isLoading ? <FiLoader /> : `Add Asset`}
           </button>

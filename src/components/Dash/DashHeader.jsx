@@ -170,28 +170,33 @@ const DashHeader = () => {
                   })}
                 </label>
               </div>
-              <div
-                className={
-                  activeWallet === "tourney"
-                    ? "dashboardHeaderAccountWalletMenuItem active"
-                    : "dashboardHeaderAccountWalletMenuItem"
-                }
-                onClick={() =>
-                  myDispatch(setActiveWallet("tourney")) &&
-                  setShowAccount(!showAccounts)
-                }
-              >
-                <p>
-                  <MdCheck /> Tourney Account
-                </p>
-                <label>
-                  ₦
-                  {Number(userWallets.tourneyAccount)?.toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                </label>
-              </div>
+              {Number(userWallets.tourneyAccount) !== 0 && (
+                <div
+                  className={
+                    activeWallet === "tourney"
+                      ? "dashboardHeaderAccountWalletMenuItem active"
+                      : "dashboardHeaderAccountWalletMenuItem"
+                  }
+                  onClick={() =>
+                    myDispatch(setActiveWallet("tourney")) &&
+                    setShowAccount(!showAccounts)
+                  }
+                >
+                  <p>
+                    <MdCheck /> Tourney Account
+                  </p>
+                  <label>
+                    ₦
+                    {Number(userWallets.tourneyAccount)?.toLocaleString(
+                      "en-US",
+                      {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    )}
+                  </label>
+                </div>
+              )}
             </div>
           </div>
           <button onClick={() => myNavigate("/dashboard")}>Let's Trade</button>
