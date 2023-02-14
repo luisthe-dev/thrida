@@ -18,11 +18,13 @@ import { toast } from "react-toastify";
 import { setUserWallets } from "../../redux/userStore";
 import { getAllActiveAssets } from "../../components/apis/assetApi";
 import TradeSide from "../../components/Dash/TradeSide";
+import TourneySide from "../../components/Dash/TourneySide";
 
 const Trading = () => {
   const [amount, setAmount] = useState(100);
   const [time, setTime] = useState("");
   const [tradeHistory, setTradeHistory] = useState(false);
+  const [tourneyHistory, setTourneyHistory] = useState(false);
   const { chartActiveAsset } = useSelector((state) => state.chartStore);
   const { activeWallet } = useSelector((state) => state.userStore);
 
@@ -206,9 +208,12 @@ const Trading = () => {
       : amount > 25 && setAmount(Number(amount) - 25);
   };
 
-  const editTime = (process) => {
+  const editTime = (process, passedtime = "") => {
     let newTime = time;
-    const timeSplit = time.toString().split(":");
+    const timeSplit =
+      passedtime !== ""
+        ? passedtime.toString().split(":")
+        : time.toString().split(":");
     if (process === "plus") {
       newTime =
         Number(timeSplit[1]) >= 57
@@ -231,6 +236,7 @@ const Trading = () => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
+    const currentSeconds = currentTime.getSeconds();
 
     const timeSplit = time.toString().split(":");
 
@@ -240,7 +246,7 @@ const Trading = () => {
       Number(currentHour) > Number(timeSplit[0])
     ) {
       toast.error("You can't place a past trade");
-      editTime("plus");
+      editTime("plus", currentHour + ":" + currentMinute);
       return;
     }
 
@@ -262,6 +268,22 @@ const Trading = () => {
         ? "tournament_wallet"
         : "real_wallet";
 
+    if (Number(currentHour) === Number(timeSplit[0])) {
+      const timeDifference = Number(timeSplit[1]) - Number(currentMinute);
+      timeOut = timeDifference * 60;
+    } else {
+      const hourDifference =
+        Number(currentHour) === "00"
+          ? 1
+          : Number(timeSplit[0] - Number(currentHour));
+      const completeHourDifference = 60 - currentMinute;
+      const hourToMinutes = (hourDifference - 1) * 60 + completeHourDifference;
+      const completeMinutes = hourToMinutes + Number(timeSplit[1]);
+      timeOut = completeMinutes * 60;
+    }
+
+    timeOut = timeOut - currentSeconds;
+
     const tradeData = {
       asset_id: theAsset[0].id,
       walletType: bidWallet,
@@ -272,6 +294,7 @@ const Trading = () => {
           chartDetails[chartActiveAsset]?.length - 1
         ]?.value,
       time_period: time,
+      timeOut: timeOut,
     };
 
     const bidRes = await startTrade(tradeData);
@@ -283,23 +306,9 @@ const Trading = () => {
 
     toast.success("Trade Started Successfully");
 
-    if (Number(currentHour) === Number(timeSplit[0])) {
-      const timeDifference = Number(timeSplit[1]) - Number(currentMinute);
-      timeOut = timeDifference * 60 * 1000;
-    } else {
-      const hourDifference =
-        Number(currentHour) === "00"
-          ? 1
-          : Number(timeSplit[0] - Number(currentHour));
-      const completeHourDifference = 60 - currentMinute;
-      const hourToMinutes = (hourDifference - 1) * 60 + completeHourDifference;
-      const completeMinutes = hourToMinutes + Number(timeSplit[1]);
-      timeOut = completeMinutes * 60 * 1000;
-    }
-
     setTimeout(() => {
       closeBid(bidRes?.trade?.id, bidWallet);
-    }, timeOut);
+    }, timeOut * 1000);
 
     const userWallets = JSON.parse(bidRes?.user?.wallets);
     myDispatch(
@@ -331,14 +340,26 @@ const Trading = () => {
     );
   };
 
+  const toggleTradeSideMenu = (toggle) => {
+    if (toggle === "TradeHistory") {
+      setTourneyHistory(false);
+      setTradeHistory(!tradeHistory);
+    }
+    if (toggle === "TourneyHistory") {
+      setTradeHistory(false);
+      setTourneyHistory(!tourneyHistory);
+    }
+  };
+
   return (
     <div className="TradingPageContainer">
       <div className="TradingSideMenu">
         <TradeSide active={tradeHistory} />
+        <TourneySide active={tourneyHistory} />
         <div className="TradingSideMenuItems">
           <div
             className="TradingSideMenuItem"
-            onClick={() => setTradeHistory(!tradeHistory)}
+            onClick={() => toggleTradeSideMenu("TradeHistory")}
           >
             <AiFillClockCircle /> <span> Trades </span>
           </div>
@@ -346,11 +367,14 @@ const Trading = () => {
             <BsGiftFill />
             <span> Bonuses </span>
           </div>
-          <div className="TradingSideMenuItem">
+          <div
+            className="TradingSideMenuItem"
+            onClick={() => toggleTradeSideMenu("TourneyHistory")}
+          >
             <BsTrophyFill /> <span> Tournaments </span>
           </div>
           <div className="TradingSideMenuItem">
-            <HiBadgeCheck /> <span> Top Traders </span>
+            <HiBadgeCheck /> <span> Pro Traders </span>
           </div>
           <div className="TradingSideMenuItem">
             <TbSpeakerphone />

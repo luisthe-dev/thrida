@@ -4,6 +4,7 @@ export const userStore = createSlice({
   name: "userStore",
   initialState: {
     userDetails: {
+      id: 0,
       name: "",
       email: "",
       level: "",

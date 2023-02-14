@@ -44,6 +44,7 @@ const DashHeader = () => {
           const userWallets = JSON.parse(response.data.wallets);
           myDispatch(
             setUserDetails({
+              id: response.data.id,
               name: response.data.name,
               email: response.data.email,
               level: response.data.level,
@@ -75,7 +76,11 @@ const DashHeader = () => {
           <button onClick={() => setShowSide(true)}>
             <RiMenu4Fill />
           </button>
-          <img src="/public_assets/images/Thrida-01-02.png" alt="Thrida" />
+          <img
+            src="/public_assets/images/Thrida-01-02.png"
+            alt="Thrida"
+            onClick={() => myNavigate("/")}
+          />
         </div>
         <div className="dashboardHeaderRight">
           <div className="dashboardHeaderAccountWalletSwitch">

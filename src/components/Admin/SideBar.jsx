@@ -5,6 +5,7 @@ import { IoFilterOutline } from "react-icons/io5";
 import { FiUser, FiUserCheck, FiSettings } from "react-icons/fi";
 import { BiPowerOff, BiNotepad } from "react-icons/bi";
 import { MdWebAsset } from "react-icons/md";
+import { CiTrophy } from "react-icons/ci";
 
 const SideBar = ({ active }) => {
   return (
@@ -29,6 +30,10 @@ const SideBar = ({ active }) => {
         <Link to="/admin/dashboard/assets">
           <MdWebAsset />
           <span>Assets</span>
+        </Link>
+        <Link to="/admin/dashboard/tournaments">
+          <CiTrophy />
+          <span>Tournaments</span>
         </Link>
         <Link to="/admin/dashboard/transactions">
           <IoFilterOutline />

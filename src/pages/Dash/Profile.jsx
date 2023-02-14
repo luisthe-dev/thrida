@@ -35,8 +35,6 @@ const Profile = () => {
 
     if (updateRes.status === 1)
       toast.success("User Details Updated Successfully");
-
-    console.log(updateRes);
   };
 
   useEffect(() => {

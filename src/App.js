@@ -1,5 +1,11 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,6 +37,8 @@ const Status = lazy(() => import("./pages/Dash/Status"));
 const Deposit = lazy(() => import("./pages/Dash/Cashier/Deposit"));
 const Withdraw = lazy(() => import("./pages/Dash/Cashier/Withdraw"));
 const History = lazy(() => import("./pages/Dash/Cashier/History"));
+const All = lazy(() => import("./pages/Dash/Tourney/All"));
+const Host = lazy(() => import("./pages/Dash/Tourney/Host"));
 
 const DarkMode = lazy(() => import("./assets/themes/DarkMode"));
 const LightMode = lazy(() => import("./assets/themes/LightMode"));
@@ -46,6 +54,8 @@ const Verified = lazy(() => import("./pages/Admin/Dashboard/Verified"));
 const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
 const Transaction = lazy(() => import("./pages/Admin/Dashboard/Transaction"));
 const Settings = lazy(() => import("./pages/Admin/Dashboard/Settings"));
+const Tournaments = lazy(() => import("./pages/Admin/Dashboard/Tournaments"));
+const HostTourney = lazy(() => import("./pages/Admin/Dashboard/HostTourney"));
 
 const App = () => {
   const myDispatch = useDispatch();
@@ -149,6 +159,11 @@ const App = () => {
                   <Route path="history" element={<History />} />
                 </Route>
 
+                <Route path="tournaments" element={<Outlet />}>
+                  <Route path="" element={<All />} />
+                  <Route path="host" element={<Host />} />
+                </Route>
+
                 <Route path="status" element={<Status />} />
               </Route>
 
@@ -165,6 +180,8 @@ const App = () => {
                   <Route path="users" element={<Users />} />
                   <Route path="verified" element={<Verified />} />
                   <Route path="transactions" element={<Transaction />} />
+                  <Route path="tournaments" element={<Tournaments />} />
+                  <Route path="tournaments/host" element={<HostTourney />} />
                   <Route path="assets" element={<Assets />} />
                   <Route path="settings" element={<Settings />} />
                 </Route>
