@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
 import { CgFacebook } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { WiSnowflakeCold } from "react-icons/wi";

@@ -86,6 +86,7 @@ const UserInfo = ({ userId, setUser }) => {
   };
 
   useEffect(() => {
+    if (userId === 0) return;
     getUserDetails();
     return;
   }, [userId]);

@@ -29,11 +29,12 @@ const Users = () => {
       const userData = [
         user.name,
         user.level,
-        `$${Number(JSON.parse(user?.wallets)?.real_wallet)?.toLocaleString()}`,
+        `₦${Number(JSON.parse(user?.wallets)?.real_wallet)?.toLocaleString()}`,
         Number(user.is_pro) ? <FiCheckCircle /> : <ImCancelCircle />,
         <button onClick={() => setEditUser(user.id)}> Edit </button>,
       ];
       tempUsers.push(userData);
+      return true;
     });
 
     setIsLoading(false);

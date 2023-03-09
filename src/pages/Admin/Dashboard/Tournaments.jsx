@@ -33,7 +33,7 @@ const Tournaments = () => {
       const userData = (await getSingleUser(userId)).data;
       const tourneyData = [
         userData.name ? userData.name : `Admin Hosted`,
-        `$${Number(tournament.cash_price).toLocaleString()}`,
+        `₦${Number(tournament.cash_price).toLocaleString()}`,
         tournament.name,
         Number(tournament.is_active) ? <FiCheckCircle /> : <ImCancelCircle />,
         <button onClick={() => setEditTourney(tournament.id)}>

@@ -104,10 +104,115 @@ export const GetAllUserTransactions = async (pageNumber) => {
   return returnData;
 };
 
+export const GetAllPendingWithdrawal = async (pageNumber) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/transactions/withdrawal?page=${pageNumber}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const approveSingleWthdrawal = async (type, id) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/transactions/withdrawal/${type}/${id}/approve`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const denySingleWthdrawal = async (type, id) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/transactions/withdrawal/${type}/${id}/deny`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const getSinglePendingWithdrawal = async (id, type) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/transactions/withdrawal/${type}/${id}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
 export const GetProUsers = async (pageNumber) => {
   let returnData = { status: 0 };
 
   await ThridaApi.get(`/admin/prousers?page${pageNumber}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const GetProRequests = async (pageNumber) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/pro/requests?page${pageNumber}`, {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]
@@ -150,6 +255,69 @@ export const getSingleUser = async (userId) => {
   let returnData = { status: 0 };
 
   await ThridaApi.get(`/admin/user/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const getSingleRequest = async (requuestId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/pro/request/${requuestId}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const approveSingleRequest = async (requuestId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/pro/request/${requuestId}/approve`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const denySingleRequest = async (requuestId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/pro/request/${requuestId}/deny`, {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FiLoader } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SignUpAdmin } from "../../../components/apis/adminApi";
 
@@ -9,7 +8,6 @@ const AdminSignUp = () => {
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const myNavigate = useNavigate();
 
   const userSignUp = async (e) => {
     e.preventDefault();

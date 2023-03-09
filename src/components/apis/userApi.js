@@ -85,3 +85,54 @@ export const UpdateUserDetails = async (userData) => {
 
   return returnData;
 };
+
+export const getProUsers = async () => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get("/proTraders/board")
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return returnData;
+};
+
+export const getProUserDetail = async (proId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/proUserInfo/${proId}`)
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const RequestPro = async (requestData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.post("/pro/request", requestData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};

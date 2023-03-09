@@ -45,6 +45,7 @@ const TradeSide = ({ active }) => {
               name: response.data.name,
               email: response.data.email,
               level: response.data.level,
+              is_pro: Number(response.data.is_pro),
             })
           );
           myDispatch(

@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { imageUrl } from "../apis/axios";
 import {
-  appliedTourney,
-  applyTourney,
+  // appliedTourney,
+  // applyTourney,
   getActiveTourneys,
 } from "../apis/tournamentApi";
 
-const TourneySide = ({ active }) => {
+const TourneySide = ({ active, infoActive, setActive }) => {
   const [tourneyData, setTourneyData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [applied, setApplied] = useState([]);
+  // const [applied, setApplied] = useState([]);
 
   const myNavigate = useNavigate();
 
-  const applyToTourney = async (tourneyId) => {
-    setIsLoading(true);
-    const applyRes = await applyTourney(tourneyId);
-    console.log(applyRes);
-    Number(applyRes.status) === 1
-      ? toast.success("Signed Up For Tournament Successfully")
-      : toast.error(applyRes.message);
-    await getTourneys();
-  };
+  // const applyToTourney = async (tourneyId) => {
+  //   setIsLoading(true);
+  //   const applyRes = await applyTourney(tourneyId);
+  //   Number(applyRes.status) === 1
+  //     ? toast.success("Signed Up For Tournament Successfully")
+  //     : toast.error(applyRes.message);
+  //   await getTourneys();
+  // };
 
   const readMoreOnTourney = async (tourneyId) => {
-    console.log(tourneyId);
+    infoActive(tourneyId);
+    setActive(false);
   };
 
   const getTourneys = async () => {
     setIsLoading(true);
     const tradesRes = await getActiveTourneys();
-    const regedRes = await appliedTourney();
+    // const regedRes = await appliedTourney();
     setTourneyData(tradesRes.data);
-    setApplied(regedRes.data);
+    // setApplied(regedRes.data);
     setIsLoading(false);
   };
 
@@ -60,12 +61,12 @@ const TourneySide = ({ active }) => {
               key={key}
               className={"tourneyBlock"}
               style={{
-                backgroundImage: `url("http://127.0.0.1:8000/storage/${tourney.image}")`,
+                backgroundImage: `url("${imageUrl}${tourney.image}")`,
               }}
             >
               <div className="tourneyBlockHeader">
                 <h5> {tourney.name} </h5>
-                <p> {tourney.start_date}24th December 2023 </p>
+                <p>{tourney.start_date} </p>
               </div>
               <div className="tourneyBlockFooter">
                 <p> ₦{Number(tourney.cash_price).toLocaleString()} </p>
@@ -73,20 +74,6 @@ const TourneySide = ({ active }) => {
                   <button onClick={() => readMoreOnTourney(tourney.id)}>
                     Read More
                   </button>
-                  {applied.filter(
-                    (appliedOne) => appliedOne.tournament_id === tourney.id
-                  ).length > 0 ? (
-                    <button
-                      disabled={true}
-                      onClick={() => applyToTourney(tourney.id)}
-                    >
-                      Signed Up
-                    </button>
-                  ) : (
-                    <button onClick={() => applyToTourney(tourney.id)}>
-                      Sign Up
-                    </button>
-                  )}
                 </div>
               </div>
             </div>

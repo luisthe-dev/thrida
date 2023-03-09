@@ -158,6 +158,30 @@ export const appliedTourney = async () => {
   return returnData;
 };
 
+export const checkRegisteredTourney = async (tourneyId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/tournaments/registered/${tourneyId}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        if (response.data !== "") {
+          returnData = { status: 1, data: response.data };
+        }
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return returnData;
+};
+
 export const applyTourney = async (tourneyId) => {
   let returnData = { status: 0 };
 
@@ -174,6 +198,28 @@ export const applyTourney = async (tourneyId) => {
   )
     .then((response) => {
       if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      returnData.message = err.response.data.message;
+    });
+
+  return returnData;
+};
+
+export const getTourneyLeaderboard = async (tourneyId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/tournaments/leaderboard/${tourneyId}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
         returnData = { status: 1, data: response.data };
       }
     })

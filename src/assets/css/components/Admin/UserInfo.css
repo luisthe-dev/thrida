@@ -82,6 +82,14 @@
   padding: 12px 12px;
   border-radius: 6px;
 }
+.userInfoMainContainer
+  .userInfoMainBlock
+  .userInfoMainBlocks
+  .userInfoMainBlockInput
+  img {
+  max-width: 80%;
+  margin: 5px auto;
+}
 
 .userInfoMainContainer
   .userInfoMainBlock
@@ -121,4 +129,16 @@
   button:hover {
   background: var(--mainSecondary);
   color: var(--mainBackground);
+}
+
+@media (max-width: 1200px) {
+  .userInfoMainContainer .userInfoMainBlock {
+    width: 65%;
+  }
+}
+
+@media (max-width: 768px) {
+  .userInfoMainContainer .userInfoMainBlock {
+    width: 95%;
+  }
 }

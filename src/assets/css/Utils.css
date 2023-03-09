@@ -84,7 +84,7 @@ button.loadingBtn i,
   bottom: 20px;
   right: 20px;
   cursor: pointer;
-  z-index: 120;
+  z-index: 12;
   outline: none;
 }
 

@@ -11,14 +11,6 @@ export const chartStore = createSlice({
       : "",
   },
   reducers: {
-    addChartStoreData: (state, action) => {
-      const existingChart = localStorage.chartDetails
-        ? JSON.parse(localStorage.chartDetails)
-        : [];
-      state.chartDetails.push(action.payload);
-      existingChart.push(action.payload);
-      localStorage.setItem("chartDetails", JSON.stringify(existingChart));
-    },
     updateChartStore: (state, action) => {
       const newOpen =
         state.chartDetails[action.payload][
@@ -70,10 +62,10 @@ export const chartStore = createSlice({
 
       state.chartDetails[action.payload].push(updateData);
 
-      if (state.chartDetails[action.payload].length > 2000) {
+      if (state.chartDetails[action.payload].length > 800) {
         state.chartDetails[action.payload].splice(
           0,
-          state.chartDetails[action.payload].length - 2000
+          state.chartDetails[action.payload].length - 800
         );
       }
 
@@ -84,10 +76,10 @@ export const chartStore = createSlice({
       mychartData.push(updateData);
       allChartData[action.payload] = mychartData;
 
-      if (allChartData[action.payload].length > 2000) {
+      if (allChartData[action.payload].length > 800) {
         allChartData[action.payload].splice(
           0,
-          allChartData[action.payload].length - 2000
+          allChartData[action.payload].length - 800
         );
       }
 
@@ -167,11 +159,7 @@ export const chartStore = createSlice({
   },
 });
 
-export const {
-  intializeChartStoreData,
-  updateChartStore,
-  addChartStoreData,
-  updateActiveAsset,
-} = chartStore.actions;
+export const { intializeChartStoreData, updateChartStore, updateActiveAsset } =
+  chartStore.actions;
 
 export default chartStore.reducer;

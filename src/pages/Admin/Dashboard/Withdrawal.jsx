@@ -2,23 +2,17 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Table from "../../../components/Admin/Table";
 import TransactionInfo from "../../../components/Admin/TransactionInfo";
-import { GetAllUserTransactions } from "../../../components/apis/adminApi";
+import { GetAllPendingWithdrawal } from "../../../components/apis/adminApi";
 
-const Transaction = () => {
+const Withdrawal = () => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedTrans, setExpandedTrans] = useState(0);
-  const [expandedTransType, setExpandedTransType] = useState("");
-
-  const switchTrans = (id, type) => {
-    setExpandedTrans(id);
-    setExpandedTransType(type);
-  };
 
   const getTransactions = async (pageNumber) => {
     setIsLoading(true);
 
-    const transactionsRes = await GetAllUserTransactions(pageNumber);
+    const transactionsRes = await GetAllPendingWithdrawal(pageNumber);
 
     if (!transactionsRes.status === 0 || !transactionsRes.data) {
       toast.error("Error Fetching Transactions");
@@ -33,10 +27,8 @@ const Transaction = () => {
       const userData = [
         transactions.email,
         `₦${Number(transactions.amount).toLocaleString()}`,
-        transactions.type,
         transactions.channel,
-        transactions.status,
-        <button onClick={() => switchTrans(transactions.id, transactions.type)}>
+        <button onClick={() => setExpandedTrans(transactions.id)}>
           View Details
         </button>,
       ];
@@ -58,21 +50,13 @@ const Transaction = () => {
         <TransactionInfo
           transactionId={expandedTrans}
           setTransactionId={setExpandedTrans}
-          transactionType={expandedTransType}
+          transactionType={"Withdrawal"}
         />
       )}
       <Table
         classes={"bordered hover"}
-        title={"Transactions"}
-        tableHeaders={[
-          "S/N",
-          "Email",
-          "Amount",
-          "Type",
-          "Channel",
-          "Status",
-          "Action",
-        ]}
+        title={"Pending Withdrawals"}
+        tableHeaders={["S/N", "Email", "Amount", "Channel", "Action"]}
         tableData={transactions}
         isLoading={isLoading}
       />
@@ -80,4 +64,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default Withdrawal;

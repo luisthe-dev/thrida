@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FiCheckCircle, FiMinusCircle } from "react-icons/fi";
+import { FiCheckCircle } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
 import { toast } from "react-toastify";
 import Table from "../../../components/Admin/Table";
@@ -31,10 +31,11 @@ const Stats = () => {
       const userData = [
         user.name,
         user.level,
-        `$${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
+        `₦${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
         Number(user.is_pro) ? <FiCheckCircle /> : <ImCancelCircle />,
       ];
       tempUsers.push(userData);
+      return true;
     });
 
     setAllUsers(tempUsers);
@@ -56,9 +57,10 @@ const Stats = () => {
       const userData = [
         user.name,
         user.email,
-        `$${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
+        `₦${Number(JSON.parse(user.wallets).real_wallet).toLocaleString()}`,
       ];
       tempUsers.push(userData);
+      return true;
     });
 
     setProUsers(tempUsers);

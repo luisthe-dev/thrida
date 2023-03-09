@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsChevronRight } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MainSidebar = ({ showMenu, setShowMenu }) => {
+  const myLocation = useLocation();
+
+  useEffect(() => {
+    showMenu && setShowMenu(false);
+  }, [myLocation]);
+
   return (
     <>
       <div
@@ -25,19 +31,13 @@ const MainSidebar = ({ showMenu, setShowMenu }) => {
           <Link to="/dashboard/trading">
             <label>Trading</label> <BsChevronRight />
           </Link>
-          <Link to="/dashboard/top-traders">
-            <label>Professionals</label> <BsChevronRight />
-          </Link>
-          <Link to="/dashboard/tournaments">
-            <label>Tournaments</label> <BsChevronRight />
-          </Link>
           <Link to="/training">
             <label>Training</label> <BsChevronRight />
           </Link>
           <Link to="/about-us">
             <label>About Us</label> <BsChevronRight />
           </Link>
-          <Link to="/terms-and-conditions">
+          <Link to="/agreement">
             <label>Terms &amp; Conditions</label> <BsChevronRight />
           </Link>
           <Link to="/help">

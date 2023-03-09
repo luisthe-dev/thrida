@@ -3,6 +3,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiLoader } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { getSingleUser } from "../apis/adminApi";
+import { imageUrl } from "../apis/axios";
 import {
   deleteTournament,
   getSingleTourney,
@@ -90,9 +91,7 @@ const TourneyInfo = ({ tourneyId, setTourneyId }) => {
                     justifyContent: "center",
                   }}
                 >
-                  <img
-                    src={`http://127.0.0.1:8000/storage/${tourneyDetails.image}`}
-                  />
+                  <img src={`${imageUrl}${tourneyDetails.image}`} />
                 </div>
                 <div className="userInfoMainBlockInput">
                   <p> Name </p>

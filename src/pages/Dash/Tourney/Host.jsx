@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAllActiveAssets } from "../../../components/apis/assetApi";
 import { createTourney } from "../../../components/apis/tournamentApi";
 
 const Host = () => {
-  const [allAssets, setAllAssets] = useState([]);
   const [tourneyData, setTourneyData] = useState({
     cash_price: "",
     description: "",
@@ -13,10 +11,10 @@ const Host = () => {
     amount: "",
     start_date: "",
     end_date: "",
-    asset_id: 0,
     partCost: "",
     tourneyImage: "",
-    rebuy: 0,
+    rebuy: "",
+    rebuyCount: "",
   });
   const [isLoading, setIsLoading] = useState(true);
   const myNavigate = useNavigate();
@@ -38,10 +36,10 @@ const Host = () => {
     myTourneyData.append("amount", tourneyData.amount);
     myTourneyData.append("start_date", tourneyData.start_date);
     myTourneyData.append("end_date", tourneyData.end_date);
-    myTourneyData.append("asset_id", tourneyData.asset_id);
     myTourneyData.append("partCost", tourneyData.partCost);
     myTourneyData.append("tourneyImage", tourneyData.tourneyImage);
     myTourneyData.append("rebuy", tourneyData.rebuy);
+    myTourneyData.append("rebuyCount", tourneyData.rebuyCount);
 
     const tourneyRes = await createTourney(myTourneyData);
 
@@ -54,17 +52,6 @@ const Host = () => {
 
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    const getAllAssets = async () => {
-      setIsLoading(true);
-      const myAssets = await getAllActiveAssets();
-      setAllAssets(myAssets.data);
-      setIsLoading(false);
-    };
-    getAllAssets();
-    return;
-  }, []);
 
   return (
     <>
@@ -123,28 +110,9 @@ const Host = () => {
                 />
               </div>
             </div>
-            <label> Select An Asset To Use </label>
-            <select
-              value={tourneyData.asset_id}
-              onInput={(e) =>
-                setTourneyData({
-                  ...tourneyData,
-                  asset_id: Number(e.target.value),
-                })
-              }
-            >
-              <option value={0} disabled>
-                Make A Choice
-              </option>
-              {allAssets.map((asset, id) => (
-                <option value={asset.id} key={id}>
-                  {asset.asset_name}
-                </option>
-              ))}
-            </select>
             <label> Tournament Image </label>
             <input type={"file"} accept="image/*" onChange={imageUpload} />
-            <label> Starting Amount Of Contestants </label>
+            <label> Start Balance For Contestants </label>
             <input
               type="number"
               value={tourneyData.amount}
@@ -160,6 +128,14 @@ const Host = () => {
                 setTourneyData({ ...tourneyData, rebuy: e.target.value })
               }
             />
+            <label> Allowed Number Of Rebuy </label>
+            <input
+              type="number"
+              value={tourneyData.rebuyCount}
+              onInput={(e) =>
+                setTourneyData({ ...tourneyData, rebuyCount: e.target.value })
+              }
+            />
             <label> Participation Cost </label>
             <input
               type="number"
@@ -168,6 +144,27 @@ const Host = () => {
                 setTourneyData({ ...tourneyData, partCost: e.target.value })
               }
             />
+            <div className="TourneyRules">
+              <h3> Tournament Policies </h3>
+              <ol>
+                <li>
+                  Your request to host a tournament will be reviewed. If found
+                  worthy and pirze fund is attractive, it will be approved.
+                </li>
+                <li>
+                  Prize Fund Payments are deducted from your live account once
+                  you decide to host a tournament.
+                </li>
+                <li>
+                  Thrida will ont be held responsible for traders profits or
+                  losses used in hosting a tournament.
+                </li>
+                <li>
+                  No Refunds on Prize Funds once tournament has been approved
+                  and listed.
+                </li>
+              </ol>
+            </div>
             <button disabled={isLoading}> Host Tourney </button>
           </form>
         </div>

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FiLoader } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAllActiveAssets } from "../../../components/apis/assetApi";
 import { createAdminTourney } from "../../../components/apis/tournamentApi";
 
 const HostTourney = () => {
-  const [allAssets, setAllAssets] = useState([]);
   const [tourneyData, setTourneyData] = useState({
     cash_price: "",
     description: "",
@@ -14,10 +12,10 @@ const HostTourney = () => {
     amount: "",
     start_date: "",
     end_date: "",
-    asset_id: 0,
     partCost: "",
     tourneyImage: "",
-    rebuy: 0,
+    rebuy: "",
+    rebuyCount: "",
   });
   const [isLoading, setIsLoading] = useState(true);
   const myNavigate = useNavigate();
@@ -39,10 +37,10 @@ const HostTourney = () => {
     myTourneyData.append("amount", tourneyData.amount);
     myTourneyData.append("start_date", tourneyData.start_date);
     myTourneyData.append("end_date", tourneyData.end_date);
-    myTourneyData.append("asset_id", tourneyData.asset_id);
     myTourneyData.append("partCost", tourneyData.partCost);
     myTourneyData.append("tourneyImage", tourneyData.tourneyImage);
     myTourneyData.append("rebuy", tourneyData.rebuy);
+    myTourneyData.append("rebuyCount", tourneyData.rebuyCount);
 
     const tourneyRes = await createAdminTourney(myTourneyData);
 
@@ -55,17 +53,6 @@ const HostTourney = () => {
 
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    const getAllAssets = async () => {
-      setIsLoading(true);
-      const myAssets = await getAllActiveAssets();
-      setAllAssets(myAssets.data);
-      setIsLoading(false);
-    };
-    getAllAssets();
-    return;
-  }, []);
 
   return (
     <div className="adminStatTables">
@@ -118,28 +105,9 @@ const HostTourney = () => {
               setTourneyData({ ...tourneyData, end_date: e.target.value })
             }
           />
-          <label> Select An Asset To Use </label>
-          <select
-            value={tourneyData.asset_id}
-            onInput={(e) =>
-              setTourneyData({
-                ...tourneyData,
-                asset_id: Number(e.target.value),
-              })
-            }
-          >
-            <option value={0} disabled>
-              Make A Choice
-            </option>
-            {allAssets.map((asset, id) => (
-              <option value={asset.id} key={id}>
-                {asset.asset_name}
-              </option>
-            ))}
-          </select>
           <label> Tournament Image </label>
           <input type={"file"} accept="image/*" onChange={imageUpload} />
-          <label> Starting Amount Of Contestants </label>
+          <label> Start Balance For Contestants </label>
           <input
             type="number"
             value={tourneyData.amount}
@@ -153,6 +121,14 @@ const HostTourney = () => {
             value={tourneyData.rebuy}
             onInput={(e) =>
               setTourneyData({ ...tourneyData, rebuy: e.target.value })
+            }
+          />
+          <label> Allowed Number Of Rebuy </label>
+          <input
+            type="number"
+            value={tourneyData.rebuyCount}
+            onInput={(e) =>
+              setTourneyData({ ...tourneyData, rebuyCount: e.target.value })
             }
           />
           <label> Participation Cost </label>

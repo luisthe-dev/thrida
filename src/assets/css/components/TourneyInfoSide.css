@@ -1,0 +1,174 @@
+.tourneyInfoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockHeader {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 250px;
+  justify-content: flex-end;
+  background: var(--mainShadow) no-repeat center;
+  background-size: cover;
+  background-blend-mode: darken;
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockHeader h1 {
+  background: var(--mainSecondary);
+  color: var(--mainBackground);
+  padding: 8px 12px;
+  border-radius: 50px;
+  margin: 12px auto;
+  font-size: 1.3rem;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockPrizePool {
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--darkBackground);
+  border-bottom: 1px solid var(--darkBackground);
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockPrizePool h6 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockPrizePool h3 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  border-top: 1px solid var(--darkBackground);
+  border-bottom: 1px solid var(--darkBackground);
+  padding: 18px 0;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockInfo .tourneyInfoBlockInfoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockInfo .tourneyInfoBlockInfoBlock svg {
+  font-size: 1.5rem;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockInfo .tourneyInfoBlockInfoBlock h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockInfo .tourneyInfoBlockInfoBlock p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockActionBtn {
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--darkBackground);
+  border-bottom: 1px solid var(--darkBackground);
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockActionBtn button {
+  width: 80%;
+  border-radius: 8px;
+  padding: 18px 0;
+  font-weight: 300;
+  font-size: 1rem;
+  background: var(--mainSecondary);
+  color: var(--mainBackground);
+  box-shadow: 0px 0px 3px 4px var(--mainPrimary);
+  cursor: pointer;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockActionBtn button:hover {
+  background: transparent;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockDesc {
+  padding: 20px 0;
+  border-top: 1px solid var(--darkBackground);
+  border-bottom: 1px solid var(--darkBackground);
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockDesc h4,
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard h4 {
+  font-size: 1.4rem;
+  font-size: 300;
+  padding-left: 12px;
+  margin: 8px 0;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockDesc .tourneyInfoBlockDescFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 8px auto;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockDesc p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--darkBackground);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockDesc > p {
+  width: 90%;
+  margin: 12px auto;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard {
+  padding: 20px 0;
+  border-top: 1px solid var(--darkBackground);
+  width: 100%;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard table {
+  width: 100%;
+  text-align: center;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard table thead {
+  background: var(--mainPrimary);
+}
+
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard table thead th {
+  padding: 12px 0;
+}
+
+.tourneyInfoBlock .tourneyInfoBlockLeaderBoard table tr {
+  text-align: center;
+}

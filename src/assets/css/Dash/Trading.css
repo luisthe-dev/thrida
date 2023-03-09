@@ -126,6 +126,22 @@
   position: relative;
 }
 
+.TradingPageContainer .TradingMenuBackie {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--mainShadow);
+  left: -150%;
+  z-index: 10;
+  transition: all 0.4s;
+}
+
+.TradingPageContainer .TradingMenuBackie.active {
+  left: 0;
+  transition: all 0.4s;
+}
+
 .TradingPageContainer .TradeChapter button.ScrollToBtn {
   position: absolute;
   bottom: 40px;
@@ -139,6 +155,25 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background: var(--mainBackground);
+  color: var(--mainSecondary);
+}
+
+.TradingPageContainer .TradeChapter button.SideMobileBtn {
+  position: absolute;
+  top: 80px;
+  left: 15px;
+  z-index: 8;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--mainBackground);
+  color: var(--mainSecondary);
 }
 
 .TradingPageContainer .TradeChapter .tv-lightweight-charts {
@@ -174,7 +209,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   padding: 10px 0 6px 10px;
   color: var(--darkBackground);
   background: var(--mainShadow);
@@ -196,6 +231,7 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
+  width: 100%;
 }
 
 .TradingPageContainer
@@ -301,8 +337,24 @@
     width: 100%;
   }
 
+  .TradingPageContainer .TradeChapter button.SideMobileBtn {
+    display: flex;
+  }
+
   .TradingPageContainer .TradingSideMenu {
-    display: none;
+    position: fixed;
+    left: -80px;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 12;
+    width: 80px;
+    transition: all 0.4s;
+  }
+
+  .TradingPageContainer .TradingSideMenu.active {
+    left: 0;
+    transition: all 0.4s;
   }
 
   .TradingPageContainer .TradeChapter .tv-lightweight-charts {
