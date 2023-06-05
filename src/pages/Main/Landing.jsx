@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 import MainNavBar from "../../components/MainNavBar";
 
 const Landing = () => {
@@ -68,9 +69,7 @@ const Landing = () => {
           </div>
         </section>
       </main>
-      <footer>
-        <p id="copyright"> &copy; 2022. All Rights Reserved | Thrida </p>
-      </footer>
+      <Footer />
     </>
   );
 };

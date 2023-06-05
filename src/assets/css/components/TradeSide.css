@@ -1,0 +1,165 @@
+.tradeHistoryPopUp {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: -360px;
+  width: 360px;
+  transform: scale(0, 1);
+  transition: all 0.4s;
+  z-index: 8;
+  top: 0;
+  bottom: 0;
+  background: var(--mainBackground);
+  overflow-y: scroll;
+}
+
+.tradeHistoryPopUp.active {
+  transform: scale(1, 1);
+  transition: all 0.4s;
+}
+
+.tradeHistoryPopUp .tradeHistoryList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tradeHistoryPopUp .tradeHistoryList > p {
+  color: var(--darkBackground);
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+  width: 100%;
+  margin: 30px auto;
+}
+
+.tradeHistoryPopUp .tradeHistoryList .tradeHistoryBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  border-radius: 8px;
+  background: var(--alternateBackground);
+  margin: 4px auto;
+  padding: 15px 8px;
+}
+
+.tradeHistoryPopUp .tradeHistoryList .tradeHistoryBlock .tradeHistoryBlockImg {
+  width: 10%;
+}
+
+.tradeHistoryPopUp .tradeHistoryList .tradeHistoryBlock .tradeHistoryBlockDets {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  p {
+  color: var(--darkBackground);
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  p
+  span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  p
+  label {
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  label {
+  color: var(--darkBackground);
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  label.tradeHistoryBlockDetsGain
+  svg {
+  color: #37a82e;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  label.tradeHistoryBlockDetsLoss
+  svg {
+  color: #e94141;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockDets
+  label
+  span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.tradeHistoryPopUp .tradeHistoryList .tradeHistoryBlock .tradeHistoryBlockMon {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 7px;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockMon
+  h5 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.tradeHistoryPopUp
+  .tradeHistoryList
+  .tradeHistoryBlock
+  .tradeHistoryBlockMon
+  h6 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link as ScrollLink } from "react-scroll";
 import { CgClose } from "react-icons/cg";
 import { RiMenu4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -10,18 +9,10 @@ const MainNavBar = () => {
     <>
       <nav className={sideMenu ? "sideMenu active" : "sideMenu"}>
         <CgClose onClick={() => setSideMenu(false)} />
-        <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-          Home
-        </ScrollLink>
-        <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-          About
-        </ScrollLink>
-        <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-          Services
-        </ScrollLink>
-        <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-          Contact
-        </ScrollLink>
+        <Link to={"/"}>Home</Link>
+        <Link to={"/about"}>About</Link>
+        <Link to={"/"}>Services</Link>
+        <Link to={"/contact"}>Contact</Link>
         <Link to={"/signin"} className="btnLink">
           Login
         </Link>
@@ -35,18 +26,10 @@ const MainNavBar = () => {
       ></div>
       <nav className="navBar">
         <div className="navPageLinks">
-          <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-            Home
-          </ScrollLink>
-          <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-            About
-          </ScrollLink>
-          <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-            Services
-          </ScrollLink>
-          <ScrollLink spy={true} smooth={true} offset={-70} duration={500}>
-            Contact
-          </ScrollLink>
+          <Link to={"/"}>Home</Link>
+          <Link to={"/about"}>About</Link>
+          <Link to={"/"}>Services</Link>
+          <Link to={"/contact"}>Contact</Link>
         </div>
         <img src="/public_assets/images/thrida.png" alt="Thrida Logo" />
         <div className="navAuthLinks">

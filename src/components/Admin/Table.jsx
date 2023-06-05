@@ -1,6 +1,12 @@
 import React from "react";
 
-const Table = ({ title, tableHeaders, tableData, classes }) => {
+const Table = ({
+  title,
+  tableHeaders,
+  tableData,
+  classes,
+  isLoading = false,
+}) => {
   return (
     <div className="adminTable">
       <div className="adminTableHeader">
@@ -16,14 +22,24 @@ const Table = ({ title, tableHeaders, tableData, classes }) => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((data, index) => (
-              <tr key={index}>
-                <td> {index + 1} </td>
-                {data.map((item, index) => (
-                  <td key={index}> {item} </td>
-                ))}
+            {isLoading ? (
+              <tr>
+                <td colSpan={tableHeaders.length}> Loading Entries ... </td>
               </tr>
-            ))}
+            ) : tableData.length === 0 ? (
+              <tr>
+                <td colSpan={tableHeaders.length}> No Registered Entries </td>
+              </tr>
+            ) : (
+              tableData.map((data, index) => (
+                <tr key={index}>
+                  <td> {index + 1} </td>
+                  {data.map((item, index) => (
+                    <td key={index}> {item} </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

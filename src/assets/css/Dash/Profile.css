@@ -359,7 +359,13 @@
   .ProfilePageBodySections
   .ProfilePageBodySection
   form
-  input {
+  input,
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  select {
   width: 70%;
   border-bottom: 1.2px solid var(--mainShadow);
   padding: 14px 12px 8px 20px;
@@ -415,7 +421,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .ProfilePageContainer .ProfilePageBody {
     width: 90%;
   }

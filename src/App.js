@@ -1,18 +1,28 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-// import "./assets/themes/light_mode.css";
-// import "./assets/themes/dark_mode.css";
 import ScrollToTop from "./components/ScrollToTop";
-import { addChartStoreData } from "./redux/chartStore";
+import {
+  intializeChartStoreData,
+  updateActiveAsset,
+  updateChartStore,
+} from "./redux/chartStore";
+import { getAllActiveAssets } from "./components/apis/assetApi";
 
-// const Home = lazy(() => import("./pages/Main/Home"));
 const Landing = lazy(() => import("./pages/Main/Landing"));
+const About = lazy(() => import("./pages/Main/About"));
+const Regulations = lazy(() => import("./pages/Main/Regulations"));
+const Privacy = lazy(() => import("./pages/Main/Privacy"));
+const Agreement = lazy(() => import("./pages/Main/Agreement"));
+
+const ThemeSwitch = lazy(() => import("./components/ThemeSwitch"));
+
 const NotFound = lazy(() => import("./pages/Main/NotFound"));
 const SignIn = lazy(() => import("./pages/Auth/SignIn"));
 const SignUp = lazy(() => import("./pages/Auth/SignUp"));
+const Forgot = lazy(() => import("./pages/Auth/Forgot"));
 const Trading = lazy(() => import("./pages/Dash/Trading"));
 const Profile = lazy(() => import("./pages/Dash/Profile"));
 const MainDash = lazy(() => import("./pages/Dash/MainDash"));
@@ -21,6 +31,7 @@ const Status = lazy(() => import("./pages/Dash/Status"));
 const Deposit = lazy(() => import("./pages/Dash/Cashier/Deposit"));
 const Withdraw = lazy(() => import("./pages/Dash/Cashier/Withdraw"));
 const History = lazy(() => import("./pages/Dash/Cashier/History"));
+
 const DarkMode = lazy(() => import("./assets/themes/DarkMode"));
 const LightMode = lazy(() => import("./assets/themes/LightMode"));
 
@@ -33,65 +44,51 @@ const Stats = lazy(() => import("./pages/Admin/Dashboard/Stats"));
 const Users = lazy(() => import("./pages/Admin/Dashboard/Users"));
 const Verified = lazy(() => import("./pages/Admin/Dashboard/Verified"));
 const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
+const Transaction = lazy(() => import("./pages/Admin/Dashboard/Transaction"));
+const Settings = lazy(() => import("./pages/Admin/Dashboard/Settings"));
 
 const App = () => {
   const myDispatch = useDispatch();
+  const { chartActiveAsset } = useSelector((state) => state.chartStore);
+
+  const intiateAllAssets = async () => {
+    let activeChart;
+    if (!chartActiveAsset) {
+      const activeAssets = await getAllActiveAssets();
+      if (activeAssets.status !== 1) return;
+      const filteredFree = activeAssets.data.filter(
+        (asset) => asset.level === "Free"
+      );
+      if (filteredFree.length === 0) return;
+      activeChart = filteredFree[0].asset_name;
+    } else {
+      activeChart = chartActiveAsset;
+    }
+    myDispatch(updateActiveAsset(activeChart));
+    myDispatch(intializeChartStoreData(activeChart));
+    localStorage.setItem("activeAsset", activeChart);
+    setInterval(() => {
+      myDispatch(updateChartStore(activeChart));
+    }, 1500);
+  };
 
   useEffect(() => {
-    const allChartData = [];
-    const currentTime = Math.floor(new Date().getTime() / 1000);
-    for (let i = 0; i < 1000; i++) {
-      const newOpen =
-        allChartData[allChartData.length - 1]?.close ||
-        Number(Math.floor(Math.random() * (50 - 20 + 1) + 20).toFixed(5));
-      const newClose = Number(
-        (
-          Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
-          (newOpen - 50)
-        ).toFixed(5)
-      );
-      const newLow =
-        newOpen >= newClose
-          ? Number(
-              (
-                Math.random() * (newClose - (newClose - 10) + 1) +
-                (newClose - 10)
-              ).toFixed(5)
-            )
-          : Number(
-              (
-                Math.random() * (newOpen - (newOpen - 10) + 1) +
-                (newOpen - 10)
-              ).toFixed(5)
-            );
-      const newHigh =
-        newOpen >= newClose
-          ? Number(
-              (Math.random() * (newOpen + 10 - newOpen + 1) + newOpen).toFixed(
-                5
-              )
-            )
-          : Number(
-              (
-                Math.random() * (newClose + 10 - newClose + 1) +
-                newClose
-              ).toFixed(5)
-            );
-      const newValue = (newOpen + newClose) / 2;
+    intiateAllAssets();
+    return;
+  }, [myDispatch, chartActiveAsset]);
 
-      const generatedData = {
-        time: currentTime - (1000 - i),
-        open: newOpen,
-        high: newHigh,
-        low: newLow,
-        close: newClose,
-        value: newValue,
-      };
+  useEffect(() => {
+    localStorage.getItem("themeMode") || localStorage.setItem("themeMode", 0);
+    return;
+  }, []);
 
-      allChartData.push(generatedData);
-      myDispatch(addChartStoreData(generatedData));
-    }
-  }, [myDispatch]);
+  const switchTheme = () => {
+    Number(localStorage.getItem("themeMode")) === 1
+      ? localStorage.setItem("themeMode", 0)
+      : localStorage.setItem("themeMode", 1);
+
+    window.location.reload();
+  };
 
   return (
     <>
@@ -125,12 +122,18 @@ const App = () => {
             ) : (
               <LightMode />
             )}
+            <ThemeSwitch click={switchTheme} />
             <Routes>
               <Route path="/" element={<Landing />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/regulations" element={<Regulations />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/agreement" element={<Agreement />} />
 
               {/* Auth Pages */}
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/forgot" element={<Forgot />} />
 
               {/* Dashboard Pages */}
               <Route path="/dashboard" element={<MainDash />}>
@@ -161,7 +164,9 @@ const App = () => {
                   <Route path="stats" element={<Stats />} />
                   <Route path="users" element={<Users />} />
                   <Route path="verified" element={<Verified />} />
+                  <Route path="transactions" element={<Transaction />} />
                   <Route path="assets" element={<Assets />} />
+                  <Route path="settings" element={<Settings />} />
                 </Route>
               </Route>
 

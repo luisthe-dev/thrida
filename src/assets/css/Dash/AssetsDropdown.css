@@ -1,0 +1,115 @@
+.assetsMainView {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  width: 30%;
+  border-radius: 12px;
+  background: var(--mainBackground);
+  padding: 8px 20px;
+  z-index: 7;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.assetsMainView .assetsMainAsset {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  color: var(--mainSecondary);
+}
+
+.assetsMainView .assetsMainAsset .assetMainAssetDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.assetsMainView .assetsMainAsset .assetMainAssetDetails h5 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--mainSecondary);
+}
+
+.assetsMainView .assetsMainAsset .assetMainAssetDetails p {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--mainSecondary);
+}
+
+.assetsMainView .assetsMainAsset .assetMainAssetBtn {
+  width: 7%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--mainSecondary);
+}
+
+.assetsMainView .assetsMainList {
+  display: flex;
+  flex-direction: column;
+  max-height: 60vh;
+  width: 100%;
+  transform: scale(1, 0);
+  height: 0;
+  transition: all 0.5s;
+}
+
+.assetsMainView.active .assetsMainList {
+  transform: scale(1, 1);
+  height: auto;
+  transition: all 0.5s;
+}
+
+.assetsMainView .assetsMainList .assetListAssetDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 5px auto;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--mainShadow);
+  color: var(--mainSecondary);
+}
+
+.assetsMainView .assetsMainList .assetListAssetDetails:hover {
+  opacity: 0.6;
+}
+
+.assetsMainView .assetsMainList .assetListAssetDetails.disabled {
+  opacity: 0.4;
+}
+
+.assetsMainView .assetsMainList .assetListAssetDetails p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--mainSecondary);
+}
+
+@media (max-width: 1024px) {
+  .assetsMainView {
+    left: 10px;
+    top: 20px;
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .assetsMainView {
+    left: 10px;
+    top: 20px;
+    width: 80%;
+  }
+}

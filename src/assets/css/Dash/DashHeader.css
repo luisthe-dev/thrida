@@ -301,12 +301,28 @@
   }
 }
 
-@media (max-width: 600px) {
-  .dashboardHeader .dashboardHeaderRight .dashboardHeaderAccountWalletSwitch {
+@media (max-width: 720px) {
+  .dashboardHeader .dashboardHeaderLeft img {
     display: none;
   }
 
-  .dashboardHeader .dashboardHeaderRight button {
-    display: none;
+  .dashboardHeader
+    .dashboardHeaderRight
+    .dashboardHeaderAccountWalletSwitch
+    .dashboardHeaderAccountWalletMain
+    p {
+    font-size: 0.5rem;
   }
+
+  .dashboardHeader
+    .dashboardHeaderRight
+    .dashboardHeaderAccountWalletSwitch
+    .dashboardHeaderAccountWalletMain
+    h6 {
+    font-size: 1rem;
+  }
+
+  /* .dashboardHeader .dashboardHeaderRight button {
+    display: none;
+  } */
 }

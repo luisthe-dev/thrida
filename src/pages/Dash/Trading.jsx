@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createChart } from "lightweight-charts";
 import { useSelector, useDispatch } from "react-redux";
-import { addChartStoreData } from "../../redux/chartStore";
 import { BsGiftFill, BsTrophyFill, BsChevronDoubleRight } from "react-icons/bs";
 import {
   AiFillClockCircle,
@@ -12,15 +11,51 @@ import { HiBadgeCheck } from "react-icons/hi";
 import { TbSpeakerphone, TbChartCandle } from "react-icons/tb";
 import { TiChartArea, TiChartLine } from "react-icons/ti";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import { useRef } from "react";
+import AssetsDropdown from "../../components/Dash/AssetsDropdown";
+import { endTrade, startTrade } from "../../components/apis/tradesApi";
+import { toast } from "react-toastify";
+import { setUserWallets } from "../../redux/userStore";
+import { getAllActiveAssets } from "../../components/apis/assetApi";
+import TradeSide from "../../components/Dash/TradeSide";
 
 const Trading = () => {
+  const [amount, setAmount] = useState(100);
+  const [time, setTime] = useState("");
+  const [tradeHistory, setTradeHistory] = useState(false);
+  const { chartActiveAsset } = useSelector((state) => state.chartStore);
+  const { activeWallet } = useSelector((state) => state.userStore);
+
+  const myChart = useRef();
+  const myAreaSeries = useRef();
+  const myCandleSeries = useRef();
+  const myLineSeries = useRef();
+  const myBarSeries = useRef();
   const myDispatch = useDispatch();
+
+  useEffect(() => {
+    const myDate = new Date();
+    const hour = myDate.getHours();
+    const minutes = myDate.getMinutes();
+
+    if (minutes < 57) {
+      setTime(
+        `${hour < 10 ? `0${hour}` : hour}:${
+          minutes + 5 < 10 ? `0${minutes + 2}` : minutes + 2
+        }`
+      );
+    } else {
+      setTime(`${hour + 1}:02`);
+    }
+  }, []);
 
   const { chartDetails } = useSelector((state) => state.chartStore);
 
   useEffect(() => {
-    const chartData = [];
-    chartData.push(...chartDetails);
+    if (!chartActiveAsset) return;
+    if (!chartDetails[chartActiveAsset]) return;
+
+    myChart?.current?.remove();
 
     const chart = createChart(document.getElementById("TradeChapter"), {
       layout: {
@@ -51,14 +86,14 @@ const Trading = () => {
     });
 
     const candlestickSeries = chart.addCandlestickSeries({
-      visible: true,
+      visible: false,
     });
     const areastickSeries = chart.addAreaSeries({
       lineWidth: 2,
       topColor: "rgba(33, 150, 243, 0.56)",
       bottomColor: "rgba(33, 150, 243, 0.04)",
       lineColor: "rgba(33, 150, 243, 1)",
-      visible: false,
+      visible: true,
     });
     const linestickSeries = chart.addLineSeries({
       lineWidth: 2,
@@ -69,10 +104,16 @@ const Trading = () => {
       visible: false,
     });
 
-    candlestickSeries.setData(chartDetails);
-    areastickSeries.setData(chartDetails);
-    linestickSeries.setData(chartDetails);
-    barstickSeries.setData(chartDetails);
+    myChart.current = chart;
+    myAreaSeries.current = areastickSeries;
+    myCandleSeries.current = candlestickSeries;
+    myLineSeries.current = linestickSeries;
+    myBarSeries.current = barstickSeries;
+
+    myCandleSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myAreaSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myLineSeries?.current?.setData(chartDetails[chartActiveAsset]);
+    myBarSeries?.current?.setData(chartDetails[chartActiveAsset]);
 
     new ResizeObserver((entries) => {
       if (
@@ -106,84 +147,199 @@ const Trading = () => {
     document.querySelectorAll("#chartBtn").forEach((btn) => {
       btn.addEventListener("click", () => {
         btn.getAttribute("data-type") === "candle"
-          ? candlestickSeries.applyOptions({ visible: true })
-          : candlestickSeries.applyOptions({ visible: false });
+          ? myCandleSeries?.current?.applyOptions({ visible: true })
+          : myCandleSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "area"
-          ? areastickSeries.applyOptions({ visible: true })
-          : areastickSeries.applyOptions({ visible: false });
+          ? myAreaSeries?.current?.applyOptions({ visible: true })
+          : myAreaSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "line"
-          ? linestickSeries.applyOptions({ visible: true })
-          : linestickSeries.applyOptions({ visible: false });
+          ? myLineSeries?.current?.applyOptions({ visible: true })
+          : myLineSeries?.current?.applyOptions({ visible: false });
         btn.getAttribute("data-type") === "bar"
-          ? barstickSeries.applyOptions({ visible: true })
-          : barstickSeries.applyOptions({ visible: false });
+          ? myBarSeries?.current?.applyOptions({ visible: true })
+          : myBarSeries?.current?.applyOptions({ visible: false });
       });
     });
+    return;
+  }, [chartActiveAsset]);
 
-    setInterval(() => {
-      const newOpen = chartData[chartData.length - 1].close;
-      const newClose = Number(
-        (
-          Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
-          (newOpen - 50)
-        ).toFixed(5)
-      );
-      const newLow =
-        newOpen >= newClose
-          ? Number(
-              (
-                Math.random() * (newClose - (newClose - 10) + 1) +
-                (newClose - 10)
-              ).toFixed(5)
-            )
-          : Number(
-              (
-                Math.random() * (newOpen - (newOpen - 10) + 1) +
-                (newOpen - 10)
-              ).toFixed(5)
-            );
-      const newHigh =
-        newOpen >= newClose
-          ? Number(
-              (Math.random() * (newOpen + 10 - newOpen + 1) + newOpen).toFixed(
-                5
-              )
-            )
-          : Number(
-              (
-                Math.random() * (newClose + 10 - newClose + 1) +
-                newClose
-              ).toFixed(5)
-            );
-      const newValue = (newOpen + newClose) / 2;
+  useEffect(() => {
+    if (!chartActiveAsset) return;
+    if (!chartDetails[chartActiveAsset]) return;
+    const updateData =
+      chartDetails[chartActiveAsset][
+        chartDetails[chartActiveAsset]?.length - 1
+      ];
+    myChart?.current?.timeScale()?.scrollPosition() < 0
+      ? (document.getElementById("ScrollToBtn").style.display = "flex")
+      : (document.getElementById("ScrollToBtn").style.display = "none");
 
-      const updateData = {
-        time: Math.floor(new Date().getTime() / 1000),
-        open: newOpen,
-        high: newHigh,
-        low: newLow,
-        close: newClose,
-        value: newValue,
-      };
+    myCandleSeries?.current?.update(updateData);
+    myAreaSeries?.current?.update(updateData);
+    myLineSeries?.current?.update(updateData);
+    myBarSeries?.current?.update(updateData);
+    return;
+  }, [chartDetails, chartActiveAsset]);
 
-      chart.timeScale().scrollPosition() < 0
-        ? (document.getElementById("ScrollToBtn").style.display = "flex")
-        : (document.getElementById("ScrollToBtn").style.display = "none");
+  useEffect(() => {
+    const currentTime = new Date();
+    if (!time) return;
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
 
-      chartData.push(updateData);
-      myDispatch(addChartStoreData(updateData));
-      candlestickSeries.update(updateData);
-      areastickSeries.update(updateData);
-      linestickSeries.update(updateData);
-      barstickSeries.update(updateData);
-    }, 1500);
-  }, [myDispatch]);
+    let tempTime = time;
+
+    const timeSplit = tempTime.split(":");
+
+    if (
+      (Number(timeSplit[1]) <= Number(currentMinute) &&
+        Number(currentHour) === Number(timeSplit[0])) ||
+      Number(timeSplit[0]) < Number(currentHour)
+    ) {
+      editTime("plus");
+    }
+  }, [new Date().getMinutes()]);
+
+  const editAmount = (process) => {
+    process === "plus"
+      ? setAmount(Number(amount) + 25)
+      : amount > 25 && setAmount(Number(amount) - 25);
+  };
+
+  const editTime = (process) => {
+    let newTime = time;
+    const timeSplit = time.toString().split(":");
+    if (process === "plus") {
+      newTime =
+        Number(timeSplit[1]) >= 57
+          ? `${
+              Number(timeSplit[0]) + 1 === 24 ? "00" : Number(timeSplit[0]) + 1
+            }:00`
+          : `${timeSplit[0]}:${Number(timeSplit[1]) + 2}`;
+    } else {
+      newTime =
+        Number(timeSplit[1]) <= 5
+          ? `${Number(timeSplit[0]) - 1}:55`
+          : `${timeSplit[0]}:${Number(timeSplit[1]) - 2}`;
+    }
+    setTime(newTime);
+  };
+
+  const placeBid = async (bidDirection) => {
+    let timeOut = 0;
+
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    const timeSplit = time.toString().split(":");
+
+    if (
+      (Number(timeSplit[1]) <= Number(currentMinute) &&
+        Number(currentHour) >= Number(timeSplit[0])) ||
+      Number(currentHour) > Number(timeSplit[0])
+    ) {
+      toast.error("You can't place a past trade");
+      editTime("plus");
+      return;
+    }
+
+    const myAssets = await getAllActiveAssets();
+
+    const theAsset = myAssets.data.filter(
+      (asset) => asset.asset_name === chartActiveAsset
+    );
+
+    if (theAsset.length < 1) {
+      toast.error("Error Placing Bid");
+      return;
+    }
+
+    const bidWallet =
+      activeWallet === "demo"
+        ? "demo_wallet"
+        : activeWallet === "tourney"
+        ? "tournament_wallet"
+        : "real_wallet";
+
+    const tradeData = {
+      asset_id: theAsset[0].id,
+      walletType: bidWallet,
+      userPredict: bidDirection,
+      amount_staked: amount,
+      entry_value:
+        chartDetails[chartActiveAsset][
+          chartDetails[chartActiveAsset]?.length - 1
+        ]?.value,
+      time_period: time,
+    };
+
+    const bidRes = await startTrade(tradeData);
+
+    if (bidRes.status !== 1) {
+      toast.error("Error Placing Trade");
+      return;
+    }
+
+    toast.success("Trade Started Successfully");
+
+    if (Number(currentHour) === Number(timeSplit[0])) {
+      const timeDifference = Number(timeSplit[1]) - Number(currentMinute);
+      timeOut = timeDifference * 60 * 1000;
+    } else {
+      const hourDifference =
+        Number(currentHour) === "00"
+          ? 1
+          : Number(timeSplit[0] - Number(currentHour));
+      const completeHourDifference = 60 - currentMinute;
+      const hourToMinutes = (hourDifference - 1) * 60 + completeHourDifference;
+      const completeMinutes = hourToMinutes + Number(timeSplit[1]);
+      timeOut = completeMinutes * 60 * 1000;
+    }
+
+    setTimeout(() => {
+      closeBid(bidRes?.trade?.id, bidWallet);
+    }, timeOut);
+
+    const userWallets = JSON.parse(bidRes?.user?.wallets);
+    myDispatch(
+      setUserWallets({
+        demoAccount: userWallets.demo_wallet,
+        realAccount: userWallets.real_wallet,
+        tourneyAccount: userWallets.tournament_wallet,
+      })
+    );
+  };
+
+  const closeBid = async (bidId, walletType) => {
+    const bidRes = await endTrade(bidId, walletType);
+
+    if (bidRes.status !== 1) {
+      toast.error("Error Closing Trade");
+      return;
+    }
+
+    toast.success("Trade Closed Successfully");
+
+    const userWallets = JSON.parse(bidRes?.user?.wallets);
+    myDispatch(
+      setUserWallets({
+        demoAccount: userWallets.demo_wallet,
+        realAccount: userWallets.real_wallet,
+        tourneyAccount: userWallets.tournament_wallet,
+      })
+    );
+  };
 
   return (
     <div className="TradingPageContainer">
       <div className="TradingSideMenu">
+        <TradeSide active={tradeHistory} />
         <div className="TradingSideMenuItems">
-          <div className="TradingSideMenuItem">
+          <div
+            className="TradingSideMenuItem"
+            onClick={() => setTradeHistory(!tradeHistory)}
+          >
             <AiFillClockCircle /> <span> Trades </span>
           </div>
           <div className="TradingSideMenuItem">
@@ -217,6 +373,21 @@ const Trading = () => {
         </div>
       </div>
       <div id="TradeChapter" className="TradeChapter">
+        <AssetsDropdown />
+        <div className="TradingMobileSwitches">
+          <div className="TradingMobileSwitchesItem">
+            <TbChartCandle id="chartBtn" data-type="candle" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartArea id="chartBtn" data-type="area" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartLine id="chartBtn" data-type="line" />
+          </div>
+          <div className="TradingMobileSwitchesItem">
+            <TiChartLine id="chartBtn" data-type="bar" />
+          </div>
+        </div>
         <button className="ScrollToBtn" id="ScrollToBtn">
           <BsChevronDoubleRight />
         </button>
@@ -226,12 +397,16 @@ const Trading = () => {
           <div className="TradingBlock">
             <label> Amount </label>
             <div className="TradingBlockInput">
-              <input type="text" />
+              <input
+                type="text"
+                value={amount}
+                onInput={(e) => setAmount(e.target.value)}
+              />
               <div className="TradingBlockInputStackBtns">
-                <button>
+                <button onClick={() => editAmount("plus")}>
                   <AiOutlinePlus />
                 </button>
-                <button>
+                <button onClick={() => editAmount("minus")}>
                   <AiOutlineMinus />
                 </button>
               </div>
@@ -240,12 +415,17 @@ const Trading = () => {
           <div className="TradingBlock">
             <label> Time </label>
             <div className="TradingBlockInput">
-              <input type="text" />
+              <input
+                type="text"
+                value={time}
+                onInput={(e) => setTime(e.target.value)}
+                disabled
+              />
               <div className="TradingBlockInputStackBtns">
-                <button>
+                <button onClick={() => editTime("plus")}>
                   <AiOutlinePlus />
                 </button>
-                <button>
+                <button onClick={() => editTime("minus")}>
                   <AiOutlineMinus />
                 </button>
               </div>
@@ -253,10 +433,16 @@ const Trading = () => {
           </div>
         </div>
         <div className="TradingRunsBtns">
-          <button className="TradingRunsBtnsBuy">
+          <button
+            className="TradingRunsBtnsBuy"
+            onClick={() => placeBid("GAIN")}
+          >
             <BiUpvote />
           </button>
-          <button className="TradingRunsBtnsSell">
+          <button
+            className="TradingRunsBtnsSell"
+            onClick={() => placeBid("LOSE")}
+          >
             <BiDownvote />
           </button>
         </div>

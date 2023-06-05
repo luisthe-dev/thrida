@@ -6,6 +6,7 @@ export const userStore = createSlice({
     userDetails: {
       name: "",
       email: "",
+      level: "",
     },
     userWallets: {
       demoAccount: 0,

@@ -34,7 +34,7 @@ const SideBar = ({ active }) => {
           <IoFilterOutline />
           <span>Transactions</span>
         </Link>
-        <Link to="/admin/dashboard/transactions">
+        <Link to="/admin/dashboard/settings">
           <FiSettings />
           <span>Settings</span>
         </Link>

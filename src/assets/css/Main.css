@@ -1,0 +1,74 @@
+main.mainText {
+  margin-top: 15vh;
+}
+
+main.mainText h3 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 10px auto;
+  color: var(--mainSecondary);
+}
+
+main.mainText h3::after {
+  content: " ";
+  width: 120px;
+  display: block;
+  height: 0.1rem;
+  background: var(--mainSecondary);
+  margin: 0.4rem auto;
+  border-radius: 4px;
+  transition: all 0.8s;
+}
+
+main.mainText .mainTextParagraph {
+  width: 50%;
+  text-align: justify;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 10px auto;
+  color: var(--mainSecondary);
+}
+
+main.mainText .mainTextParagraph span {
+  display: block;
+  margin: 5px 0;
+}
+
+main.mainText .mainTextParagraph .highlightText {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--darkBackground);
+}
+
+main.mainText .mainTextParagraph ul,
+main.mainText .mainTextParagraph ol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+main.mainText .mainTextParagraph ul {
+  list-style: square;
+}
+
+main.mainText .mainTextParagraph ul li,
+main.mainText .mainTextParagraph ol li {
+  margin: 2px auto;
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  main.mainText .mainTextParagraph {
+    width: 70%;
+  }
+}
+
+@media (max-width: 720px) {
+  main.mainText .mainTextParagraph {
+    width: 95%;
+  }
+}

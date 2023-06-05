@@ -15,6 +15,7 @@ import {
   setUserLoggedIn,
 } from "../../redux/userStore";
 import { toast } from "react-toastify";
+import { FiLoader } from "react-icons/fi";
 
 const SignIn = () => {
   const [userMail, setUserMail] = useState("");
@@ -44,12 +45,13 @@ const SignIn = () => {
         setUserDetails({
           name: signInResponse.data.user.name,
           email: signInResponse.data.user.email,
+          level: signInResponse.data.user.level,
         })
       );
       myNavigate("/dashboard");
       setLoading(false);
     } else {
-      toast.error("Invalid Credentials");
+      toast.error(signInResponse.message);
       setLoading(false);
     }
   };
@@ -94,9 +96,12 @@ const SignIn = () => {
                 <AiOutlineEye onClick={() => setShowPassword(!showPassword)} />
               )}
             </div>
-            <button type="submit" disabled={loading}>
-              {" "}
-              Sign In{" "}
+            <div className="authFormBoldText">
+              <Link to={"/forgot"}> Forgot Password? </Link>
+            </div>
+            <button type="submit" disabled={loading} className={"loadingBtn"}>
+              {loading ? <FiLoader /> : `Sign In`}
+              {loading && ` Hold On`}
             </button>
           </form>
         </div>

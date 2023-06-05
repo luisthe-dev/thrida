@@ -31,11 +31,15 @@
   color: var(--darkBackground);
   text-align: center;
   white-space: nowrap;
+  cursor: default;
 }
 
-.adminTable .adminTableBody table.hover tr:hover {
+.adminTable .adminTableBody table.bordered tr {
+  border: 1px solid var(--darkBackground);
+}
+
+.adminTable .adminTableBody table.hover tbody tr:hover {
   opacity: 0.7;
-  cursor: pointer;
 }
 
 .adminTable .adminTableBody table th {
@@ -64,4 +68,12 @@
 .adminTable .adminTableBody table td button:hover {
   background: transparent;
   color: var(--mainSecondary);
+}
+
+@media (max-width: 768px) {
+  .adminTable .adminTableBody {
+    align-items: flex-start;
+    justify-content: center;
+    overflow-x: scroll;
+  }
 }

@@ -3,14 +3,15 @@ import { ThridaApi } from "./axios";
 export const getAllAssets = async () => {
   let returnData = { status: 0 };
 
-  ThridaApi.get("/assets", {
-    headers: {
-      Authorization: `Bearer ${
-        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
-      }`,
-    },
+  await ThridaApi.get("/assets", {
+    headers: {},
   })
-    .then((res) => console.log(res))
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data;
+      }
+    })
     .catch((err) => console.log(err));
 
   return returnData;
@@ -19,7 +20,7 @@ export const getAllAssets = async () => {
 export const getAllUsers = async () => {
   let returnData = { status: 0 };
 
-  ThridaApi.get("/admin/users", {
+  await ThridaApi.get("/admin/users", {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]
@@ -35,7 +36,7 @@ export const getAllUsers = async () => {
 export const getAllTransactions = async () => {
   let returnData = { status: 0 };
 
-  ThridaApi.get("/admin/transactions", {
+  await ThridaApi.get("/admin/transactions", {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]

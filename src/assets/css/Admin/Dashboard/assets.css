@@ -69,7 +69,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .adminStatTable form input,
   .adminStatTable form select {
     width: 95%;

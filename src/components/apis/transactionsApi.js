@@ -22,6 +22,28 @@ export const GetTransactions = async () => {
   return returnData;
 };
 
+export const GetDepositTransactions = async () => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get("/transactions/deposits", {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return returnData;
+};
+
 export const MakeDeposit = async (amount, depositChannel) => {
   let returnData = { status: 0 };
 
