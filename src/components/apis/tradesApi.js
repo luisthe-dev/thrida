@@ -69,3 +69,44 @@ export const endTrade = async (tradeId, walletType) => {
 
   return returnData;
 };
+
+export const initCopyTrading = async (copyTradeData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.post("/trade/copy", copyTradeData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        returnData.status = 1;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+export const checkCopyStatus = async (proId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/trade/copy/${proId}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};

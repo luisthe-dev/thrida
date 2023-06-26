@@ -296,14 +296,13 @@ const Agreement = () => {
                 Registration and Verification of the Client
               </span>
               <ul>
-                4.1.
                 <li>The registration procedure is mandatory for the Client.</li>
                 <li>
                   To register on the Website, the Client must perform the
                   following actions:
                   <ul>
                     <li>enter their email address and create a password;</li>
-                    <li>select the currency of the Account</li>;
+                    <li>select the currency of the Account;</li>
                     <li>accept the terms and conditions of this Agreement.</li>
                   </ul>
                 </li>

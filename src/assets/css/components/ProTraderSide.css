@@ -1,0 +1,155 @@
+.proTraderBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.proTraderBlock .proTraderBlockHeader h3 {
+  width: 90%;
+  margin: 12px auto;
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+.proTraderBlock .proTraderBlockHeader > p {
+  width: 90%;
+  margin: 5px auto;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.proTraderBlock .proTraderBlockHeader p span {
+  color: var(--mainSecondary);
+}
+
+.proTraderBlock .proTraderBlockSelf {
+  display: flex;
+  width: 90%;
+  margin: 25px auto;
+  background: var(--mainShadow);
+  border-radius: 12px;
+  padding: 2px 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proTraderBlock .proTraderBlockSelf p {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 4px;
+}
+
+.proTraderBlock .proTraderBlockBoard {
+  width: 90%;
+  margin: 12px auto;
+}
+
+.proTraderBlock .proTraderBlockBoard h5 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 12px 0;
+}
+
+.proTraderBlock .proTraderBlockBoard .proTraderBlockBoardTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardTableHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--mainPrimary);
+  border-radius: 12px;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardTableHeader
+  p {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody
+  .proTraderBlockBodyPro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px auto;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody
+  .proTraderBlockBodyPro:hover {
+  opacity: 0.7;
+  background: var(--mainShadow);
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody
+  .proTraderBlockBodyPro
+  div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody
+  .proTraderBlockBodyPro
+  p {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.proTraderBlock
+  .proTraderBlockBoard
+  .proTraderBlockBoardTable
+  .proTraderBlockBoardBody
+  .proTraderBlockBodyPro
+  div
+  label {
+  font-weight: 300;
+  font-size: 1.1rem;
+}

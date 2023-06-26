@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import { BsArrowDownShort } from "react-icons/bs";
+import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails, setUserWallets } from "../../redux/userStore";
 import { getAllActiveAssets } from "../apis/assetApi";
 import { getTrades } from "../apis/tradesApi";
+import { GetUserDetails } from "../apis/userApi";
 
 const TradeSide = ({ active }) => {
   const [tradesData, setTradesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allAssets, setAllAssets] = useState([]);
+  const { activeWallet } = useSelector((state) => state.userStore);
+
+  const myDispatch = useDispatch();
+
   const months = useRef([
     "Jan",
     "Feb",
@@ -27,13 +34,44 @@ const TradeSide = ({ active }) => {
       setIsLoading(true);
       const tradesRes = await getTrades();
       const assetsRes = await getAllActiveAssets();
-      setTradesData(tradesRes.data.data);
       setAllAssets(assetsRes.data);
       setIsLoading(false);
+      GetUserDetails().then((response) => {
+        if (response.status === 1) {
+          const userWallets = JSON.parse(response.data.wallets);
+          myDispatch(
+            setUserDetails({
+              id: response.data.id,
+              name: response.data.name,
+              email: response.data.email,
+              level: response.data.level,
+              is_pro: Number(response.data.is_pro),
+            })
+          );
+          myDispatch(
+            setUserWallets({
+              demoAccount: userWallets.demo_wallet,
+              realAccount: userWallets.real_wallet,
+              tourneyAccount: userWallets.tournament_wallet,
+            })
+          );
+        }
+      });
+      const currentWallet =
+        activeWallet === "demo"
+          ? "demo_wallet"
+          : activeWallet === "tourney"
+          ? "tournament_wallet"
+          : activeWallet === "live" && "real_wallet";
+      setTradesData(
+        tradesRes.data.data.filter(
+          (trade) => trade.Wallet_Type === currentWallet
+        )
+      );
     };
     getMyTrades();
     return;
-  }, [active]);
+  }, [active, activeWallet]);
 
   return (
     <div className={active ? "tradeHistoryPopUp active" : "tradeHistoryPopUp"}>
@@ -66,8 +104,18 @@ const TradeSide = ({ active }) => {
                     %
                   </label>
                 </p>
-                <label className="tradeHistoryBlockDetsGain">
-                  <BsArrowDownShort />
+                <label
+                  className={
+                    trade.Direction === "GAIN"
+                      ? "tradeHistoryBlockDetsGain"
+                      : "tradeHistoryBlockDetsLoss"
+                  }
+                >
+                  {trade.Direction === "GAIN" ? (
+                    <BsArrowUpShort />
+                  ) : (
+                    <BsArrowDownShort />
+                  )}
                   <span>
                     {trade.created_at.split("T")[1].split(".")[0]} -{" "}
                     {trade.created_at.split("T")[0].split("-")[2]}{" "}

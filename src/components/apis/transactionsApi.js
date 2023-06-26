@@ -44,7 +44,7 @@ export const GetDepositTransactions = async () => {
   return returnData;
 };
 
-export const MakeDeposit = async (amount, depositChannel) => {
+export const MakeDeposit = async (amount, depositChannel, promoCode) => {
   let returnData = { status: 0 };
 
   await ThridaApi.post(
@@ -53,6 +53,7 @@ export const MakeDeposit = async (amount, depositChannel) => {
       amount: amount,
       type: "Deposit",
       channel: depositChannel,
+      promo_code: promoCode,
     },
     {
       headers: {
@@ -68,7 +69,7 @@ export const MakeDeposit = async (amount, depositChannel) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      returnData = { status: 0, message: err.response.data.message };
     });
 
   return returnData;
@@ -95,6 +96,28 @@ export const UploadDepositSlip = async (transaction_id, depositSlip) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+
+  return returnData;
+};
+
+export const initWithdrawal = async (withdrawData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.post("/transactions/withdraw", withdrawData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      returnData.message = err.response.data.message;
     });
 
   return returnData;

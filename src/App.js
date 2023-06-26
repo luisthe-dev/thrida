@@ -1,5 +1,11 @@
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,6 +16,8 @@ import {
   updateChartStore,
 } from "./redux/chartStore";
 import { getAllActiveAssets } from "./components/apis/assetApi";
+import ProRequests from "./pages/Admin/Dashboard/ProRequests";
+import Withdrawal from "./pages/Admin/Dashboard/Withdrawal";
 
 const Landing = lazy(() => import("./pages/Main/Landing"));
 const About = lazy(() => import("./pages/Main/About"));
@@ -31,6 +39,10 @@ const Status = lazy(() => import("./pages/Dash/Status"));
 const Deposit = lazy(() => import("./pages/Dash/Cashier/Deposit"));
 const Withdraw = lazy(() => import("./pages/Dash/Cashier/Withdraw"));
 const History = lazy(() => import("./pages/Dash/Cashier/History"));
+const AllTourney = lazy(() => import("./pages/Dash/Tourney/All"));
+const Host = lazy(() => import("./pages/Dash/Tourney/Host"));
+const AllPro = lazy(() => import("./pages/Dash/Pro/All"));
+const RequestPro = lazy(() => import("./pages/Dash/Pro/Request"));
 
 const DarkMode = lazy(() => import("./assets/themes/DarkMode"));
 const LightMode = lazy(() => import("./assets/themes/LightMode"));
@@ -46,6 +58,8 @@ const Verified = lazy(() => import("./pages/Admin/Dashboard/Verified"));
 const Assets = lazy(() => import("./pages/Admin/Dashboard/Assets"));
 const Transaction = lazy(() => import("./pages/Admin/Dashboard/Transaction"));
 const Settings = lazy(() => import("./pages/Admin/Dashboard/Settings"));
+const Tournaments = lazy(() => import("./pages/Admin/Dashboard/Tournaments"));
+const HostTourney = lazy(() => import("./pages/Admin/Dashboard/HostTourney"));
 
 const App = () => {
   const myDispatch = useDispatch();
@@ -69,13 +83,13 @@ const App = () => {
     localStorage.setItem("activeAsset", activeChart);
     setInterval(() => {
       myDispatch(updateChartStore(activeChart));
-    }, 1500);
+    }, 2000);
   };
 
   useEffect(() => {
     intiateAllAssets();
     return;
-  }, [myDispatch, chartActiveAsset]);
+  }, [chartActiveAsset]);
 
   useEffect(() => {
     localStorage.getItem("themeMode") || localStorage.setItem("themeMode", 0);
@@ -94,7 +108,7 @@ const App = () => {
     <>
       <ToastContainer
         position="bottom-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop
         closeOnClick={false}
@@ -103,6 +117,7 @@ const App = () => {
         draggable={true}
         pauseOnHover
         theme="dark"
+        limit={2}
       />
 
       <BrowserRouter>
@@ -149,6 +164,16 @@ const App = () => {
                   <Route path="history" element={<History />} />
                 </Route>
 
+                <Route path="tournaments" element={<Outlet />}>
+                  <Route path="" element={<AllTourney />} />
+                  <Route path="host" element={<Host />} />
+                </Route>
+
+                <Route path="pro" element={<Outlet />}>
+                  <Route path="" element={<AllPro />} />
+                  <Route path="request" element={<RequestPro />} />
+                </Route>
+
                 <Route path="status" element={<Status />} />
               </Route>
 
@@ -163,8 +188,12 @@ const App = () => {
                   <Route path="" element={<Stats />} />
                   <Route path="stats" element={<Stats />} />
                   <Route path="users" element={<Users />} />
-                  <Route path="verified" element={<Verified />} />
+                  <Route path="pro" element={<Verified />} />
+                  <Route path="pro/requests" element={<ProRequests />} />
                   <Route path="transactions" element={<Transaction />} />
+                  <Route path="withdrawals" element={<Withdrawal />} />
+                  <Route path="tournaments" element={<Tournaments />} />
+                  <Route path="tournaments/host" element={<HostTourney />} />
                   <Route path="assets" element={<Assets />} />
                   <Route path="settings" element={<Settings />} />
                 </Route>

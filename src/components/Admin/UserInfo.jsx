@@ -86,6 +86,7 @@ const UserInfo = ({ userId, setUser }) => {
   };
 
   useEffect(() => {
+    if (userId === 0) return;
     getUserDetails();
     return;
   }, [userId]);
@@ -137,21 +138,6 @@ const UserInfo = ({ userId, setUser }) => {
                     <option>Free</option>
                     <option>Silver</option>
                     <option>Gold</option>
-                  </select>
-                </div>
-                <div className="userInfoMainBlockInput">
-                  <p> Pro Account </p>
-                  <select
-                    defaultValue={userDetails.is_pro}
-                    onChange={(e) => {
-                      setUserDetails({
-                        ...userDetails,
-                        is_pro: Number(e.target.value),
-                      });
-                    }}
-                  >
-                    <option value={1}> Yes </option>
-                    <option value={0}> No </option>
                   </select>
                 </div>
                 <div className="userInfoMainBlockInput">

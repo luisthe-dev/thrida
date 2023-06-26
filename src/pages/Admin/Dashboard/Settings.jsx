@@ -27,6 +27,7 @@ const Settings = () => {
     ["usdt_erc_address", "USDT ERC Address"],
     ["usdt_trc_price", "USDT TRC Price"],
     ["usdt_trc_address", "USDT TRC Address"],
+    ["default_bonus", "Bonus Amount For All Users"],
   ];
 
   const getSettingsValues = async () => {
@@ -42,7 +43,7 @@ const Settings = () => {
       );
       if (settingName.length === 0) return;
       tempSettings.push([settingName[0][1], setting.value]);
-      return;
+      return null;
     });
 
     setSettings(tempSettings);

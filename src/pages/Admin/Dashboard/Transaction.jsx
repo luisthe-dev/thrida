@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Table from "../../../components/Admin/Table";
+import TransactionInfo from "../../../components/Admin/TransactionInfo";
 import { GetAllUserTransactions } from "../../../components/apis/adminApi";
 
 const Transaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [expandedTrans, setExpandedTrans] = useState(0);
+  const [expandedTransType, setExpandedTransType] = useState("");
+
+  const switchTrans = (id, type) => {
+    setExpandedTrans(id);
+    setExpandedTransType(type);
+  };
 
   const getTransactions = async (pageNumber) => {
     setIsLoading(true);
@@ -24,13 +32,16 @@ const Transaction = () => {
     transactionsRes.data.map((transactions) => {
       const userData = [
         transactions.email,
-        `$${Number(transactions.amount).toLocaleString()}`,
+        `₦${Number(transactions.amount).toLocaleString()}`,
         transactions.type,
         transactions.channel,
         transactions.status,
-        <button> View Details </button>,
+        <button onClick={() => switchTrans(transactions.id, transactions.type)}>
+          View Details
+        </button>,
       ];
       tempTransactions.push(userData);
+      return true;
     });
 
     setIsLoading(false);
@@ -43,6 +54,13 @@ const Transaction = () => {
 
   return (
     <>
+      {expandedTrans !== 0 && (
+        <TransactionInfo
+          transactionId={expandedTrans}
+          setTransactionId={setExpandedTrans}
+          transactionType={expandedTransType}
+        />
+      )}
       <Table
         classes={"bordered hover"}
         title={"Transactions"}

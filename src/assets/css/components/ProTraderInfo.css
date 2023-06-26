@@ -1,0 +1,258 @@
+.proTraderInfoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.proTraderInfoBlock .proTraderInfoHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  margin: 6px auto;
+}
+
+.proTraderInfoBlock .proTraderInfoHeader h4 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 12px auto;
+}
+
+.proTraderInfoBlock .proTraderInfoHeader p {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.proTraderInfoBlock .proTraderInfoBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 95%;
+  margin: 6px auto;
+  margin-top: 30px;
+}
+
+.proTraderInfoBlock .proTraderInfoBody h3 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: left;
+  width: 95%;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-top: 2px solid var(--mainShadow);
+  border-bottom: 2px solid var(--mainShadow);
+  padding: 20px 0;
+  margin: 12px auto;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn .proTraderInfoBodyForm {
+  width: 90%;
+  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn .proTraderInfoBodyForm label {
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin: 3px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.proTraderInfoBlock
+  .proTraderInfoBodyBtn
+  .proTraderInfoBodyForm
+  .proTraderInfoBodyFormDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn .proTraderInfoBodyForm > input,
+.proTraderInfoBlock .proTraderInfoBodyBtn .proTraderInfoBodyForm > select {
+  width: 100%;
+  padding: 8px 0 8px 12px;
+  border-radius: 8px;
+  margin: 5px auto;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.proTraderInfoBlock
+  .proTraderInfoBodyBtn
+  .proTraderInfoBodyForm
+  .proTraderInfoBodyFormDiv
+  input {
+  min-width: 70%;
+  padding: 8px 0 8px 12px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.proTraderInfoBlock
+  .proTraderInfoBodyBtn
+  .proTraderInfoBodyForm
+  .proTraderInfoBodyFormDiv
+  select {
+  width: 30%;
+  padding: 7px 0 7px 12px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: right;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn .proTraderInfoBodyForm span {
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 8px auto;
+  font-weight: 300;
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn button {
+  padding: 12px 0;
+  border-radius: 8px;
+  margin: 6px auto;
+  width: 80%;
+  background: var(--mainSecondary);
+  cursor: pointer;
+  color: var(--mainPrimary);
+  border: 1px solid var(--mainSecondary);
+}
+
+.proTraderInfoBlock .proTraderInfoBodyBtn button:hover {
+  background: transparent;
+  color: var(--mainSecondary);
+}
+
+.proTraderInfoBlock .proTraderInfoStats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px auto;
+  padding: 20px 0;
+  border-top: 2px solid var(--mainShadow);
+  border-bottom: 2px solid var(--mainShadow);
+}
+
+.proTraderInfoBlock .proTraderInfoStats .proTraderInfoStatsBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.proTraderInfoBlock .proTraderInfoStats .proTraderInfoStatsBlock svg {
+  font-size: 1.2rem;
+}
+
+.proTraderInfoBlock .proTraderInfoStats .proTraderInfoStatsBlock label {
+  font-size: 1.8rem;
+  margin: 8px auto;
+  font-weight: 500;
+}
+
+.proTraderInfoBlock .proTraderInfoStats .proTraderInfoStatsBlock p {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.proTraderInfoBlock .proTraderInfoBlockDesc {
+  padding: 20px 0;
+  border-top: 1px solid var(--mainShadow);
+  border-bottom: 1px solid var(--mainShadow);
+  width: 100%;
+}
+
+.proTraderInfoBlock .proTraderInfoBlockDesc h4,
+.proTraderInfoBlock .proTraderInfoBlockLeaderBoard h4 {
+  font-size: 1.4rem;
+  font-size: 300;
+  padding-left: 12px;
+  margin: 8px 0;
+  color: var(--darkBackground);
+}
+
+.proTraderInfoBlock .proTraderInfoBlockDesc .proTraderInfoBlockDescFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 8px auto;
+}
+
+.proTraderInfoBlock .proTraderInfoBlockDesc p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--darkBackground);
+}
+
+.proTraderInfoBlock .proTraderInfoBlockDesc > p {
+  width: 90%;
+  margin: 12px auto;
+  margin-top: 30px;
+}
+
+.proTraderInfoBlock .proTraderInfoBody .proTraderInfoBodyTrades {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-top: 2px solid var(--mainShadow);
+  border-bottom: 2px solid var(--mainShadow);
+  padding: 20px 0;
+  margin: 12px auto;
+}
+
+.proTraderInfoBlock
+  .proTraderInfoBody
+  .proTraderInfoBodyTrades
+  .proTraderInfoBodyTradesHeader {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid var(--darkBackground);
+  box-shadow: 0 3px 10px 2px var(--mainShadow);
+  margin-bottom: 12px;
+  padding: 8px 6px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proTraderInfoBlock
+  .proTraderInfoBody
+  .proTraderInfoBodyTrades
+  .proTraderInfoBodyTradesBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 8px 6px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--mainShadow);
+}

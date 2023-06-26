@@ -46,6 +46,7 @@ const SignIn = () => {
           name: signInResponse.data.user.name,
           email: signInResponse.data.user.email,
           level: signInResponse.data.user.level,
+          is_pro: Number(signInResponse.data.is_pro),
         })
       );
       myNavigate("/dashboard");

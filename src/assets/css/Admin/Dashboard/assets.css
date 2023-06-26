@@ -25,7 +25,8 @@
 }
 
 .adminStatTable form input,
-.adminStatTable form select {
+.adminStatTable form select,
+.adminStatTable form textarea {
   background: transparent;
   color: var(--darkBackground);
   border: 1px solid var(--mainShadow);
@@ -33,6 +34,7 @@
   border-radius: 6px;
   margin: 6px 0;
   width: 80%;
+  resize: none;
 }
 
 .adminStatTable form button {
@@ -60,7 +62,8 @@
 
 @media (max-width: 1200px) {
   .adminStatTable form input,
-  .adminStatTable form select {
+  .adminStatTable form select,
+  .adminStatTable form textarea {
     width: 100%;
   }
 

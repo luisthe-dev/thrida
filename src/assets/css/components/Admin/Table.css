@@ -54,7 +54,8 @@
   font-size: 20px;
 }
 
-.adminTable .adminTableBody table td button {
+.adminTable .adminTableBody table td button,
+.adminBtn {
   border-radius: 4px;
   padding: 8px 20px;
   border: 1px solid var(--mainPrimary);
@@ -65,7 +66,8 @@
   cursor: pointer;
 }
 
-.adminTable .adminTableBody table td button:hover {
+.adminTable .adminTableBody table td button:hover,
+.adminBtn:hover {
   background: transparent;
   color: var(--mainSecondary);
 }

@@ -25,13 +25,14 @@ const Verified = () => {
       const userData = [
         user.name,
         user.level,
-        `$${JSON.parse(user.wallets).real_wallet.toLocaleString()}`,
+        `₦${JSON.parse(user.wallets).real_wallet.toLocaleString()}`,
         <>
           <button> Edit </button>
           <button> Delete </button>
         </>,
       ];
       tempUsers.push(userData);
+      return true;
     });
 
     setIsLoading(false);
