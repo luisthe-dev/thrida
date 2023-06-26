@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { MakeDeposit, UploadDepositSlip } from "../apis/transactionsApi";
+import { UploadDepositSlip } from "../apis/transactionsApi";
 import { toast } from "react-toastify";
 
-const DepositModal = ({ showModal, setShowModal, depositType }) => {
-  const [depositAmount, setDepositAmount] = useState("");
+const DepositModal = ({
+  showModal,
+  setShowModal,
+  depositType,
+  depositData,
+}) => {
   const [depositStep, setDepositStep] = useState(1);
-  const [depositData, setDepositData] = useState({});
 
-  useEffect(() => setDepositStep(1) || setDepositAmount(""), [depositType]);
-
-  const processDeposit = async () => {
-    const depositResponse = await MakeDeposit(depositAmount, depositType);
-
-    if (depositResponse.status === 0) {
-      toast.error(depositResponse.message);
-      return;
-    }
-
-    setDepositData(depositResponse?.data);
-    setDepositStep(2);
-  };
+  useEffect(() => setDepositStep(1), [depositType]);
 
   const uploadDepositReciept = async (e) => {
     const uploadSlip = await UploadDepositSlip(
@@ -30,7 +21,6 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
     if (uploadSlip.status === 1) {
       toast.success("Deposit Placed Successfully");
       setDepositStep(1);
-      setDepositAmount("");
       setShowModal(false);
     }
   };
@@ -44,32 +34,6 @@ const DepositModal = ({ showModal, setShowModal, depositType }) => {
       <div
         className={
           showModal && depositStep === 1 ? "MainModal active" : "MainModal"
-        }
-      >
-        <div className="MainModalHeader">
-          <h4> Deposit </h4>
-          <h5> {depositType} </h5>
-        </div>
-        <div className="MainModalBody">
-          <div className="MainModalBodyBlock">
-            <h5> Deposit Amount ($) </h5>
-            <input
-              type="number"
-              placeholder="Enter Amount"
-              value={depositAmount}
-              onInput={(e) =>
-                setDepositAmount(Math.trunc(Number(e.target.value.trim())))
-              }
-            />
-          </div>
-        </div>
-        <div className="MainModalFooter">
-          <button onClick={processDeposit}> Deposit </button>
-        </div>
-      </div>
-      <div
-        className={
-          showModal && depositStep === 2 ? "MainModal active" : "MainModal"
         }
       >
         <div className="MainModalHeader">

@@ -1,20 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineBank } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { GetDepositTransactions } from "../../../components/apis/transactionsApi";
+import {
+  GetDepositTransactions,
+  MakeDeposit,
+} from "../../../components/apis/transactionsApi";
 import DepositModal from "../../../components/Dash/DepositModal";
 
 const Deposit = () => {
+  const [depositAmount, setDepositAmount] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [depositType, setDepositType] = useState("Bank Transfer");
+  const [depositData, setDepositData] = useState({});
+  const [promoCode, setPromoCode] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [depositSum, setDepositSum] = useState(0);
 
-  const setDepositMethod = (method) => {
+  const processDeposit = async (method) => {
+    if (depositAmount.trim() === "") return;
+
     setDepositType(method);
+    setLoading(true);
+
+    toast("Processing Deposit");
+    const depositResponse = await MakeDeposit(depositAmount, method, promoCode);
+
+    if (depositResponse.status === 0) {
+      toast.error(depositResponse.message);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    setDepositData(depositResponse?.data);
+
     setShowModal(!showModal);
   };
 
-  const [loading, setLoading] = useState(true);
-  const [depositSum, setDepositSum] = useState(0);
+  useEffect(() => {
+    if (showModal === false) {
+      setDepositAmount("");
+      setPromoCode("");
+    }
+
+    return;
+  }, [showModal]);
 
   useEffect(() => {
     const getTransactions = async () => {
@@ -36,6 +66,7 @@ const Deposit = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         depositType={depositType}
+        depositData={depositData}
       />
       <div className="cashierPageBodyBlocks">
         <div className="cashierPageBodyBlock">
@@ -60,40 +91,54 @@ const Deposit = () => {
       </div>
       <div className="depositPage">
         <h4> Fund Your Account </h4>
-        <h6> *Minimum Deposit is $1 (₦450) </h6>
+        <div className="depositInputBlock">
+          <input
+            type="text"
+            placeholder="Deposit Amount ($)"
+            value={depositAmount}
+            onInput={(e) => setDepositAmount(e.target.value)}
+          />
+          <h6> *Minimum Deposit is $1 (₦450) </h6>
+          <input
+            type="text"
+            placeholder="Promo Code (optional)"
+            value={promoCode}
+            onInput={(e) => setPromoCode(e.target.value)}
+          />
+        </div>
         <h3> Crypto Currency </h3>
         <div className="depositPageMethods">
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Bitcoin")}
+            onClick={() => !loading && processDeposit("Bitcoin")}
           >
             <img src="/public_assets/svgs/bitcoin.svg" alt="bitcoin" />
             <h5> Bitcoin </h5>
           </div>
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("USDT ERC 20")}
+            onClick={() => !loading && processDeposit("USDT ERC 20")}
           >
             <img src="/public_assets/svgs/usdt.svg" alt="usdt" />
             <h5> USDT ERC 20 </h5>
           </div>
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("USDT TRC 20")}
+            onClick={() => !loading && processDeposit("USDT TRC 20")}
           >
             <img src="/public_assets/svgs/usdt.svg" alt="usdt" />
             <h5> USDT TRC 20 </h5>
           </div>
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Litecoin")}
+            onClick={() => !loading && processDeposit("Litecoin")}
           >
             <img src="/public_assets/svgs/litecoin.svg" alt="litecoin" />
             <h5> Litecoin </h5>
           </div>
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Ethereum")}
+            onClick={() => !loading && processDeposit("Ethereum")}
           >
             <img src="/public_assets/svgs/ethereum.svg" alt="ethereum" />
             <h5> Ethereum </h5>
@@ -105,7 +150,7 @@ const Deposit = () => {
             className="depositMethod"
             onClick={() => {
               toast.error("Deposit Method is currently unavailable");
-              // setDepositMethod("Paypal")
+              // !loading && processDeposit("Paypal")
             }}
           >
             <img src="/public_assets/svgs/paypal.svg" alt="paypal" />
@@ -115,7 +160,7 @@ const Deposit = () => {
             className="depositMethod"
             onClick={() => {
               toast.error("Deposit Method is currently unavailable");
-              // setDepositMethod("Card")
+              // !loading && processDeposit("Card")
             }}
           >
             <img src="/public_assets/svgs/mastercard.svg" alt="card payment" />
@@ -126,7 +171,7 @@ const Deposit = () => {
         <div className="depositPageMethods">
           <div
             className="depositMethod"
-            onClick={() => setDepositMethod("Bank Transfer")}
+            onClick={() => !loading && processDeposit("Bank Transfer")}
           >
             <AiOutlineBank />
             <h5> Bank Transfer </h5>

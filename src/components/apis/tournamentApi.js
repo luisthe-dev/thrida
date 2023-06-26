@@ -208,6 +208,32 @@ export const applyTourney = async (tourneyId) => {
   return returnData;
 };
 
+export const reBuyTourney = async (tourneyId) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.put(
+    `/tournaments/rebuy/${tourneyId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${
+          localStorage.getItem("thridaUserAuthToken").split("|")[1]
+        }`,
+      },
+    }
+  )
+    .then((response) => {
+      if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => {
+      returnData.message = err.response.data.message;
+    });
+
+  return returnData;
+};
+
 export const getTourneyLeaderboard = async (tourneyId) => {
   let returnData = { status: 0 };
 

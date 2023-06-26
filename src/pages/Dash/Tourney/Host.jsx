@@ -16,7 +16,7 @@ const Host = () => {
     rebuy: "",
     rebuyCount: "",
   });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const myNavigate = useNavigate();
 
   const imageUpload = (e) => {

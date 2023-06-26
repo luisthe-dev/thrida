@@ -9,6 +9,7 @@ import {
   checkRegisteredTourney,
   getSingleTourney,
   getTourneyLeaderboard,
+  reBuyTourney,
 } from "../apis/tournamentApi";
 
 const TourneyInfoSide = ({ active }) => {
@@ -20,6 +21,7 @@ const TourneyInfoSide = ({ active }) => {
     host: "",
     cashPrice: "",
     is_active: false,
+    is_running: false,
     description: "",
     tournamentCash: "",
     startDate: "",
@@ -40,6 +42,17 @@ const TourneyInfoSide = ({ active }) => {
     setIsLoading(false);
   };
 
+  const rebuyPoints = async () => {
+    setIsLoading(true);
+
+    const rebuyRes = await reBuyTourney(active);
+    Number(rebuyRes.status) === 1
+      ? toast.success("Rebuy Successful")
+      : toast.error(rebuyRes.message);
+    setIsLoading(false);
+    window.location.reload();
+  };
+
   const getTourneyDetails = async () => {
     setIsLoading(true);
     const tourneyRes = await getSingleTourney(active);
@@ -48,6 +61,7 @@ const TourneyInfoSide = ({ active }) => {
       name: tourneyData.name,
       cashPrice: Number(tourneyData.cash_price).toLocaleString(),
       is_active: Number(tourneyData.is_active),
+      is_running: Number(tourneyData.is_running),
       description: tourneyData.description,
       tournamentCash: Number(tourneyData.tournament_cash).toLocaleString(),
       startDate: tourneyData.start_date,
@@ -59,7 +73,6 @@ const TourneyInfoSide = ({ active }) => {
       participation_cost: tourneyData.participation_cost,
     });
     const getReg = await checkRegisteredTourney(tourneyData.id);
-    console.log(getReg);
     getReg.status === 1 ? setIsRegistered(true) : setIsRegistered(false);
     const getLeaderboard = await getTourneyLeaderboard(tourneyData.id);
     setTourneyLeaderboard(getLeaderboard.data);
@@ -112,8 +125,18 @@ const TourneyInfoSide = ({ active }) => {
               </div>
             </div>
             <div className="tourneyInfoBlockActionBtn">
-              <button onClick={isRegistered ? () => {} : applyToTourney}>
-                {isRegistered
+              <button
+                onClick={
+                  tourneyDetails.is_running
+                    ? rebuyPoints
+                    : isRegistered
+                    ? () => {}
+                    : applyToTourney
+                }
+              >
+                {tourneyDetails.is_running
+                  ? `Rebuy Points`
+                  : isRegistered
                   ? "Signed Up Already"
                   : `Sign Up For ₦
                 ${Number(tourneyDetails.participation_cost).toLocaleString()}`}

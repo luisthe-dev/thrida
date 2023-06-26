@@ -23,6 +23,7 @@ import { RiMenu4Fill } from "react-icons/ri";
 import TourneyInfoSide from "../../components/Dash/TourneyInfoSide";
 import ProTraderSide from "../../components/Dash/ProTraderSide";
 import ProTraderInfo from "../../components/Dash/ProTraderInfo";
+import BonusSide from "../../components/Dash/BonusSide";
 
 const Trading = () => {
   const [amount, setAmount] = useState(100);
@@ -32,6 +33,7 @@ const Trading = () => {
   const [tourneyInfo, setToureyInfo] = useState(0);
   const [proTrader, setProTrader] = useState(false);
   const [traderInfo, setTraderInfo] = useState(0);
+  const [bonusActive, setBonusActive] = useState(false);
   const { chartActiveAsset } = useSelector((state) => state.chartStore);
   const { activeWallet } = useSelector((state) => state.userStore);
 
@@ -359,13 +361,25 @@ const Trading = () => {
       setToureyInfo(0);
       setProTrader(false);
       setTraderInfo(0);
+      setBonusActive(false);
     }
+
     if (toggle === "TourneyHistory") {
       setTradeHistory(false);
       setTourneyHistory(!tourneyHistory);
       setToureyInfo(0);
       setProTrader(false);
       setTraderInfo(0);
+      setBonusActive(false);
+    }
+
+    if (toggle === "BonusSection") {
+      setTradeHistory(false);
+      setTourneyHistory(false);
+      setToureyInfo(0);
+      setProTrader(false);
+      setTraderInfo(0);
+      setBonusActive(!bonusActive);
     }
 
     if (toggle === "ProTrader") {
@@ -374,6 +388,7 @@ const Trading = () => {
       setToureyInfo(0);
       setProTrader(!proTrader);
       setTraderInfo(0);
+      setBonusActive(false);
     }
   };
 
@@ -418,6 +433,7 @@ const Trading = () => {
           proActive={setTraderInfo}
         />
         <ProTraderInfo active={traderInfo} />
+        <BonusSide active={bonusActive} />
         <div className="TradingSideMenuItems">
           <div
             className="TradingSideMenuItem"
@@ -425,7 +441,10 @@ const Trading = () => {
           >
             <AiFillClockCircle /> <span> Trades </span>
           </div>
-          <div className="TradingSideMenuItem">
+          <div
+            className="TradingSideMenuItem"
+            onClick={() => toggleTradeSideMenu("BonusSection")}
+          >
             <BsGiftFill />
             <span> Bonuses </span>
           </div>
