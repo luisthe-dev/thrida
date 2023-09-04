@@ -1,0 +1,27 @@
+.bonus-class{
+    padding: 10px;
+}
+.bonus-item{
+    width:100%;
+    padding:10px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.bonus-foot{
+    width:100%;
+    padding:10px;
+    border:1px solid gainsboro;
+    border-radius: 10px;
+    font-size: 0.7em;
+    text-align: center;
+    color:white;
+    margin-top: 10px;
+}
+.inner-bonus-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:white;
+   
+}

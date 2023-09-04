@@ -1,0 +1,190 @@
+header {
+  height: 100vh;
+  width: 100vw;
+  background: #06294992 no-repeat center;
+  background-image: url("/public/public_assets/images/1.jpg");
+  background-size: cover;
+  background-blend-mode: darken;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 50px;
+}
+
+header h1 {
+  font-size: 4rem;
+  color: #ffffff;
+  margin: 12px 0;
+  font-weight: 700;
+}
+
+header h3 {
+  font-size: 2.4rem;
+  color: #ffffff;
+  margin: 20px 0;
+  font-weight: 500;
+}
+
+header p {
+  font-size: 1.5rem;
+  width: 50%;
+  margin: 12px 0;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+header a {
+  width: 150px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 6px;
+  margin: 14px 0;
+  border-radius: 6px;
+  background: #062949de;
+  border: 1px solid transparent;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+header a:hover {
+  border: 1px solid #ffffff;
+  background: transparent;
+}
+
+.whatWeDo {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.whatWeDo h2 {
+  font-size: 2.4rem;
+  color: var(--darkBackground);
+  margin: 20px 0;
+  font-weight: 500;
+}
+
+.whatWeDo p {
+  font-size: 1.5rem;
+  width: 50%;
+  margin: 12px auto;
+  color: var(--darkBackground);
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.whatWeDo a {
+  width: 150px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 6px;
+  margin: 14px auto;
+  border-radius: 6px;
+  background: #062949de;
+  border: 1px solid transparent;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ourServices h2 {
+  font-size: 2.4rem;
+  color: var(--darkBackground);
+  margin: 20px 0;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ourServices .ourServicesBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ourServices .ourServicesBlock div {
+  width: 30%;
+  margin: 20px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ourServices .ourServicesBlock div lottie-player {
+  width: 75%;
+}
+
+.ourServices .ourServicesBlock div h3 {
+  font-size: 2rem;
+  color: var(--darkBackground);
+  margin: 20px 0;
+  font-weight: 700;
+}
+
+.ourServices .ourServicesBlock div p {
+  font-size: 1.2rem;
+  margin: 12px auto;
+  color: var(--darkBackground);
+  font-weight: 400;
+  line-height: 30px;
+}
+
+@media (max-width: 1024px) {
+  header p {
+    width: 70%;
+  }
+  .ourServices .ourServicesBlock div {
+    width: 45%;
+  }
+}
+
+@media (max-width: 720px) {
+  header {
+    align-items: center;
+    padding-left: 0;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  header h3 {
+    font-size: 1.6rem;
+  }
+
+  header p {
+    font-size: 1rem;
+    text-align: center;
+    width: 95%;
+    line-height: 30px;
+  }
+
+  .whatWeDo p {
+    width: 95%;
+  }
+
+  .ourServices .ourServicesBlock {
+    flex-direction: column;
+  }
+
+  .ourServices .ourServicesBlock div {
+    width: 80%;
+  }
+
+  .ourServices .ourServicesBlock div lottie-player {
+    width: 100%;
+  }
+
+  .ourServices .ourServicesBlock div p {
+    font-size: 1rem;
+  }
+}

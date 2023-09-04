@@ -1,0 +1,37 @@
+.Rocde-training-body{
+    padding: 50px;
+}
+.RcodeTrainingMainList{
+    display: flex;
+    gap:40px;
+    margin-top: 50px;
+}
+.RcodeTrainingMainList > a{
+    position: relative;
+    display: block;
+ } 
+.RcodeTrainingMainList > a .blocker{
+    width:100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    background-color: transparent;
+    z-index: 10;
+ } 
+@media screen and (max-width:900px) {
+    .RcodeTrainingMainList{
+        display: block;
+       width: 100%;
+    }  
+    .RcodeTrainingMainList > a{
+       width: 100%;
+       margin-bottom: 20px;
+    }  
+}
+.bbo + p::first-letter{
+font-weight: bold !important;
+}
+.mainTextParagraph p::first-letter{
+font-weight: 500;
+}

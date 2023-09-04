@@ -1,0 +1,84 @@
+.adminTable {
+  width: 100%;
+  font-size: 14px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.adminTable .adminTableHeader {
+  width: 95%;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--darkBackground);
+  margin: 12px auto;
+}
+
+.adminTable .adminTableBody {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: scroll;
+}
+
+.adminTable .adminTableBody table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  padding: 5px;
+  color: var(--darkBackground);
+  text-align: center;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.adminTable .adminTableBody table.bordered tr {
+  border: 1px solid var(--darkBackground);
+}
+
+.adminTable .adminTableBody table.hover tbody tr:hover {
+  opacity: 0.7;
+}
+
+.adminTable .adminTableBody table th {
+  padding: 20px 5px;
+}
+
+.adminTable .adminTableBody table td {
+  padding: 8px 8px;
+}
+.adminTable .adminTableBody table img {
+ width:40px;
+}
+
+.adminTable .adminTableBody table td svg {
+  font-size: 20px;
+}
+
+.adminTable .adminTableBody table td button,
+.adminBtn {
+  border-radius: 4px;
+  padding: 8px 20px;
+  border: 1px solid var(--mainPrimary);
+  background: var(--mainSecondary);
+  color: var(--mainPrimary);
+  display: inline-block;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.adminTable .adminTableBody table td button:hover,
+.adminBtn:hover {
+  background: transparent;
+  color: var(--mainSecondary);
+}
+
+@media (max-width: 768px) {
+  .adminTable .adminTableBody {
+    align-items: flex-start;
+    justify-content: center;
+    overflow-x: scroll;
+  }
+}

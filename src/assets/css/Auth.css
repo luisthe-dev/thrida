@@ -1,0 +1,208 @@
+.mainAuthContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--alternateBackground);
+}
+
+.mainAuthContainer .authContainer {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--mainBackground);
+  border-radius: 12px;
+  padding: 30px 5px;
+}
+
+.mainAuthContainer .authContainer .authHeader {
+  margin-bottom: 8px;
+  padding-top: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.mainAuthContainer .authContainer .authHeader > svg {
+  left: 20px;
+  align-self: center;
+  border: 1px solid var(--darkBackground);
+  color: var(--darkBackground);
+  padding: 8px;
+  font-size: 2.1rem;
+  border-radius: 30px;
+}
+
+.mainAuthContainer .authContainer .authHeader > svg:hover {
+  background: var(--darkBackground);
+  color: var(--mainBackground);
+  border: 1px solid var(--darkBackground);
+}
+
+.mainAuthContainer .authContainer .authHeader .authHeaderText {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--darkBackground);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 85%;
+}
+
+.mainAuthContainer .authContainer .authHeader .authHeaderText img {
+  width: 55%;
+}
+
+.mainAuthContainer .authContainer .authForm {
+  margin: 5px auto;
+  width: 90%;
+}
+
+.mainAuthContainer .authContainer .authForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  width: 90%;
+  margin: 3px auto;
+}
+
+.mainAuthContainer .authContainer .authForm form label {
+  font-size: 1rem;
+  font-weight: 500;
+  align-self: flex-start;
+  padding-left: 5%;
+  margin: 3px 0 12px 5px;
+  color: var(--mainSecondary);
+}
+
+.mainAuthContainer .authContainer .authForm form .authFormInputContainer {
+  width: 90%;
+  font-size: 1.4rem;
+  color: var(--alternateBackground);
+  border-radius: 5px;
+  padding: 0 10px;
+  border: 1px solid var(--mainShadow);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mainAuthContainer .authContainer .authForm form .authFormInputContainer input {
+  width: 85%;
+  padding: 15px 10px 15px 2px;
+  margin-left: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--mainBackground);
+  color: var(--mainSecondary);
+}
+
+.mainAuthContainer .authContainer .authForm form .authFormBoldText {
+  font-size: 0.7rem;
+  align-self: flex-start;
+  width: 85%;
+  margin: 5px auto;
+  color: var(--mainSecondary);
+}
+
+.mainAuthContainer .authContainer .authForm form .authFormBoldText a {
+  color: var(--darkBackground);
+}
+
+.mainAuthContainer .authContainer .authForm form button {
+  width: 40%;
+  border-radius: 5px;
+  border: 1px solid var(--mainSecondary);
+  padding: 15px 10px 15px;
+  margin: 10px auto;
+  background-color: var(--mainSecondary);
+  color: var(--mainBackground);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.mainAuthContainer .authContainer .authForm form button:hover {
+  background-color: var(--mainBackground);
+  color: var(--mainSecondary);
+}
+
+.mainAuthContainer .authContainer .authForm form button:disabled {
+  background-color: var(--mainShadow);
+  color: var(--darkBackground);
+  border-color: var(--mainShadow);
+}
+
+.mainAuthContainer .authContainer .authFooter {
+  margin-top: 8px;
+}
+
+.mainAuthContainer .authContainer .authFooter p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--darkBackground);
+}
+
+.mainAuthContainer .authContainer .authFooter a {
+  color: var(--mainSecondary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.mainAuthContainer .authContainer .authFooter a:hover {
+  color: var(--mainPrimary);
+}
+
+.floatingFooter {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--mainBackground);
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-size: 0.9rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  color: var(--mainSecondary);
+}
+
+@media (max-width: 1200px) {
+  .mainAuthContainer .authContainer {
+    width: 50%;
+  }
+}
+
+@media (max-width: 720px) {
+  .mainAuthContainer .authContainer {
+    width: 95%;
+  }
+
+  .mainAuthContainer .authContainer .authForm form {
+    width: 100%;
+  }
+
+  .mainAuthContainer .authContainer .authForm form label {
+    padding-left: 0;
+  }
+
+  .mainAuthContainer .authContainer .authForm form .authFormInputContainer {
+    width: 100%;
+  }
+}

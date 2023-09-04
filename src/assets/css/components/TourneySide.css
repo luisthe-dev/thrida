@@ -1,0 +1,125 @@
+.newTourneyBtn {
+  margin: 10px auto;
+  width: 100%;
+  padding: 8px;
+}
+
+.newTourneyBtn button {
+  margin: 8px auto;
+  width: 90%;
+  padding: 12px 8px;
+  font-size: 1rem;
+  background: var(--mainSecondary);
+  color: var(--alternateBackground);
+  font-weight: 400;
+  border-radius: 8px;
+  border: 2px solid var(--mainShadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.newTourneyBtn button:hover {
+  background: transparent;
+  color: var(--mainSecondary);
+}
+
+.tradeHistoryPopUp .tourneyHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tradeHistoryPopUp .tourneyHistory > p {
+  color: var(--darkBackground);
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.tourneyBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0px 0;
+  margin: 12px auto;
+  width: 95%;
+  background: var(--mainShadow) no-repeat center;
+  background-size: cover;
+  border-radius: 4px;
+  border: 1px solid var(--darkBackground);
+  color: var(--mainBackground);
+  background-blend-mode: darken;
+  min-height: 200px;
+}
+
+.tourneyBlock .tourneyBlockHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  width: 100%;
+}
+
+.tourneyBlock .tourneyBlockHeader h5 {
+  background: var(--mainSecondary);
+  color: var(--mainBackground);
+  padding: 6px 12px;
+  border-radius: 50px;
+}
+
+.tourneyBlock .tourneyBlockHeader p {
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--mainSecondary);
+  color: var(--mainBackground);
+  padding: 6px 12px;
+  border-radius: 50px;
+}
+
+.tourneyBlock .tourneyBlockFooter {
+  background: var(--mainBackground);
+  width: 100%;
+  padding: 5px 5px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tourneyBlock .tourneyBlockFooter p {
+  color: var(--darkBackground);
+  font-size: 18px;
+  padding: 12px 4px;
+  font-weight: 700;
+}
+
+.tourneyBlock .tourneyBlockFooter .tourneyBlockFooterBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.tourneyBlock .tourneyBlockFooter .tourneyBlockFooterBtns button {
+  cursor: pointer;
+  background: var(--mainSecondary);
+  color: var(--mainBackground);
+  padding: 6px 12px;
+  margin: 0 8px;
+  border-radius: 4px;
+  border: 1px solid var(--mainSecondary);
+}
+
+.tourneyBlock .tourneyBlockFooter .tourneyBlockFooterBtns button:hover {
+  background: transparent;
+  color: var(--mainSecondary);
+}

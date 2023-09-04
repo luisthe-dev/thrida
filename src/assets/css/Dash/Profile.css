@@ -1,0 +1,467 @@
+.ProfilePageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0 80px;
+  background-color: var(--mainBackground);
+}
+
+.ProfilePageContainer .ProfilePageHeader {
+  padding: 20px 0 30px;
+  margin: 10px auto 50px;
+  border-bottom: 1px solid var(--mainShadow);
+  width: 60%;
+  text-align: center;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer {
+  width: 180px;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  background: var(--alternateBackground);
+  margin: 6px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 180px;
+  position: relative;
+  z-index: 5;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer
+  .ProfilePageHeaderImageContainerOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 180px;
+  opacity: 0;
+  background: var(--darkBackground);
+  transition: all 0.4s;
+  z-index: 6;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer:hover
+  .ProfilePageHeaderImageContainerOverlay {
+  opacity: 0.4;
+  transition: all 0.4s;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer svg {
+  font-size: 3rem;
+  color: var(--darkBackground);
+  font-weight: 500;
+  margin: 8px auto;
+}
+
+.ProfilePageContainer .ProfilePageHeader .ProfilePageHeaderImageContainer p {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mainBackground);
+  opacity: 0;
+  font-weight: 500;
+  z-index: 7;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageHeader
+  .ProfilePageHeaderImageContainer:hover
+  p {
+  opacity: 1;
+}
+
+.ProfilePageContainer .ProfilePageHeader p {
+  font-size: 1.2rem;
+  color: var(--darkBackground);
+  font-weight: 500;
+  margin: 20px 0 0;
+}
+
+.ProfilePageContainer .ProfilePageBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  gap: 30px;
+  position: relative;
+}
+
+.ProfilePageContainer .ProfilePageBody .ProfilePageBodyHeader {
+  overflow-x: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 0;
+  width: 100%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p {
+  white-space: nowrap;
+  padding: 10px 4px;
+  border-radius: 7px 7px 0 0;
+  cursor: pointer;
+  color: var(--mainSecondary);
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p::after {
+  content: " ";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: var(--darkBackground);
+  transition: all 0.6s;
+  margin: 5px auto 0;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p.activeSelector::after {
+  width: 90%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodyHeader
+  .ProfilePageBodySectionSelectors
+  p:hover::after {
+  width: 80%;
+  transition: all 0.6s;
+}
+
+.ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  gap: 20px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.6s ease;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection[data-sectionshown="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection[data-sectionshown="false"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  h3 {
+  font-size: 1.8rem;
+  color: var(--darkBackground);
+  margin: 5px auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  p {
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  margin: 2px auto;
+  margin-bottom: 30px;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn {
+  padding: 12px 50px 12px 20px;
+  width: 60%;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 12px auto;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn:hover {
+  opacity: 0.7;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn.fbButton {
+  background: #4267b2a2;
+  color: #ffffff;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn.ggButton {
+  background: linear-gradient(
+    to left,
+    #4285f4a2,
+    #db4437a2,
+    #f4b400a2,
+    #0f9d58a2
+  );
+  color: #ffffff;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn.frznButton {
+  background: #4285f4;
+  color: #ffffff;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn.delButton {
+  background: #db4437;
+  color: #ffffff;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn
+  svg {
+  display: inline-block;
+  border-right: thin solid #ffffff;
+  flex: 0.25;
+  margin: 0 8px 0 2px;
+  font-size: 1.9rem;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  .profilePgBtn
+  label {
+  flex: 0.7;
+  display: inline-block;
+  text-align: left;
+  padding-left: 12px;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  label {
+  font-size: 0.8rem;
+  color: var(--darkBackground);
+  margin: 2px auto;
+  width: 70%;
+  text-align: left;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  input,
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  select {
+  width: 70%;
+  border-bottom: 1.2px solid var(--mainShadow);
+  padding: 14px 12px 8px 20px;
+  color: var(--darkBackground);
+  margin: 5px auto 12px;
+  background: transparent;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  button {
+  width: 30%;
+  border-radius: 8px;
+  border: 1px solid var(--mainSecondary);
+  padding: 14px 0;
+  color: var(--mainBackground);
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 12px auto;
+  background: var(--mainSecondary);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ProfilePageContainer
+  .ProfilePageBody
+  .ProfilePageBodySections
+  .ProfilePageBodySection
+  form
+  button:hover {
+  color: var(--mainSecondary);
+  background: var(--mainBackground);
+}
+
+@media (max-width: 1200px) {
+  .ProfilePageContainer .ProfilePageBody {
+    width: 70%;
+  }
+
+  .ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
+    width: 95%;
+  }
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    .profilePgBtn {
+    width: 60%;
+  }
+}
+
+@media (max-width: 720px) {
+  .ProfilePageContainer .ProfilePageBody {
+    width: 90%;
+  }
+
+  .ProfilePageContainer .ProfilePageBody .ProfilePageBodySections {
+    width: 95%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    label {
+    width: 90%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    input {
+    width: 90%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    form
+    button {
+    width: 70%;
+  }
+
+  .ProfilePageContainer
+    .ProfilePageBody
+    .ProfilePageBodySections
+    .ProfilePageBodySection
+    .profilePgBtn {
+    width: 80%;
+  }
+}

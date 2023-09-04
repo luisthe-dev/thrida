@@ -1,0 +1,17 @@
+.historyBlockContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.historyBlockContainer .historyBlocks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  font-size: 0.9rem;
+  max-height: 100vh;
+}

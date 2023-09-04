@@ -1,0 +1,14 @@
+.AdminTopBarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 18px 30px;
+  background-color: var(--mainBackground);
+  border-bottom: 1px solid var(--mainShadow);
+  color: var(--darkBackground);
+  font-size: 18px;
+  font-weight: 600;
+}
