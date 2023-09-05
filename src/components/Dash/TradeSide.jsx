@@ -121,7 +121,7 @@ const TradeSide = ({ active }) => {
                     {trade.created_at.split("T")[0].split("-")[2]}{" "}
                     {
                       months.current[
-                        Number(trade.created_at.split("T")[0].split("-")[1]) - 1
+                        Number(trade.created_at.split("T")[0].split("-")[1]) - 2
                       ]
                     }
                   </span>

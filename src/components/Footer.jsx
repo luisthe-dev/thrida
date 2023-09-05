@@ -28,8 +28,8 @@ const Footer = () => {
         </div>
         <div className="footerBox">
           <h6> Socials </h6>
-          <Link to={"https://instagram.com/thrida1"}> Instagram </Link>
-          <Link to={"https://t.me/thridaa"}> Telegram </Link>
+          <a href={"https://instagram.com/thrida1"}> Instagram </a>
+          <a href={"https://t.me/thridaa"}> Telegram </a>
         </div>
       </div>
       <div id="copyright">

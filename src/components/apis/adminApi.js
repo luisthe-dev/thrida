@@ -83,6 +83,27 @@ export const GetAllUsers = async (pageNumber) => {
   return returnData;
 };
 
+export const SearchUsers = async (searchItem, pageNumber) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.get(`/admin/users/${searchItem}?page=${pageNumber}`, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        returnData.status = 1;
+        returnData.data = res.data.data;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
 export const GetAllUserTransactions = async (pageNumber) => {
   let returnData = { status: 0 };
 
