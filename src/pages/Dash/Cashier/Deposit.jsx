@@ -23,7 +23,11 @@ const Deposit = () => {
     setLoading(true);
 
     toast("Processing Deposit");
-    const depositResponse = await MakeDeposit(Number(depositAmount), method, promoCode);
+    const depositResponse = await MakeDeposit(
+      Number(depositAmount),
+      method,
+      promoCode
+    );
 
     if (depositResponse.status === 0) {
       toast.error(depositResponse.message);
@@ -79,14 +83,14 @@ const Deposit = () => {
                   maximumFractionDigits: 2,
                 })}`}
           </h6>
-          <p> Deposit more to attain a higher vip status </p>
+          {/* <p> Deposit more to attain a higher vip status </p>
           <div className="cashierPageBodyProgressBar">
             <div
               className="cashierPageBodyProgressBar_Bar"
               style={{ width: "25%" }}
             ></div>
           </div>
-          <p> ₦200,000 to next VIP status </p>
+          <p> ₦200,000 to next VIP status </p> */}
         </div>
       </div>
       <div className="depositPage">
@@ -98,7 +102,7 @@ const Deposit = () => {
             value={depositAmount}
             onInput={(e) => setDepositAmount(e.target.value)}
           />
-          <h6> *Minimum Deposit is $1 (₦450) </h6>
+          {/* <h6> *Minimum Deposit is $1 (₦450) </h6> */}
           <input
             type="text"
             placeholder="Promo Code (optional)"

@@ -11,7 +11,7 @@ const MainNavBar = () => {
         <CgClose onClick={() => setSideMenu(false)} />
         <Link to={"/"}>Home</Link>
         <Link to={"/about"}>About</Link>
-        <Link to={"/glossary"}>Glossary</Link> 
+        <Link to={"/glossary"}>Glossary</Link>
         <Link to={"/contact"}>Contact</Link>
         <Link to={"/signin"} className="btnLink">
           Login
@@ -31,7 +31,9 @@ const MainNavBar = () => {
           <Link to={"/glossary"}>Glossary</Link>
           <Link to={"/contact"}>Contact</Link>
         </div>
-        <img src="/public_assets/images/thrida.png" alt="Thrida Logo" />
+        <Link to={"/"}>
+          <img src="/public_assets/images/thrida.png" alt="Thrida Logo" />
+        </Link>
         <div className="navAuthLinks">
           <Link to={"/signin"}> Login </Link>
           <Link to={"/signup"}> Sign Up </Link>

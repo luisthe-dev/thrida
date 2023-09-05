@@ -19,17 +19,17 @@ const Footer = () => {
           <Link to={"/"}> Glossary </Link>
           <Link to={"/regulations"}> Regulations (Terms Of Use) </Link>
         </div>
+
         <div className="footerBox">
           <h6> Support </h6>
-          <Link to={"/"}> Contact Us </Link>
+          <Link to={"/contact"}> Contact Us </Link>
           <Link to={"/"}> FAQs </Link>
           <Link to={"/"}> Report Abuse </Link>
         </div>
         <div className="footerBox">
           <h6> Socials </h6>
-          <Link to={"/"}> Twitter </Link>
-          <Link to={"/"}> Telegram </Link>
-          <Link to={"/"}> WhatsApp </Link>
+          <Link to={"https://instagram.com/thrida1"}> Instagram </Link>
+          <Link to={"https://t.me/thridaa"}> Telegram </Link>
         </div>
       </div>
       <div id="copyright">

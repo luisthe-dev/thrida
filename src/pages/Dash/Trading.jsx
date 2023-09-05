@@ -443,7 +443,7 @@ const Trading = () => {
           </div>
           <div
             className="TradingSideMenuItem"
-            onClick={() => toggleTradeSideMenu("BonusSection")}
+            // onClick={() => toggleTradeSideMenu("BonusSection")}
           >
             <BsGiftFill />
             <span> Bonuses </span>

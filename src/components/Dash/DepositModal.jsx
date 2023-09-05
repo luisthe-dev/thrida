@@ -48,7 +48,13 @@ const DepositModal = ({
 
             <div className="MainModalBodyFlex">
               <h4> Deposit Amount </h4>
-              <h5>{depositData?.payAmount}</h5>
+              <h5>
+                ₦
+                {Number(depositData?.payAmount)?.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </h5>
             </div>
 
             {depositType === "Bank Transfer" ? (
