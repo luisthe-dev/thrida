@@ -64,9 +64,16 @@ const TradeSide = ({ active }) => {
           ? "tournament_wallet"
           : activeWallet === "live" && "real_wallet";
       setTradesData(
-        tradesRes.data.data.filter(
-          (trade) => trade.Wallet_Type === currentWallet
-        )
+        tradesRes.data.data
+          .filter((trade) => trade.Wallet_Type === currentWallet)
+          .map((trade) => {
+            const tradeDate = new Date(trade.created_at);
+            trade.created_hour = tradeDate.getHours();
+            trade.created_minute = tradeDate.getMinutes();
+            trade.created_date = tradeDate.getDate();
+            trade.created_month = tradeDate.getMonth();
+            return trade;
+          })
       );
     };
     getMyTrades();
@@ -117,13 +124,9 @@ const TradeSide = ({ active }) => {
                     <BsArrowDownShort />
                   )}
                   <span>
-                    {trade.created_at.split("T")[1].split(".")[0]} -{" "}
-                    {trade.created_at.split("T")[0].split("-")[2]}{" "}
-                    {
-                      months.current[
-                        Number(trade.created_at.split("T")[0].split("-")[1]) - 2
-                      ]
-                    }
+                    {`${trade.created_hour}:${trade.created_minute} - ${
+                      trade.created_date
+                    } ${months.current[trade.created_month - 1]}`}
                   </span>
                 </label>
               </div>

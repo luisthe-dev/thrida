@@ -7,9 +7,16 @@ import {
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
 import { useState } from "react";
-import { SignUpUser } from "../../components/apis/userApi";
+import { SignInUser, SignUpUser } from "../../components/apis/userApi";
 import { toast } from "react-toastify";
 import { FiLoader } from "react-icons/fi";
+import {
+  setUserAuthToken,
+  setUserDetails,
+  setUserLoggedIn,
+  setUserWallets,
+} from "../../redux/userStore";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -18,6 +25,7 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const myNavigate = useNavigate();
+  const myDispatch = useDispatch();
 
   const userSignUp = async (e) => {
     e.preventDefault();
@@ -25,12 +33,44 @@ const SignUp = () => {
     const signUpResponse = await SignUpUser(userName, userMail, userPassword);
     if (signUpResponse.status === 1) {
       toast.success("Signed Up Successfully");
+      // await userSignIn();
       setLoading(false);
     } else {
       toast.error(signUpResponse.message);
       setLoading(false);
     }
   };
+
+  // const userSignIn = async () => {
+  //   setLoading(true);
+  //   const signInResponse = await SignInUser(userMail, userPassword);
+  //   if (signInResponse.status === 1) {
+  //     toast.success("Signed In Successfully");
+  //     const userWallet = JSON.parse(signInResponse.data.user.wallets);
+  //     myDispatch(setUserAuthToken(signInResponse.data.access_token));
+  //     myDispatch(
+  //       setUserWallets({
+  //         demoAccount: userWallet.demo_wallet,
+  //         realAccount: userWallet.real_wallet,
+  //         tourneyAccount: userWallet.tournament_wallet,
+  //       })
+  //     );
+  //     myDispatch(setUserLoggedIn(true));
+  //     myDispatch(
+  //       setUserDetails({
+  //         name: signInResponse.data.user.name,
+  //         email: signInResponse.data.user.email,
+  //         level: signInResponse.data.user.level,
+  //         is_pro: Number(signInResponse.data.is_pro),
+  //       })
+  //     );
+  //     myNavigate("/dashboard");
+  //     setLoading(false);
+  //   } else {
+  //     toast.error(signInResponse.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="mainAuthContainer">
@@ -87,10 +127,8 @@ const SignUp = () => {
               <p>
                 {" "}
                 By Signing up, you agree to the{" "}
-                <Link to={"/agreement"}>
-                  Terms and Conditions
-                </Link>{" "}
-                and <Link to={"/privacy"}>Privacy Policy</Link>.{" "}
+                <Link to={"/agreement"}>Terms and Conditions</Link> and{" "}
+                <Link to={"/privacy"}>Privacy Policy</Link>.{" "}
               </p>
             </div>
             <button type="submit" disabled={loading} className={"loadingBtn"}>

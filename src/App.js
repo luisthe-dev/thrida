@@ -81,8 +81,16 @@ const App = () => {
     } else {
       activeChart = chartActiveAsset;
     }
-    myDispatch(updateActiveAsset(activeChart));
+
+    const chartVersion = localStorage.getItem("chartVersion");
+
+    if (!chartVersion || chartVersion != 1.1) {
+      localStorage.removeItem("chartDetails");
+      localStorage.setItem("chartVersion", 1.1);
+    }
+
     myDispatch(intializeChartStoreData(activeChart));
+    myDispatch(updateActiveAsset(activeChart));
     localStorage.setItem("activeAsset", activeChart);
     setInterval(() => {
       myDispatch(updateChartStore(activeChart));
@@ -90,6 +98,30 @@ const App = () => {
   };
 
   useEffect(() => {
+    const tabsOpen = localStorage.getItem("tabsOpen");
+    console.log("tabsOpen", tabsOpen);
+    if (tabsOpen == null || tabsOpen == 0) {
+      localStorage.setItem("tabsOpen", 1);
+    } else {
+      console.log(localStorage.getItem("tabsOpen"));
+    }
+
+    if (tabsOpen == 1) {
+      alert(
+        "We suggest using only one tab to utilize our services to avoid data corruption, close all other tabs or switch"
+      );
+      return;
+    }
+
+    // define decrement counter part
+    window.onunload = function (e) {
+      const newTabCount = localStorage.getItem("tabsOpen");
+      console.log("closing", newTabCount);
+      if (newTabCount != null && newTabCount != 0) {
+        localStorage.setItem("tabsOpen", newTabCount - 1);
+      }
+    };
+
     intiateAllAssets();
     return;
   }, [chartActiveAsset]);

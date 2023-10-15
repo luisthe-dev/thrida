@@ -12,10 +12,11 @@ export const chartStore = createSlice({
   },
   reducers: {
     updateChartStore: (state, action) => {
-      const newOpen =
+      const lastItem =
         state.chartDetails[action.payload][
           state.chartDetails[action.payload].length - 1
-        ].close;
+        ];
+      const newOpen = lastItem.close;
       const newClose = Number(
         (
           Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
@@ -50,9 +51,10 @@ export const chartStore = createSlice({
               ).toFixed(5)
             );
       const newValue = (newOpen + newClose) / 2;
+      const newTime = Math.floor(new Date().getTime() / 1000);
 
       const updateData = {
-        time: Math.floor(new Date().getTime() / 1000),
+        time: lastItem.time === newTime ? newTime + 1 : newTime,
         open: newOpen,
         high: newHigh,
         low: newLow,
@@ -99,9 +101,14 @@ export const chartStore = createSlice({
       const allChartData = [];
       const currentTime = Math.floor(new Date().getTime() / 1000);
       for (let i = 0; i < 1000; i++) {
-        const newOpen =
-          allChartData[allChartData.length - 1]?.close ||
-          Number(Math.floor(Math.random() * (50 - 20 + 1) + 20).toFixed(5));
+        const lastItem =
+          allChartData.length > 0
+            ? allChartData[allChartData.length - 1]
+            : null;
+
+        const newOpen = lastItem
+          ? allChartData[allChartData.length - 1].close
+          : Number(Math.floor(Math.random() * (50 - 20 + 1) + 20).toFixed(5));
         const newClose = Number(
           (
             Math.random() * (newOpen + 50 - (newOpen - 50) + 1) +
@@ -138,8 +145,10 @@ export const chartStore = createSlice({
               );
         const newValue = (newOpen + newClose) / 2;
 
+        const newTime = currentTime - (1000 - i);
+
         const generatedData = {
-          time: currentTime - (1000 - i),
+          time: newTime,
           open: newOpen,
           high: newHigh,
           low: newLow,
@@ -152,6 +161,8 @@ export const chartStore = createSlice({
         state.chartDetails = mychartData;
         localStorage.setItem("chartDetails", JSON.stringify(mychartData));
       }
+      console.log(allChartData[allChartData.length - 1]);
+      // return mychartData;
     },
     updateActiveAsset: (state, action) => {
       state.chartActiveAsset = action.payload;

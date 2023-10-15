@@ -67,6 +67,9 @@ const Trading = () => {
     if (!chartDetails[chartActiveAsset]) return;
 
     myChart?.current?.remove();
+    if (document.getElementsByClassName("tv-lightweight-charts")[0])
+      document.getElementsByClassName("tv-lightweight-charts")[0].innerHTML =
+        "";
 
     const chart = createChart(document.getElementById("TradeChapter"), {
       layout: {
@@ -89,10 +92,10 @@ const Trading = () => {
         },
       },
       rightPriceScale: {
-        borderVisible: false,
+        borderVisible: true,
       },
       timeScale: {
-        borderVisible: false,
+        borderVisible: true,
       },
     });
 
@@ -104,7 +107,7 @@ const Trading = () => {
       topColor: "rgba(33, 150, 243, 0.56)",
       bottomColor: "rgba(33, 150, 243, 0.04)",
       lineColor: "rgba(33, 150, 243, 1)",
-      visible: true,
+      visible: false,
     });
     const linestickSeries = chart.addLineSeries({
       lineWidth: 2,
@@ -112,7 +115,7 @@ const Trading = () => {
       visible: false,
     });
     const barstickSeries = chart.addBarSeries({
-      visible: false,
+      visible: true,
     });
 
     myChart.current = chart;

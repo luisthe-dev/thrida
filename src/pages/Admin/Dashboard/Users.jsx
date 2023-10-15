@@ -78,6 +78,7 @@ const Users = () => {
   }, []);
 
   useEffect(() => {
+    if (searchItem === "") return;
     if (searchRef.current) clearTimeout(searchRef.current);
 
     searchRef.current = setTimeout(() => {
