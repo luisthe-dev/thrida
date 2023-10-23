@@ -102,7 +102,11 @@ const AssetsDropdown = () => {
                   : "assetListAssetDetails disabled"
               }
               key={assetKey}
-              onClick={() => switchActive(asset.asset_name)}
+              onClick={() => {
+                const tabsOpen = Number(localStorage.getItem("tabsOpen")) - 1;
+                localStorage.setItem("tabsOpen", tabsOpen);
+                switchActive(asset.asset_name);
+              }}
             >
               <img src={asset.image} />
               <h5> {asset.asset_name} </h5>

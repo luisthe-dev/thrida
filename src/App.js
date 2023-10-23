@@ -83,10 +83,15 @@ const App = () => {
     }
 
     const chartVersion = localStorage.getItem("chartVersion");
+    const tabCheck = localStorage.getItem("checkVersion");
 
-    if (!chartVersion || chartVersion != 1.1) {
+    if (!tabCheck || tabCheck != 1.0) {
+      localStorage.setItem("checkVersion", 1.0);
+    }
+
+    if (!chartVersion || chartVersion != 1.2) {
       localStorage.removeItem("chartDetails");
-      localStorage.setItem("chartVersion", 1.1);
+      localStorage.setItem("chartVersion", 1.2);
     }
 
     myDispatch(intializeChartStoreData(activeChart));
@@ -99,11 +104,8 @@ const App = () => {
 
   useEffect(() => {
     const tabsOpen = localStorage.getItem("tabsOpen");
-    console.log("tabsOpen", tabsOpen);
     if (tabsOpen == null || tabsOpen == 0) {
       localStorage.setItem("tabsOpen", 1);
-    } else {
-      console.log(localStorage.getItem("tabsOpen"));
     }
 
     if (tabsOpen == 1) {
@@ -116,7 +118,6 @@ const App = () => {
     // define decrement counter part
     window.onunload = function (e) {
       const newTabCount = localStorage.getItem("tabsOpen");
-      console.log("closing", newTabCount);
       if (newTabCount != null && newTabCount != 0) {
         localStorage.setItem("tabsOpen", newTabCount - 1);
       }

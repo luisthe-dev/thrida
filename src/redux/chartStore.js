@@ -64,10 +64,10 @@ export const chartStore = createSlice({
 
       state.chartDetails[action.payload].push(updateData);
 
-      if (state.chartDetails[action.payload].length > 800) {
+      if (state.chartDetails[action.payload].length > 1000) {
         state.chartDetails[action.payload].splice(
           0,
-          state.chartDetails[action.payload].length - 800
+          state.chartDetails[action.payload].length - 1000
         );
       }
 
@@ -78,10 +78,10 @@ export const chartStore = createSlice({
       mychartData.push(updateData);
       allChartData[action.payload] = mychartData;
 
-      if (allChartData[action.payload].length > 800) {
+      if (allChartData[action.payload].length > 1000) {
         allChartData[action.payload].splice(
           0,
-          allChartData[action.payload].length - 800
+          allChartData[action.payload].length - 1000
         );
       }
 
@@ -161,8 +161,6 @@ export const chartStore = createSlice({
         state.chartDetails = mychartData;
         localStorage.setItem("chartDetails", JSON.stringify(mychartData));
       }
-      console.log(allChartData[allChartData.length - 1]);
-      // return mychartData;
     },
     updateActiveAsset: (state, action) => {
       state.chartActiveAsset = action.payload;

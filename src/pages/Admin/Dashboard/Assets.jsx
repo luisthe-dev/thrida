@@ -33,7 +33,7 @@ const Assets = () => {
       status: pairStatus,
       image: fileCdn,
     };
-   console.log(fileCdn);
+
     const createRes = await createNewAsset(assetData);
 
     if (createRes.status === 1) {
