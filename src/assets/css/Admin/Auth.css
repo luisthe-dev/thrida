@@ -54,10 +54,35 @@
   cursor: pointer;
 }
 
+.new-button-set{
+  width: 30%;
+  padding: 15px 24px;
+  border-radius: 25px;
+  border: 1px solid var(--mainShadow);
+  background: var(--mainSecondary);
+  margin: 25px;
+  color: var(--alternateBackground);
+  cursor: pointer;
+}
+
+.new-button-set:hover{
+  color: var(--mainSecondary);
+  background: transparent;
+  border-color: var(--mainSecondary);
+}
+
 .AdminAuthContainer .AdminAuthBlock button:hover {
   color: var(--mainSecondary);
   background: transparent;
   border-color: var(--mainSecondary);
+}
+
+.addIcon2{
+  position: fixed;
+  bottom: 5rem;
+  right: 10rem;
+  z-index: 999;
+  cursor: pointer;
 }
 
 @media (max-width: 1024px) {
