@@ -6,10 +6,12 @@ import Table from "../../../components/Admin/Table";
 import UserInfo from "../../../components/Admin/UserInfo";
 import { GetAllUsers } from "../../../components/apis/adminApi";
 
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editUser, setEditUser] = useState(0);
+
 
   const getUsers = async (pageNumber) => {
     setIsLoading(true);
@@ -45,6 +47,11 @@ const Users = () => {
     getUsers(1);
   }, []);
 
+
+ 
+
+ 
+
   return (
     <>
       {editUser !== 0 && <UserInfo userId={editUser} setUser={setEditUser} />}
@@ -55,6 +62,7 @@ const Users = () => {
         tableData={users}
         isLoading={isLoading}
       />
+
     </>
   );
 };

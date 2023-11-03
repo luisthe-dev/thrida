@@ -52,6 +52,7 @@ const TransactionInfo = ({
       toast.success("Transaction Approved");
       setTransactionId(0);
     } else {
+      
       toast.error("Error Approving Transaction");
     }
   };
