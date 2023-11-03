@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getProUsers } from "../apis/userApi";
 
+
+
 const ProTraderSide = ({ active, setActive, proActive }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [allPros, setAllPros] = useState([]);

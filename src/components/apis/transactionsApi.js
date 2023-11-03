@@ -81,7 +81,8 @@ export const UploadDepositSlip = async (transaction_id, depositSlip) => {
   let depositFormData = new FormData();
   depositFormData.append("depositSlip", depositSlip);
 
-  await ThridaApi.post(`/updateDeposit/${transaction_id}`, depositFormData, {
+  await ThridaApi.post(`/updateDeposit/${transaction_id}
+  `, depositFormData, {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${

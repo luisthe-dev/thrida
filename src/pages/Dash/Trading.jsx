@@ -22,6 +22,7 @@ import TourneySide from "../../components/Dash/TourneySide";
 import { RiMenu4Fill } from "react-icons/ri";
 import TourneyInfoSide from "../../components/Dash/TourneyInfoSide";
 import ProTraderSide from "../../components/Dash/ProTraderSide";
+import Affilate from "../../components/Dash/Affiliate";
 import ProTraderInfo from "../../components/Dash/ProTraderInfo";
 import BonusSide from "../../components/Dash/BonusSide";
 
@@ -32,6 +33,7 @@ const Trading = () => {
   const [tourneyHistory, setTourneyHistory] = useState(false);
   const [tourneyInfo, setToureyInfo] = useState(0);
   const [proTrader, setProTrader] = useState(false);
+  const [affilate, setAffilate] = useState(false)
   const [traderInfo, setTraderInfo] = useState(0);
   const [bonusActive, setBonusActive] = useState(false);
   const { chartActiveAsset } = useSelector((state) => state.chartStore);
@@ -357,6 +359,7 @@ const Trading = () => {
       .classList.remove("active");
     if (toggle === "TradeHistory") {
       setTourneyHistory(false);
+      setAffilate(false)
       setTradeHistory(!tradeHistory);
       setToureyInfo(0);
       setProTrader(false);
@@ -366,7 +369,18 @@ const Trading = () => {
 
     if (toggle === "TourneyHistory") {
       setTradeHistory(false);
+      setAffilate(false)
       setTourneyHistory(!tourneyHistory);
+      setToureyInfo(0);
+      setProTrader(false);
+      setTraderInfo(0);
+      setBonusActive(false);
+    }
+
+    if (toggle === "Affiliate") {
+      setTradeHistory(false);
+      setTourneyHistory(false);
+      setAffilate(!affilate)
       setToureyInfo(0);
       setProTrader(false);
       setTraderInfo(0);
@@ -376,21 +390,34 @@ const Trading = () => {
     if (toggle === "BonusSection") {
       setTradeHistory(false);
       setTourneyHistory(false);
+      setAffilate(false)
       setToureyInfo(0);
       setProTrader(false);
       setTraderInfo(0);
       setBonusActive(!bonusActive);
     }
 
+    // if (toggle === "Affilate") {
+    //   setTradeHistory(false);
+    //   setTourneyHistory(false);
+    //   setToureyInfo(0);
+    //   setAffilate(!Affilate);
+    //   setTraderInfo(0);
+    //   setBonusActive(false);
+    // }
+
     if (toggle === "ProTrader") {
       setTradeHistory(false);
       setTourneyHistory(false);
+      setAffilate(false)
       setToureyInfo(0);
       setProTrader(!proTrader);
       setTraderInfo(0);
       setBonusActive(false);
     }
   };
+
+  
 
   const showTradingSide = () => {
     document
@@ -411,6 +438,7 @@ const Trading = () => {
 
     setTradeHistory(false);
     setTourneyHistory(false);
+    setAffilate(false)
     setToureyInfo(0);
     setProTrader(false);
     setTraderInfo(0);
@@ -426,12 +454,22 @@ const Trading = () => {
           infoActive={setToureyInfo}
           setActive={setTourneyHistory}
         />
+
+      <Affilate
+          active={affilate}
+          infoActive={setAffilate}
+          setActive={setAffilate}
+        />
         <TourneyInfoSide active={tourneyInfo} />
         <ProTraderSide
           active={proTrader}
           setActive={setProTrader}
           proActive={setTraderInfo}
         />
+        {/* <Affilate  
+        active={proTrader}
+          setActive={setProTrader}
+          proActive={setTraderInfo}/> */}
         <ProTraderInfo active={traderInfo} />
         <BonusSide active={bonusActive} />
         <div className="TradingSideMenuItems">
@@ -460,9 +498,10 @@ const Trading = () => {
           >
             <HiBadgeCheck /> <span> Pro Traders </span>
           </div>
-          <div className="TradingSideMenuItem">
+          <div className="TradingSideMenuItem"
+          onClick={() => toggleTradeSideMenu("Affiliate")}>
             <TbSpeakerphone />
-            <span> What's New? </span>
+            <span>Become Affiliate!🚀</span>
           </div>
         </div>
         <div className="TradingSideMenuFooter">

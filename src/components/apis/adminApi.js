@@ -416,3 +416,33 @@ export const updateSettingsValue = async (settingData) => {
 
   return returnData;
 };
+
+
+export const RequestPro = async (requestData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.post("/admin/prouser/add", requestData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaAdminAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
+
+// [
+//   'amount' => '2000', 
+// 'currency' => 'Naira', 
+// 'ruleFactor' => 'anytime', 
+// 'timeTrade' => ''
+// ]

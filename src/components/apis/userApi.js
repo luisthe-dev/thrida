@@ -136,3 +136,25 @@ export const RequestPro = async (requestData) => {
 
   return returnData;
 };
+
+export const RequestPromoCode = async (requestData) => {
+  let returnData = { status: 0 };
+
+  await ThridaApi.post("promo/request", requestData, {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("thridaUserAuthToken").split("|")[1]
+      }`,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 201) {
+        returnData = { status: 1, data: response.data };
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return returnData;
+};
+
