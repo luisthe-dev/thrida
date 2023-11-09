@@ -128,7 +128,7 @@ export const GetAllPendingWithdrawal = async (pageNumber) => {
 export const approveSingleWthdrawal = async (type, id) => {
   let returnData = { status: 0 };
 
-  await ThridaApi.get(`/admin/transactions/withdrawal/${type}/${id}/approve`, {
+  await ThridaApi.get(`/admin/transactions/${type}/${id}/approve`, {
     headers: {
       Authorization: `Bearer ${
         localStorage.getItem("thridaAdminAuthToken").split("|")[1]

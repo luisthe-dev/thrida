@@ -44,7 +44,7 @@ const TransactionInfo = ({
     setIsLoading(true);
 
     const requestRes = await approveSingleWthdrawal(
-      transactionType,
+      transactionType == "Deposit" ? "deposit" : transactionType,
       transactionId
     );
 
